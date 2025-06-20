@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Replica</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        /* Header */
+        .header {
+        background-color: white;
+        padding: 15px 20px;
+        border-bottom: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo img {
+        width: 50px;
+        height: auto;
+    }
+    
+    .nav-menu {
+        display: flex;
+        gap: 25px;
+        list-style: none;
+        flex-wrap: wrap;
+    }
+    
+    .nav-menu a {
+        text-decoration: none;
+        color: #666;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    
+    .nav-menu a:hover {
+        color: #4169E1;
+        background-color: rgba(65, 105, 225, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 8px;
+    }
+    
+    .social-links a {
+        width: 28px;
+        height: 28px;
+        background-color: #ddd;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: white;
+        font-size: 12px;
+        transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .star-icon {
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(45deg, #FFD700, #FFA500);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .star-icon:hover {
+        transform: rotate(15deg) scale(1.1);
+        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+    }
+    
+    /* Mobile Menu Toggle */
+    .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 5px;
+    }
+    
+    .mobile-menu-toggle span {
+        width: 25px;
+        height: 3px;
+        background-color: #666;
+        margin: 3px 0;
+        transition: 0.3s;
+        border-radius: 2px;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+        /* Main content area with light gray background */
+        .main-content {
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 0 24px;
+        }
+
+        /* Payment options - flat design exactly like image */
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 80px;
+        }
+
+        .payment-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .payment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,123,255,0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .payment-card:hover::before {
+            left: 100%;
+        }
+
+        .payment-card:hover {
+            border-color: #007bff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,123,255,0.15);
+        }
+
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .vendor-icon {
+            background: #e91e63;
+        }
+
+        .sponsor-icon {
+            background: #2196f3;
+        }
+
+        .donation-icon {
+            background: #ff9800;
+        }
+
+        .payment-card:hover .payment-icon {
+            transform: scale(1.1);
+        }
+
+        .payment-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* Blog section */
+        .blog-section {
+            margin: 80px 0;
+        }
+
+        .blog-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .blog-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .blog-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #007bff;
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+            transition: opacity 0.3s ease;
+        }
+
+        .blog-card:hover .blog-image::after {
+            opacity: 0;
+        }
+
+        .blog-content {
+            padding: 20px;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 12px;
+        }
+
+        .blog-category {
+            background: #007bff;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .blog-date {
+            color: #666;
+        }
+
+        .blog-title-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .blog-card:hover .blog-title-text {
+            color: #007bff;
+        }
+
+        .explore-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .explore-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .explore-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .explore-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Contact section - flat design */
+        .contact-section {
+            background: #6c5ce7;
+            color: white;
+            text-align: center;
+            padding: 60px 24px;
+            margin: 80px auto;
+            border-radius: 8px;
+            max-width: 1200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .contact-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-btn {
+            background: white;
+            color: #6c5ce7;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Footer - flat design */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem 0 2rem;
+            border-top: 1px solid #ecf0f1;
+            animation: fadeInUp 1s ease-out 1.7s both;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            color: #7f8c8d;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #3498db;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ecf0f1;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .nav-container {
+                padding: 12px 16px;
+            }
+            
+            .social-icons {
+                gap: 4px;
+            }
+            
+            .social-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 10px;
+            }
+            
+            .main-content {
+                padding: 0 16px;
+                margin: 40px auto;
+            }
+            
+            .payment-card {
+                padding: 16px 20px;
+            }
+            
+            .blog-title {
+                font-size: 24px;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .contact-section {
+                padding: 40px 20px;
+                margin: 60px 16px;
+            }
+            
+            .contact-title {
+                font-size: 20px;
+            }
+            
+            .footer-nav {
+                gap: 20px;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .star-badge {
+                width: 40px;
+                height: 40px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .payment-card {
+                padding: 12px 16px;
+            }
+            
+            .payment-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+            }
+            
+            .payment-text {
+                font-size: 14px;
+            }
+            
+            .blog-content {
+                padding: 16px;
+            }
+            
+            .contact-section {
+                padding: 32px 16px;
+            }
+        }
+
+        /* Smooth animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading states */
+        .loading {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div style="width: 90px; height: 90px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                <img src="assets/img/ghfest.png" />
+            </div>
+        </div>
+        
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="form_type.html">Forms</a></li>
+                <li><a href="sponsors.html">Sponsors</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="payment_type.html">Payment</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="event.htm">Event Calendar</a></li>
+                <li><a href="contact.html">Contacts</a></li>
+            </ul>
+        </nav>
+        
+        <div class="header-right">
+            <div class="social-links">
+                <a href="#" style="background: #3b5998;">f</a>
+                <a href="#" style="background: #1da1f2;">t</a>
+                <a href="#" style="background: #cd486b;">i</a>
+                <a href="#" style="background: #0077b5;">in</a>
+                <a href="#" style="background: #ff0000;">yt</a>
+            </div>
+            <div class="" style="width: 70px; height: 70px;  border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                <a href="https://canadianchoiceaward.ca/winners/ab/edmonton/"><img src="assets/img/cert1.png"
+                    width="50px" /> </a>
+            </div>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Payment Options -->
+        <section id="payment" class="payment-options">
+            <div class="payment-card loading" style="animation-delay: 0.1s;">
+                <div class="payment-icon vendor-icon">💳</div>
+                <div class="payment-text">Vendor Payment</div>
+            </div>
+            
+            <div class="payment-card loading" style="animation-delay: 0.2s;">
+                <div class="payment-icon sponsor-icon">🤝</div>
+                <div class="payment-text">Sponsorship</div>
+            </div>
+            
+            <div class="payment-card loading" style="animation-delay: 0.3s;">
+                <div class="payment-icon donation-icon">❤️</div>
+                <div class="payment-text">Donation</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog-section animate-on-scroll">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+            <h2 class="blog-title">BLOG</h2>
+            
+            <div class="blog-grid">
+                <article class="blog-card loading" style="animation-delay: 0.4s;">
+                    <div class="blog-image"><img src="assets/img/ghfest/IMG-20250611-WA0027.png" /></div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Business</span>
+                            <span class="blog-date">April 25, 2022</span>
+                        </div>
+                        <h3 class="blog-title-text">Twitter board meets Musk to discuss bid - Reports</h3>
+                    </div>
+                </article>
+                
+                <article class="blog-card loading" style="animation-delay: 0.5s;">
+                    <div class="blog-image"><img src="assets/img/ghfest/kkd.png" /></div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Technology</span>
+                            <span class="blog-date">June 16, 2022</span>
+                        </div>
+                        <h3 class="blog-title-text">Actors launch campaign against AI Show stealers</h3>
+                    </div>
+                </article>
+                
+                <article class="blog-card loading" style="animation-delay: 0.6s;">
+                    <div class="blog-image"><img src="assets/img/ghfest/WhatsApp-Image-2025-06-11-at-15.41.37_ee71be7c.png" /></div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Technology</span>
+                            <span class="blog-date">June 16, 2022</span>
+                        </div>
+                        <h3 class="blog-title-text">Actors launch campaign against AI Show stealers</h3>
+                    </div>
+                </article>
+                
+                <article class="blog-card loading" style="animation-delay: 0.7s;">
+                    <div class="blog-image"><img src="assets/img/ghfest/IMG-20250507-WA0115.png" /></div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Science</span>
+                            <span class="blog-date">May 19, 2022</span>
+                        </div>
+                        <h3 class="blog-title-text">OneWeb UK satellite firm does deal to use Indian rockets</h3>
+                    </div>
+                </article>
+            </div>
+            
+            <button class="explore-btn">Explore all blogs</button>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section animate-on-scroll">
+        <h2 class="contact-title">Have any questions? Reach us here!</h2>
+        <button class="contact-btn">Get in touch</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-placeholder"><img src="assets/img/ghfest.png" width="70px"/></div>
+            </div>
+            
+            <nav class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#forms">Forms</a>
+                <a href="#sponsors">Sponsors</a>
+                <a href="#blog">Blog</a>
+                <a href="#payment">Payment</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#shop">Shop</a>
+                <a href="#about">About us</a>
+            </nav>
+            
+            <div class="footer-social">
+                <div class="social-icon"><img src="assets/img/ghfest/Facebook.png" width="30px"/></div>
+                <div class="social-icon"><img src="assets/img/ghfest/LinkedIn.png"  width="30px"/></div>
+                <div class="social-icon"><img src="assets/img/ghfest/Instagram.png"  width="30px"/></div>
+                <div class="social-icon"><img src="assets/img/ghfest/YouTube.png"  width="30px"/></div>
+                <div class="social-icon"><img src="assets/img/ghfest/Twitter.png"  width="30px"/></div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>Copyright © 2025 | All Rights Reserved | <a href="#terms">Terms and Conditions</a> | <a href="#privacy">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Interactive payment cards
+        document.querySelectorAll('.payment-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const paymentType = this.querySelector('.payment-text').textContent;
+                showNotification(`${paymentType} selected! Processing...`);
+            });
+        });
+
+        // Interactive blog cards
+        document.querySelectorAll('.blog-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.blog-title-text').textContent;
+                showNotification(`Opening: "${title}"`);
+            });
+        });
+
+        // Contact button interaction
+        document.querySelector('.contact-btn').addEventListener('click', function() {
+            showNotification('Opening contact form...');
+        });
+
+        // Explore blogs button
+        document.querySelector('.explore-btn').addEventListener('click', function() {
+            showNotification('Loading all blog posts...');
+        });
+
+        // Social icons interaction
+        document.querySelectorAll('.social-icon, .footer-social-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                const platform = getSocialPlatform(this.textContent);
+                showNotification(`Opening ${platform}...`);
+            });
+        });
+
+        // Helper function to get social platform name
+        function getSocialPlatform(text) {
+            const platforms = {
+                'f': 'Facebook',
+                't': 'Twitter',
+                'i': 'Instagram',
+                'in': 'LinkedIn',
+                'yt': 'YouTube'
+            };
+            return platforms[text] || 'Social Media';
+        }
+
+        // Simple notification system instead of modal
+        function showNotification(message) {
+            // Remove existing notification
+            const existing = document.querySelector('.notification');
+            if (existing) existing.remove();
+
+            // Create notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #2d3748;
+                color: white;
+                padding: 12px 20px;
+                border-radius: 6px;
+                font-size: 14px;
+                z-index: 10000;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            `;
+
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            // Animate in
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+
+            // Auto remove
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 2500);
+        }
+
+        // Header scroll effect
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const header = document.querySelector('.header');
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Loading animations on page load
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.loading').forEach((element, index) => {
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const notification = document.querySelector('.notification');
+                if (notification) notification.remove();
+            }
+        });
+
+        // Mobile menu toggle (for future enhancement)
+        const createMobileMenu = () => {
+            if (window.innerWidth <= 768) {
+                // Mobile menu logic can be added here
+                console.log('Mobile view detected');
+            }
+        };
+
+        window.addEventListener('resize', createMobileMenu);
+        createMobileMenu();
+
+        // Add subtle parallax effect
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.payment-card');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.05;
+                const yPos = -(scrolled * speed * (index + 1));
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Performance: Debounce scroll events
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Add focus states for accessibility
+        document.querySelectorAll('button, a, .payment-card, .blog-card').forEach(element => {
+            element.addEventListener('focus', function() {
+                this.style.outline = '2px solid #007bff';
+                this.style.outlineOffset = '2px';
+            });
+            
+            element.addEventListener('blur', function() {
+                this.style.outline = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
