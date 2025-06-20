@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,129 +20,141 @@
         }
 
         /* Header */
-    .header {
-        background-color: white;
-        padding: 15px 20px;
-        border-bottom: 1px solid #e0e0e0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        transition: all 0.3s ease;
-    }
-    
-    .logo {
-        display: flex;
-        align-items: center;
-    }
-    
-    .logo img {
-        width: 50px;
-        height: auto;
-    }
-    
-    .nav-menu {
-        display: flex;
-        gap: 25px;
-        list-style: none;
-        flex-wrap: wrap;
-    }
-    
-    .nav-menu a {
-        text-decoration: none;
-        color: #666;
-        font-size: 14px;
-        transition: all 0.3s ease;
-        padding: 5px 10px;
-        border-radius: 5px;
-    }
-    
-    .nav-menu a:hover {
-        color: #4169E1;
-        background-color: rgba(65, 105, 225, 0.1);
-        transform: translateY(-2px);
-    }
-    
-    .header-right {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-    
-    .social-links {
-        display: flex;
-        gap: 8px;
-    }
-    
-    .social-links a {
-        width: 28px;
-        height: 28px;
-        background-color: #ddd;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        color: white;
-        font-size: 12px;
-        transition: all 0.3s ease;
-    }
-    
-    .social-links a:hover {
-        transform: translateY(-3px) scale(1.1);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    
-    .star-icon {
-        width: 45px;
-        height: 45px;
-        background: linear-gradient(45deg, #FFD700, #FFA500);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: bold;
-        font-size: 18px;
-        transition: all 0.3s ease;
-        cursor: pointer;
-    }
-    
-    .star-icon:hover {
-        transform: rotate(15deg) scale(1.1);
-        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
-    }
-    
-    /* Mobile Menu Toggle */
-    .mobile-menu-toggle {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
-        padding: 5px;
-    }
-    
-    .mobile-menu-toggle span {
-        width: 25px;
-        height: 3px;
-        background-color: #666;
-        margin: 3px 0;
-        transition: 0.3s;
-        border-radius: 2px;
-    }
-    
-    .mobile-menu-toggle.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
-    }
-    
-    .mobile-menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .mobile-menu-toggle.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
-    }
+        .header {
+            background-color: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            height: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover {
+            color: #4169E1;
+            background-color: rgba(65, 105, 225, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-links a {
+            width: 28px;
+            height: 28px;
+            background-color: #ddd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .star-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .star-icon:hover {
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #666;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+
+        @keyframes slowRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
         /* Main content */
         .main-content {
             max-width: 1200px;
@@ -244,7 +257,8 @@
             margin-bottom: 100px;
         }
 
-        .mission, .vision {
+        .mission,
+        .vision {
             padding: 0;
         }
 
@@ -311,7 +325,7 @@
         }
 
         .member-photo:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .member-name {
@@ -477,6 +491,9 @@
         /* Key Features Section */
         .key-features {
             margin-bottom: 100px;
+            clear: both;
+            position: relative;
+            z-index: 1;
         }
 
         .key-features-title {
@@ -485,17 +502,27 @@
             font-weight: 600;
             text-align: center;
             margin-bottom: 80px;
+            clear: both;
         }
 
         .features-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
         }
 
         .feature-card {
             text-align: center;
             transition: transform 0.3s ease;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
         }
 
         .feature-card:hover {
@@ -504,39 +531,38 @@
 
         .feature-image {
             width: 100%;
-            height: 180px;
+            height: 200px;
             background: #ddd;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 0;
             background-size: cover;
             background-position: center;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .feature-image:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-content {
+            padding: 20px 16px;
         }
 
         .feature-category {
             font-size: 12px;
             color: #007bff;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .feature-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 8px;
-        }
-
-        .feature-description {
             font-size: 14px;
-            color: #666;
-            line-height: 1.5;
+            font-weight: 500;
+            color: #333;
+            line-height: 1.4;
         }
 
         /* Contact Section */
@@ -559,13 +585,18 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
             animation: shimmer 4s ease-in-out infinite;
         }
 
         @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
         }
 
         .contact-title {
@@ -592,95 +623,68 @@
 
         .contact-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         /* Footer */
+        /* Footer */
         .footer {
-            background: #2d3748;
-            color: white;
-            padding: 40px 24px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem 0 2rem;
+            border-top: 1px solid #ecf0f1;
+            animation: fadeInUp 1s ease-out 1.7s both;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-            text-align: center;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
         }
 
         .footer-logo {
-            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .footer-nav {
             display: flex;
-            justify-content: center;
-            gap: 32px;
-            margin-bottom: 24px;
+            gap: 2rem;
             flex-wrap: wrap;
         }
 
-        .footer-link {
-            color: #a0aec0;
+        .footer-nav a {
+            color: #7f8c8d;
             text-decoration: none;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: color 0.3s ease;
         }
 
-        .footer-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #007bff;
-            transition: width 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: #007bff;
-        }
-
-        .footer-link:hover::after {
-            width: 100%;
+        .footer-nav a:hover {
+            color: #3498db;
         }
 
         .footer-social {
             display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 24px;
+            gap: 1rem;
         }
 
-        .footer-social-icon {
-            width: 36px;
-            height: 36px;
-            background: #4a5568;
-            border: 1px solid #718096;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: #a0aec0;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .footer-social-icon:hover {
-            background: #007bff;
-            color: white;
-            border-color: #007bff;
-            transform: translateY(-2px);
-        }
-
-        .copyright {
-            border-top: 1px solid #4a5568;
-            padding-top: 20px;
-            color: #718096;
-            font-size: 12px;
+        .footer-bottom {
             text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ecf0f1;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: #3498db;
+            text-decoration: none;
         }
 
         /* Mobile Responsive */
@@ -715,49 +719,49 @@
             .nav-menu {
                 display: none;
             }
-            
+
             .nav-container {
                 padding: 12px 16px;
             }
-            
+
             .social-icons {
                 gap: 4px;
             }
-            
+
             .social-icon {
                 width: 28px;
                 height: 28px;
                 font-size: 10px;
             }
-            
+
             .main-content {
                 padding: 40px 16px;
             }
-            
+
             .about-title {
                 font-size: 36px;
             }
-            
+
             .festival-main-title {
                 font-size: 28px;
             }
-            
+
             .features-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-            
+
             .team-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-            
+
             .footer-nav {
                 gap: 20px;
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .star-badge {
                 width: 40px;
                 height: 40px;
@@ -782,15 +786,17 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
         <div class="logo">
-            <div style="width: 90px; height: 90px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+            <div
+                style="width: 90px; height: 90px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
                 <img src="assets/img/ghfest.png" />
             </div>
         </div>
-        
+
         <nav>
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
@@ -805,7 +811,7 @@
                 <li><a href="contact.html">Contacts</a></li>
             </ul>
         </nav>
-        
+
         <div class="header-right">
             <div class="social-links">
                 <a href="#" style="background: #3b5998;">f</a>
@@ -814,9 +820,10 @@
                 <a href="#" style="background: #0077b5;">in</a>
                 <a href="#" style="background: #ff0000;">yt</a>
             </div>
-            <div class="" style="width: 70px; height: 70px;  border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+            <div class=""
+                style="width: 70px; height: 70px;  border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
                 <a href="https://canadianchoiceaward.ca/winners/ab/edmonton/"><img src="assets/img/cert1.png"
-                    width="50px" /> </a>
+                        width="50px" /> </a>
             </div>
             <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
                 <span></span>
@@ -840,15 +847,27 @@
             <h2 class="story-title">THE STORY BEHIND</h2>
             <div class="story-content">
                 <div class="story-text">
-                    <p>Ghanafest Alberta Festival of Trade, Arts and Culture is an annual event organized by the Ghanafest Alberta Inc and Ghanafest Alberta Foundation together with the Ghana High Commission in Canada (Ottawa) under the auspices of the Ministry of Foreign Affairs and Regional Integration (Ghana), Ministry of Tourism, Arts and Culture (Ghana), Ministry Of Chieftaincy And Religious Affairs, and the Ministry of Trade and Industry (Ghana) geared towards promoting Trade, our cultural diversity and ensuring peace and unity among all citizens.</p>
-                    
-                    <p>A Grand Launch of the Celebration of the Festival of Arts Culture, Ghanafest Alberta 2024 in Edmonton Canada happened on the 18th of November 2023. There was a special Charity event to feed the homeless and the street that preceded the Launch in October 2023.</p>
-                    
-                    <p>The Provincial Launch and Inauguration of the Organizing Committee was chaired by Ambassador Anselm Ransford Sowah, the Ghana High Commissioner to Canada, who was the Special Guest of Honor. The President of the GHANAFEST ALBERTA FOUNDATION, who doubles as the GHANAFEST ALBERTA INC CEO, Ms. Esther Nana Araba Assabil who also was the former International Ambassador of Ghanafest Toronto Canada inaugurated the Organizing Committee for the main event which was slated for July 20, 2024.</p>
+                    <p>Ghanafest Alberta Festival of Trade, Arts and Culture is an annual event organized by the
+                        Ghanafest Alberta Inc and Ghanafest Alberta Foundation together with the Ghana High Commission
+                        in Canada (Ottawa) under the auspices of the Ministry of Foreign Affairs and Regional
+                        Integration (Ghana), Ministry of Tourism, Arts and Culture (Ghana), Ministry Of Chieftaincy And
+                        Religious Affairs, and the Ministry of Trade and Industry (Ghana) geared towards promoting
+                        Trade, our cultural diversity and ensuring peace and unity among all citizens.</p>
+
+                    <p>A Grand Launch of the Celebration of the Festival of Arts Culture, Ghanafest Alberta 2024 in
+                        Edmonton Canada happened on the 18th of November 2023. There was a special Charity event to feed
+                        the homeless and the street that preceded the Launch in October 2023.</p>
+
+                    <p>The Provincial Launch and Inauguration of the Organizing Committee was chaired by Ambassador
+                        Anselm Ransford Sowah, the Ghana High Commissioner to Canada, who was the Special Guest of
+                        Honor. The President of the GHANAFEST ALBERTA FOUNDATION, who doubles as the GHANAFEST ALBERTA
+                        INC CEO, Ms. Esther Nana Araba Assabil who also was the former International Ambassador of
+                        Ghanafest Toronto Canada inaugurated the Organizing Committee for the main event which was
+                        slated for July 20, 2024.</p>
                 </div>
                 <div class="story-images">
-                    <div class="story-image story-image-1"></div>
-                    <div class="story-image story-image-2"></div>
+                    <div class="story-image story-image-1"><img src="assets/img/ghfest/about-1.jpg" /></div>
+                    <div class="story-image story-image-2"> <img src="assets/img/ghfest/about-2.jpg" /></div>
                 </div>
             </div>
         </section>
@@ -858,13 +877,20 @@
             <div class="mission">
                 <h2 class="section-title">MISSION</h2>
                 <div class="section-content">
-                    <p>To create an atmosphere based on dignity, inclusiveness and self-awareness that is focused on respect for diverse cultural identities. To position Ghana as a vibrant, proud, and globally relevant nation by celebrating our culture and leveraging diaspora networks for economic opportunity, trade, and youth empowerment.</p>
+                    <p>To create an atmosphere based on dignity, inclusiveness and self-awareness that is focused on
+                        respect for diverse cultural identities. To position Ghana as a vibrant, proud, and globally
+                        relevant nation by celebrating our culture and leveraging diaspora networks for economic
+                        opportunity, trade, and youth empowerment.</p>
                 </div>
             </div>
             <div class="vision">
                 <h2 class="section-title">VISION</h2>
                 <div class="section-content">
-                    <p>To unite communities through diversity, universal language of performance, promotion of cross-cultural acceptance, and celebrating the richness of our differences. To showcase Ghana's rich heritage in Canada while building a bridge for investment, employment, entrepreneurship and cultural exchange between Ghana and the diaspora. We envisage a world where artistic expressions knows no borders, and where creative art embraces inclusivity.</p>
+                    <p>To unite communities through diversity, universal language of performance, promotion of
+                        cross-cultural acceptance, and celebrating the richness of our differences. To showcase Ghana's
+                        rich heritage in Canada while building a bridge for investment, employment, entrepreneurship and
+                        cultural exchange between Ghana and the diaspora. We envisage a world where artistic expressions
+                        knows no borders, and where creative art embraces inclusivity.</p>
                 </div>
             </div>
         </section>
@@ -872,8 +898,9 @@
         <!-- Team Section -->
         <section class="team-section animate-on-scroll">
             <h2 class="team-title">MEET OUR DEDICATED TEAM</h2>
-            <p class="team-subtitle">MEET THE PASSIONATE MINDS BEHIND GHANAFEST ALBERTA. WITH DEDICATION AND VISION, THEY WORK TIRELESSLY TO BRING THIS VIBRANT CELEBRATION OF CULTURE AND COMMUNITY TO LIFE.</p>
-            
+            <p class="team-subtitle">MEET THE PASSIONATE MINDS BEHIND GHANAFEST ALBERTA. WITH DEDICATION AND VISION,
+                THEY WORK TIRELESSLY TO BRING THIS VIBRANT CELEBRATION OF CULTURE AND COMMUNITY TO LIFE.</p>
+
             <div class="team-grid">
                 <div class="team-member">
                     <div class="member-photo" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
@@ -884,7 +911,7 @@
                         <div class="member-social-icon">in</div>
                     </div>
                 </div>
-                
+
                 <div class="team-member">
                     <div class="member-photo" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
                     <h3 class="member-name">Drew Cano</h3>
@@ -894,7 +921,7 @@
                         <div class="member-social-icon">in</div>
                     </div>
                 </div>
-                
+
                 <div class="team-member">
                     <div class="member-photo" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
                     <h3 class="member-name">Lana Stainer</h3>
@@ -904,7 +931,7 @@
                         <div class="member-social-icon">in</div>
                     </div>
                 </div>
-                
+
                 <div class="team-member">
                     <div class="member-photo" style="background: linear-gradient(135deg, #43e97b, #38f9d7);"></div>
                     <h3 class="member-name">Robret Gol</h3>
@@ -914,7 +941,7 @@
                         <div class="member-social-icon">in</div>
                     </div>
                 </div>
-                
+
                 <div class="team-member">
                     <div class="member-photo" style="background: linear-gradient(135deg, #fa709a, #fee140);"></div>
                     <h3 class="member-name">Robret Gol</h3>
@@ -924,7 +951,7 @@
                         <div class="member-social-icon">in</div>
                     </div>
                 </div>
-                
+
                 <div class="team-member">
                     <div class="member-photo" style="background: linear-gradient(135deg, #a8edea, #fed6e3);"></div>
                     <h3 class="member-name">Robret Gol</h3>
@@ -940,20 +967,24 @@
         <!-- Festival Section -->
         <section class="festival-section animate-on-scroll">
             <h2 class="festival-title">THE FESTIVAL</h2>
-            
+
             <div class="festival-content">
-                <div class="festival-image"></div>
+                <div class="festival-image">
+                    <img src="assets/img/ghfest/about-3.png" />
+                </div>
                 <div class="festival-info">
                     <h3 class="festival-main-title">GhanaFest Alberta Festival</h3>
-                    <p class="festival-description">GhanaFest Alberta is the flagship event of Ghanafest Alberta Inc and Foundation, an annual cultural festival held in Edmonton, celebrating Ghanaian heritage, arts, and community.</p>
-                    
+                    <p class="festival-description">GhanaFest Alberta is the flagship event of Ghanafest Alberta Inc and
+                        Foundation, an annual cultural festival held in Edmonton, celebrating Ghanaian heritage, arts,
+                        and community.</p>
+
                     <div class="festival-details">
                         <h3>Upcoming 2025 Edition</h3>
                         <div class="detail-item">
                             <span class="detail-label">Location:</span> Louise McKinney Riverfront Park - Edmonton
                         </div>
                     </div>
-                    
+
                     <div class="festival-highlights">
                         <h3>Festival Highlights</h3>
                         <ul class="highlight-list">
@@ -964,7 +995,7 @@
                             <li>Vendor Marketplaces</li>
                         </ul>
                     </div>
-                    
+
                     <button class="tickets-btn">Grab Tickets Here</button>
                 </div>
             </div>
@@ -973,30 +1004,42 @@
         <!-- Key Features Section -->
         <section class="key-features animate-on-scroll">
             <h2 class="key-features-title">KEY FEATURES OF THE FESTIVAL</h2>
-            
+
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-image" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
-                    <div class="feature-category">GRAND DURBAR OF CHIEFS</div>
-                    <h3 class="feature-title">Traditional procession showcasing Ghana's chieftaincy heritage.</h3>
+                    <div class="feature-image" style="background: linear-gradient(135deg, #667eea, #764ba2);"><img
+                            src="assets/img/ghfest/kkd.png" /></div>
+                    <div class="feature-content">
+                        <div class="feature-category">GRAND DURBAR OF CHIEFS</div>
+                        <h3 class="feature-title">Traditional procession showcasing Ghana's chieftaincy heritage.</h3>
+                    </div>
                 </div>
-                
+
                 <div class="feature-card">
-                    <div class="feature-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
-                    <div class="feature-category">CULTURAL PERFORMANCE</div>
-                    <h3 class="feature-title">Drumming, dance, and music from diverse ethnic groups.</h3>
+                    <div class="feature-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);"><img
+                            src="assets/img/ghfest/IMG-20250611-WA0027.png" /></div>
+                    <div class="feature-content">
+                        <div class="feature-category">CULTURAL PERFORMANCE</div>
+                        <h3 class="feature-title">Drumming, dance, and music from diverse ethnic groups.</h3>
+                    </div>
                 </div>
-                
+
                 <div class="feature-card">
-                    <div class="feature-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
-                    <div class="feature-category">GHANAIAN CUISINES</div>
-                    <h3 class="feature-title">Enjoy authentic dishes and culinary experiences.</h3>
+                    <div class="feature-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"><img
+                            src="assets/img/ghfest/IMG-20250507-WA0115.png" /></div>
+                    <div class="feature-content">
+                        <div class="feature-category">GHANAIAN CUISINES</div>
+                        <h3 class="feature-title">Enjoy authentic dishes and culinary experiences.</h3>
+                    </div>
                 </div>
-                
+
                 <div class="feature-card">
-                    <div class="feature-image" style="background: linear-gradient(135deg, #43e97b, #38f9d7);"></div>
-                    <div class="feature-category">VENDOR MARKETPLACE</div>
-                    <h3 class="feature-title">Arts, crafts, and cultural goods from local vendors.</h3>
+                    <div class="feature-image" style="background: linear-gradient(135deg, #43e97b, #38f9d7);"><img
+                            src="assets/img/ghfest/WhatsApp-Image-2025-06-11-at-15.41.37_ee71be7c" /></div>
+                    <div class="feature-content">
+                        <div class="feature-category">VENDOR MARKETPLACE</div>
+                        <h3 class="feature-title">Arts, crafts, and cultural goods from local vendors.</h3>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1009,36 +1052,36 @@
     </section>
 
     <!-- Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <div class="logo">
-                    <div class="logo-icon"></div>
-                </div>
+                <div class="logo-placeholder"><img src="assets/img/ghfest.png" width="70px" /></div>
             </div>
-            
-            <div class="footer-nav">
-                <a href="#home" class="footer-link">Home</a>
-                <a href="#forms" class="footer-link">Forms</a>
-                <a href="#sponsors" class="footer-link">Sponsors</a>
-                <a href="#blog" class="footer-link">Blog</a>
-                <a href="#payment" class="footer-link">Payment</a>
-                <a href="#gallery" class="footer-link">Gallery</a>
-                <a href="#shop" class="footer-link">Shop</a>
-                <a href="#about" class="footer-link">About us</a>
-            </div>
-            
+
+            <nav class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#forms">Forms</a>
+                <a href="#sponsors">Sponsors</a>
+                <a href="#blog">Blog</a>
+                <a href="#payment">Payment</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#shop">Shop</a>
+                <a href="#about">About us</a>
+            </nav>
+
             <div class="footer-social">
-                <div class="footer-social-icon">f</div>
-                <div class="footer-social-icon">t</div>
-                <div class="footer-social-icon">i</div>
-                <div class="footer-social-icon">in</div>
-                <div class="footer-social-icon">yt</div>
+                <div class="social-icon"><img src="assets/img/ghfest/Facebook.png" width="30px" /></div>
+                <div class="social-icon"><img src="assets/img/ghfest/LinkedIn.png" width="30px" /></div>
+                <div class="social-icon"><img src="assets/img/ghfest/Instagram.png" width="30px" /></div>
+                <div class="social-icon"><img src="assets/img/ghfest/YouTube.png" width="30px" /></div>
+                <div class="social-icon"><img src="assets/img/ghfest/Twitter.png" width="30px" /></div>
             </div>
-            
-            <div class="copyright">
-                Copyright © 2025 | All Rights Reserved | Terms and Conditions | Privacy Policy
-            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Copyright © 2025 | All Rights Reserved | <a href="#terms">Terms and Conditions</a> | <a
+                    href="#privacy">Privacy Policy</a></p>
         </div>
     </footer>
 
@@ -1077,7 +1120,7 @@
 
         // Interactive elements
         document.querySelectorAll('.team-member').forEach(member => {
-            member.addEventListener('click', function() {
+            member.addEventListener('click', function () {
                 const name = this.querySelector('.member-name').textContent;
                 const role = this.querySelector('.member-role').textContent;
                 showNotification(`Learn more about ${name} - ${role}`);
@@ -1085,23 +1128,23 @@
         });
 
         document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('click', function() {
+            card.addEventListener('click', function () {
                 const title = this.querySelector('.feature-title').textContent;
                 showNotification(`Exploring: ${title}`);
             });
         });
 
-        document.querySelector('.tickets-btn').addEventListener('click', function() {
+        document.querySelector('.tickets-btn').addEventListener('click', function () {
             showNotification('Redirecting to ticket purchase page...');
         });
 
-        document.querySelector('.contact-btn').addEventListener('click', function() {
+        document.querySelector('.contact-btn').addEventListener('click', function () {
             showNotification('Opening contact form...');
         });
 
         // Social icons interaction
         document.querySelectorAll('.social-icon, .footer-social-icon, .member-social-icon').forEach(icon => {
-            icon.addEventListener('click', function() {
+            icon.addEventListener('click', function () {
                 const platform = getSocialPlatform(this.textContent);
                 showNotification(`Opening ${platform}...`);
             });
@@ -1160,24 +1203,24 @@
 
         // Header scroll effect
         let lastScrollTop = 0;
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const header = document.querySelector('.header');
-            
+
             if (scrollTop > lastScrollTop && scrollTop > 100) {
                 header.style.transform = 'translateY(-100%)';
             } else {
                 header.style.transform = 'translateY(0)';
             }
-            
+
             lastScrollTop = scrollTop;
         });
 
         // Add parallax effect to images
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const scrolled = window.pageYOffset;
             const parallaxElements = document.querySelectorAll('.story-image, .festival-image, .feature-image');
-            
+
             parallaxElements.forEach((element, index) => {
                 const speed = 0.02;
                 const yPos = -(scrolled * speed * (index + 1));
@@ -1186,7 +1229,7 @@
         });
 
         // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 const notification = document.querySelector('.notification');
                 if (notification) notification.remove();
@@ -1218,18 +1261,18 @@
 
         // Add focus states for accessibility
         document.querySelectorAll('button, a, .team-member, .feature-card').forEach(element => {
-            element.addEventListener('focus', function() {
+            element.addEventListener('focus', function () {
                 this.style.outline = '2px solid #007bff';
                 this.style.outlineOffset = '2px';
             });
-            
-            element.addEventListener('blur', function() {
+
+            element.addEventListener('blur', function () {
                 this.style.outline = 'none';
             });
         });
 
         // Loading animation on page load
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             document.querySelectorAll('.animate-on-scroll').forEach((element, index) => {
                 setTimeout(() => {
                     element.style.opacity = '1';
@@ -1244,7 +1287,7 @@
             sections.forEach(section => {
                 const sectionTop = section.getBoundingClientRect().top;
                 const windowHeight = window.innerHeight;
-                
+
                 if (sectionTop < windowHeight * 0.8) {
                     section.classList.add('visible');
                 }
@@ -1255,4 +1298,8 @@
         revealSections(); // Initial check
     </script>
 </body>
-</html>
+
+</html>item">
+<span class="detail-label">Date:</span> July 25th - 27th, 2025
+</div>
+<div class="detail-
