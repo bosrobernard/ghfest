@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Calendar - Ghanafest Alberta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Header */
+        .header {
+            background-color: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            height: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover {
+            color: #4169E1;
+            background-color: rgba(65, 105, 225, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-links a {
+            width: 28px;
+            height: 28px;
+            background-color: #ddd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .star-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .star-icon:hover {
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #666;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        @keyframes slowRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Main content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-subtitle {
+            font-size: 16px;
+            color: #666;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .page-description {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Calendar Controls */
+        .calendar-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 20px 24px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .calendar-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .nav-btn:hover {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+            transform: translateY(-2px);
+        }
+
+        .current-month {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 8px;
+        }
+
+        .toggle-btn {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .toggle-btn.active,
+        .toggle-btn:hover {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        /* Calendar Grid */
+        .calendar-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .calendar-grid {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .calendar-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .day-header {
+            padding: 16px 8px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .day-header:last-child {
+            border-right: none;
+        }
+
+        .calendar-body {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            border-right: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 12px 8px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .calendar-day:nth-child(7n) {
+            border-right: none;
+        }
+
+        .calendar-day:hover {
+            background: #f8f9fa;
+        }
+
+        .calendar-day.other-month {
+            color: #ccc;
+            background: #fafafa;
+        }
+
+        .calendar-day.today {
+            background: #e3f2fd;
+            color: #007bff;
+            font-weight: 600;
+        }
+
+        .calendar-day.selected {
+            background: #007bff;
+            color: white;
+        }
+
+        .calendar-day.has-event {
+            background: linear-gradient(135deg, #74b3ff, #667eea);
+            color: white;
+            font-weight: 600;
+        }
+
+        .calendar-day.has-event:hover {
+            background: linear-gradient(135deg, #667eea, #5a67d8);
+            transform: scale(1.05);
+        }
+
+        .day-number {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .event-dot {
+            width: 6px;
+            height: 6px;
+            background: #007bff;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .calendar-day.has-event .event-dot {
+            background: white;
+        }
+
+        /* Event Sidebar */
+        .event-sidebar {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            padding: 24px;
+            height: fit-content;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .event-item {
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .event-item:hover {
+            border-color: #007bff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,123,255,0.15);
+        }
+
+        .event-date {
+            font-size: 12px;
+            color: #007bff;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .event-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .event-time {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .event-location {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .event-category {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #007bff;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+
+        /* Featured Events */
+        .featured-events {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: #74b3ff;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            border-color: #007bff;
+        }
+
+        .event-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-date-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: white;
+            border-radius: 8px;
+            padding: 8px 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .badge-day {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            line-height: 1;
+        }
+
+        .badge-month {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .event-content {
+            padding: 24px;
+        }
+
+        .event-card-category {
+            background: #007bff;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .event-card-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .event-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .detail-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        .event-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .event-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: white;
+            color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        .btn-outline:hover {
+            background: #007bff;
+            color: white;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            background: white;
+            padding: 20px 24px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .filter-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .filter-tag.active,
+        .filter-tag:hover {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #6c7b8a;
+            color: white;
+            text-align: center;
+            padding: 60px 24px;
+            margin: 80px auto;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .contact-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-btn {
+            background: #4a72ff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem 0 2rem;
+            border-top: 1px solid #ecf0f1;
+            animation: fadeInUp 1s ease-out 1.7s both;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            color: #7f8c8d;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #3498db;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ecf0f1;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .calendar-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .calendar-controls {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .nav-container {
+                padding: 12px 16px;
+            }
+            
+            .main-content {
+                padding: 40px 16px;
+            }
+            
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .calendar-controls {
+                padding: 16px;
+            }
+            
+            .current-month {
+                font-size: 20px;
+                min-width: auto;
+            }
+            
+            .filter-options {
+                justify-content: center;
+            }
+            
+            .footer-nav {
+                gap: 20px;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div
+                style="width: 90px; height: 90px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                <img src="assets/img/ghfest.png" />
+            </div>
+        </div>
+
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="form_type.html">Forms</a></li>
+                <li><a href="sponsors.html">Sponsors</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="payment_type.html">Payment</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="events.html">Event Calendar</a></li>
+                <li><a href="contact.html">Contacts</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right">
+            <div class="social-links">
+                <a href="#" style="background: #3b5998;">f</a>
+                <a href="#" style="background: #1da1f2;">t</a>
+                <a href="#" style="background: #cd486b;">i</a>
+                <a href="#" style="background: #0077b5;">in</a>
+                <a href="#" style="background: #ff0000;">yt</a>
+            </div>
+            <div class=""
+                style="width: 70px; height: 70px;  border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                <a href="https://canadianchoiceaward.ca/winners/ab/edmonton/"><img src="assets/img/cert1.png"
+                        width="50px" /> </a>
+            </div>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Hero -->
+        <section class="page-hero animate-on-scroll">
+            <div class="page-subtitle">EVENTS & ACTIVITIES</div>
+            <h1 class="page-title">EVENT CALENDAR</h1>
+            <p class="page-description">Discover upcoming events, cultural celebrations, and community activities. Plan your participation in Ghanafest Alberta's vibrant calendar of events.</p>
+        </section>
+
+        <!-- Calendar Controls -->
+        <section class="calendar-controls animate-on-scroll">
+            <div class="calendar-nav">
+                <button class="nav-btn" id="prevMonth">‹</button>
+                <div class="current-month" id="currentMonth">June 2025</div>
+                <button class="nav-btn" id="nextMonth">›</button>
+            </div>
+            <div class="view-toggle">
+                <button class="toggle-btn active" data-view="month">Month</button>
+                <button class="toggle-btn" data-view="week">Week</button>
+                <button class="toggle-btn" data-view="list">List</button>
+            </div>
+        </section>
+
+        <!-- Filter Bar -->
+        <section class="filter-bar animate-on-scroll">
+            <div class="filter-title">Filter by Category</div>
+            <div class="filter-options">
+                <div class="filter-tag active" data-filter="all">All Events</div>
+                <div class="filter-tag" data-filter="festival">Festival</div>
+                <div class="filter-tag" data-filter="cultural">Cultural</div>
+                <div class="filter-tag" data-filter="workshop">Workshop</div>
+                <div class="filter-tag" data-filter="meeting">Meeting</div>
+                <div class="filter-tag" data-filter="performance">Performance</div>
+                <div class="filter-tag" data-filter="community">Community</div>
+            </div>
+        </section>
+
+        <!-- Calendar Container -->
+        <section class="calendar-container animate-on-scroll">
+            <div class="calendar-grid">
+                <div class="calendar-header">
+                    <div class="day-header">Sun</div>
+                    <div class="day-header">Mon</div>
+                    <div class="day-header">Tue</div>
+                    <div class="day-header">Wed</div>
+                    <div class="day-header">Thu</div>
+                    <div class="day-header">Fri</div>
+                    <div class="day-header">Sat</div>
+                </div>
+                <div class="calendar-body" id="calendarBody">
+                    <!-- Calendar days will be generated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="event-sidebar">
+                <h3 class="sidebar-title">Upcoming Events</h3>
+                <div id="sidebarEvents">
+                    <!-- Sidebar events will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Events -->
+        <section class="featured-events animate-on-scroll">
+            <h2 class="section-title">FEATURED EVENTS</h2>
+            <div class="events-grid">
+                <div class="event-card" data-category="festival">
+                    <div class="event-image" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <div class="event-date-badge">
+                            <div class="badge-day">25</div>
+                            <div class="badge-month">JUL</div>
+                        </div>
+                        <img src="assets/img/ghfest/event.jpeg" />
+                    </div>
+                    <div class="event-content">
+                        <div class="event-card-category">Festival</div>
+                        <h3 class="event-card-title">GhanaFest Alberta 2025 - Main Festival</h3>
+                        <div class="event-details">
+                            <div class="detail-row">
+                                <div class="detail-icon">🕐</div>
+                                <span>10:00 AM - 11:00 PM</span>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-icon">📍</div>
+                                <span>Louise McKinney Riverfront Park, Edmonton</span>
+                            </div>
+                        </div>
+                        <p class="event-description">The flagship event celebrating Ghanaian heritage, arts, culture, and community. Experience traditional performances, authentic cuisine, and vibrant marketplace.</p>
+                        <div class="event-actions">
+                            <button class="btn btn-primary">Get Tickets</button>
+                            <button class="btn btn-outline">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-category="cultural">
+                    <div class="event-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <div class="event-date-badge">
+                            <div class="badge-day">15</div>
+                            <div class="badge-month">JUN</div>
+                        </div>
+                        <img src="assets/img/ghfest/event1.jpg" />
+
+                    </div>
+                    <div class="event-content">
+                        <div class="event-card-category">Cultural</div>
+                        <h3 class="event-card-title">Traditional Dance Workshop</h3>
+                        <div class="event-details">
+                            <div class="detail-row">
+                                <div class="detail-icon">🕐</div>
+                                <span>2:00 PM - 5:00 PM</span>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-icon">📍</div>
+                                <span>Edmonton Community Centre</span>
+                            </div>
+                        </div>
+                        <p class="event-description">Learn traditional Ghanaian dances from master instructors. Open to all skill levels. Come dressed comfortably and ready to move!</p>
+                        <div class="event-actions">
+                            <button class="btn btn-primary">Register</button>
+                            <button class="btn btn-outline">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-category="workshop">
+                    <div class="event-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <div class="event-date-badge">
+                            <div class="badge-day">22</div>
+                            <div class="badge-month">JUN</div>
+                        </div>
+                        <img src="assets/img/ghfest/event2.jpg" />
+                    </div>
+                    <div class="event-content">
+                        <div class="event-card-category">Workshop</div>
+                        <h3 class="event-card-title">Kente Weaving Masterclass</h3>
+                        <div class="event-details">
+                            <div class="detail-row">
+                                <div class="detail-icon">🕐</div>
+                                <span>10:00 AM - 4:00 PM</span>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-icon">📍</div>
+                                <span>Arts & Culture Centre</span>
+                            </div>
+                        </div>
+                        <p class="event-description">Discover the ancient art of Kente weaving with expert artisans. Create your own traditional patterns and learn about the cultural significance.</p>
+                        <div class="event-actions">
+                            <button class="btn btn-primary">Book Now</button>
+                            <button class="btn btn-outline">Info</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-category="performance">
+                    <div class="event-image" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                        <div class="event-date-badge">
+                            <div class="badge-day">08</div>
+                            <div class="badge-month">JUL</div>
+                        </div>
+                        <img src="assets/img/ghfest/event3.jpg" />
+                    </div>
+                    <div class="event-content">
+                        <div class="event-card-category">Performance</div>
+                        <h3 class="event-card-title">Drumming & Music Night</h3>
+                        <div class="event-details">
+                            <div class="detail-row">
+                                <div class="detail-icon">🕐</div>
+                                <span>7:00 PM - 10:00 PM</span>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-icon">📍</div>
+                                <span>Heritage Plaza</span>
+                            </div>
+                        </div>
+                        <p class="event-description">An evening of traditional Ghanaian drumming and contemporary music featuring local and visiting artists. Food vendors available.</p>
+                        <div class="event-actions">
+                            <button class="btn btn-primary">Attend</button>
+                            <button class="btn btn-outline">Share</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-category="community">
+                    <div class="event-image" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                        <div class="event-date-badge">
+                            <div class="badge-day">30</div>
+                            <div class="badge-month">JUN</div>
+                        </div>
+                        <img src="assets/img/ghfest/event4.jpg" />
+                    </div>
+                    <div class="event-content">
+                        <div class="event-card-category">Community</div>
+                        <h3 class="event-card-title">Youth Leadership Summit</h3>
+                        <div class="event-details">
+                            <div class="detail-row">
+                                <div class="detail-icon">🕐</div>
+                                <span>9:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-icon">📍</div>
+                                <span>University of Alberta</span>
+                            </div>
+                        </div>
+                        <p class="event-description">Empowering young leaders in the Ghanaian-Canadian community. Workshops on entrepreneurship, cultural identity, and community building.</p>
+                        <div class="event-actions">
+                            <button class="btn btn-primary">Apply</button>
+                            <button class="btn btn-outline">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-category="meeting">
+                    <div class="event-image" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">
+                        <div class="event-date-badge">
+                            <div class="badge-day">12</div>
+                            <div class="badge-month">JUL</div>
+                        </div>
+                        <img src="assets/img/ghfest/event5.jpg" />
+                    </div>
+                    <div class="event-content">
+                        <div class="event-card-category">Meeting</div>
+                        <h3 class="event-card-title">Community Planning Meeting</h3>
+                        <div class="event-details">
+                            <div class="detail-row">
+                                <div class="detail-icon">🕐</div>
+                                <span>6:00 PM - 8:00 PM</span>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-icon">📍</div>
+                                <span>Ghanafest Alberta Office</span>
+                            </div>
+                        </div>
+                        <p class="event-description">Join us to discuss upcoming initiatives, volunteer opportunities, and community feedback. Your voice matters in shaping our future events.</p>
+                        <div class="event-actions">
+                            <button class="btn btn-primary">RSVP</button>
+                            <button class="btn btn-outline">Agenda</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Section -->
+    <section class="contact-section animate-on-scroll">
+        <h2 class="contact-title">Have questions about our events? Reach us here!</h2>
+        <button class="contact-btn">Get in touch</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-placeholder"><img src="assets/img/ghfest.png" width="70px" /></div>
+            </div>
+
+            <nav class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#forms">Forms</a>
+                <a href="#sponsors">Sponsors</a>
+                <a href="#blog">Blog</a>
+                <a href="#payment">Payment</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#shop">Shop</a>
+                <a href="#about">About us</a>
+            </nav>
+
+            <div class="footer-social">
+                <div class="social-icon"><img src="assets/img/ghfest/Facebook.png" width="30px" /></div>
+                <div class="social-icon"><img src="assets/img/ghfest/LinkedIn.png" width="30px" /></div>
+                <div class="social-icon"><img src="assets/img/ghfest/Instagram.png" width="30px" /></div>
+                <div class="social-icon"><img src="assets/img/ghfest/YouTube.png" width="30px" /></div>
+                <div class="social-icon"><img src="assets/img/ghfest/Twitter.png" width="30px" /></div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Copyright © 2025 | All Rights Reserved | <a href="#terms">Terms and Conditions</a> | <a
+                    href="#privacy">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Calendar functionality
+        class EventCalendar {
+            constructor() {
+                this.currentDate = new Date();
+                this.currentMonth = this.currentDate.getMonth();
+                this.currentYear = this.currentDate.getFullYear();
+                this.selectedDate = null;
+                this.currentView = 'month';
+                
+                // Sample events data
+                this.events = [
+                    {
+                        id: 1,
+                        title: 'Traditional Dance Workshop',
+                        date: new Date(2025, 5, 15), // June 15, 2025
+                        time: '2:00 PM - 5:00 PM',
+                        location: 'Edmonton Community Centre',
+                        category: 'cultural',
+                        description: 'Learn traditional Ghanaian dances from master instructors.'
+                    },
+                    {
+                        id: 2,
+                        title: 'Kente Weaving Masterclass',
+                        date: new Date(2025, 5, 22), // June 22, 2025
+                        time: '10:00 AM - 4:00 PM',
+                        location: 'Arts & Culture Centre',
+                        category: 'workshop',
+                        description: 'Discover the ancient art of Kente weaving with expert artisans.'
+                    },
+                    {
+                        id: 3,
+                        title: 'Youth Leadership Summit',
+                        date: new Date(2025, 5, 30), // June 30, 2025
+                        time: '9:00 AM - 5:00 PM',
+                        location: 'University of Alberta',
+                        category: 'community',
+                        description: 'Empowering young leaders in the Ghanaian-Canadian community.'
+                    },
+                    {
+                        id: 4,
+                        title: 'Drumming & Music Night',
+                        date: new Date(2025, 6, 8), // July 8, 2025
+                        time: '7:00 PM - 10:00 PM',
+                        location: 'Heritage Plaza',
+                        category: 'performance',
+                        description: 'An evening of traditional Ghanaian drumming and contemporary music.'
+                    },
+                    {
+                        id: 5,
+                        title: 'Community Planning Meeting',
+                        date: new Date(2025, 6, 12), // July 12, 2025
+                        time: '6:00 PM - 8:00 PM',
+                        location: 'Ghanafest Alberta Office',
+                        category: 'meeting',
+                        description: 'Join us to discuss upcoming initiatives and volunteer opportunities.'
+                    },
+                    {
+                        id: 6,
+                        title: 'GhanaFest Alberta 2025 - Main Festival',
+                        date: new Date(2025, 6, 25), // July 25, 2025
+                        time: '10:00 AM - 11:00 PM',
+                        location: 'Louise McKinney Riverfront Park, Edmonton',
+                        category: 'festival',
+                        description: 'The flagship event celebrating Ghanaian heritage, arts, and culture.'
+                    }
+                ];
+                
+                this.init();
+            }
+            
+            init() {
+                this.renderCalendar();
+                this.renderSidebarEvents();
+                this.bindEvents();
+                this.initializeAnimations();
+            }
+            
+            bindEvents() {
+                // Navigation buttons
+                document.getElementById('prevMonth').addEventListener('click', () => {
+                    this.previousMonth();
+                });
+                
+                document.getElementById('nextMonth').addEventListener('click', () => {
+                    this.nextMonth();
+                });
+                
+                // View toggle buttons
+                document.querySelectorAll('.toggle-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        this.changeView(e.target.dataset.view);
+                    });
+                });
+                
+                // Filter tags
+                document.querySelectorAll('.filter-tag').forEach(tag => {
+                    tag.addEventListener('click', (e) => {
+                        this.filterEvents(e.target.dataset.filter);
+                    });
+                });
+                
+                // Event cards
+                document.querySelectorAll('.event-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        this.showEventDetails(card);
+                    });
+                });
+                
+                // Contact button
+                document.querySelector('.contact-btn').addEventListener('click', () => {
+                    this.showNotification('Opening contact form...');
+                });
+                
+                // Social icons
+                document.querySelectorAll('.social-icon, .footer-social-icon').forEach(icon => {
+                    icon.addEventListener('click', () => {
+                        const platform = this.getSocialPlatform(icon.textContent);
+                        this.showNotification(`Opening ${platform}...`);
+                    });
+                });
+            }
+            
+            renderCalendar() {
+                const calendarBody = document.getElementById('calendarBody');
+                const currentMonth = document.getElementById('currentMonth');
+                
+                // Update month display
+                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+                currentMonth.textContent = `${monthNames[this.currentMonth]} ${this.currentYear}`;
+                
+                // Clear calendar
+                calendarBody.innerHTML = '';
+                
+                // Get first day of month and number of days
+                const firstDay = new Date(this.currentYear, this.currentMonth, 1).getDay();
+                const daysInMonth = new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
+                const daysInPrevMonth = new Date(this.currentYear, this.currentMonth, 0).getDate();
+                
+                // Add previous month's trailing days
+                for (let i = firstDay - 1; i >= 0; i--) {
+                    const dayDiv = this.createDayElement(daysInPrevMonth - i, 'other-month');
+                    calendarBody.appendChild(dayDiv);
+                }
+                
+                // Add current month's days
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayDiv = this.createDayElement(day, 'current-month');
+                    calendarBody.appendChild(dayDiv);
+                }
+                
+                // Add next month's leading days
+                const totalCells = calendarBody.children.length;
+                const remainingCells = 42 - totalCells; // 6 rows × 7 days = 42 cells
+                for (let day = 1; day <= remainingCells; day++) {
+                    const dayDiv = this.createDayElement(day, 'other-month');
+                    calendarBody.appendChild(dayDiv);
+                }
+            }
+            
+            createDayElement(day, monthType) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = `calendar-day ${monthType}`;
+                
+                const dayNumber = document.createElement('div');
+                dayNumber.className = 'day-number';
+                dayNumber.textContent = day;
+                dayDiv.appendChild(dayNumber);
+                
+                // Check if this day has events
+                const dayDate = new Date(this.currentYear, this.currentMonth, day);
+                const hasEvents = this.events.some(event => 
+                    event.date.toDateString() === dayDate.toDateString()
+                );
+                
+                if (hasEvents && monthType === 'current-month') {
+                    dayDiv.classList.add('has-event');
+                    const eventDot = document.createElement('div');
+                    eventDot.className = 'event-dot';
+                    dayDiv.appendChild(eventDot);
+                }
+                
+                // Check if today
+                const today = new Date();
+                if (dayDate.toDateString() === today.toDateString() && monthType === 'current-month') {
+                    dayDiv.classList.add('today');
+                }
+                
+                // Add click event
+                if (monthType === 'current-month') {
+                    dayDiv.addEventListener('click', () => {
+                        this.selectDate(dayDate);
+                    });
+                }
+                
+                return dayDiv;
+            }
+            
+            selectDate(date) {
+                // Remove previous selection
+                document.querySelectorAll('.calendar-day.selected').forEach(day => {
+                    day.classList.remove('selected');
+                });
+                
+                // Add selection to clicked day
+                event.target.closest('.calendar-day').classList.add('selected');
+                this.selectedDate = date;
+                
+                // Update sidebar with events for selected date
+                this.renderSidebarEvents(date);
+                this.showNotification(`Selected ${date.toLocaleDateString()}`);
+            }
+            
+            renderSidebarEvents(selectedDate = null) {
+                const sidebarEvents = document.getElementById('sidebarEvents');
+                let eventsToShow = this.events;
+                
+                if (selectedDate) {
+                    eventsToShow = this.events.filter(event => 
+                        event.date.toDateString() === selectedDate.toDateString()
+                    );
+                } else {
+                    // Show upcoming events
+                    const today = new Date();
+                    eventsToShow = this.events
+                        .filter(event => event.date >= today)
+                        .sort((a, b) => a.date - b.date)
+                        .slice(0, 5);
+                }
+                
+                sidebarEvents.innerHTML = '';
+                
+                if (eventsToShow.length === 0) {
+                    sidebarEvents.innerHTML = '<p style="color: #666; text-align: center; padding: 20px;">No events for this date</p>';
+                    return;
+                }
+                
+                eventsToShow.forEach(event => {
+                    const eventDiv = document.createElement('div');
+                    eventDiv.className = 'event-item';
+                    eventDiv.innerHTML = `
+                        <div class="event-date">${event.date.toLocaleDateString()}</div>
+                        <div class="event-title">${event.title}</div>
+                        <div class="event-time">${event.time}</div>
+                        <div class="event-location">${event.location}</div>
+                        <div class="event-category">${event.category}</div>
+                    `;
+                    
+                    eventDiv.addEventListener('click', () => {
+                        this.showEventDetails(event);
+                    });
+                    
+                    sidebarEvents.appendChild(eventDiv);
+                });
+            }
+            
+            previousMonth() {
+                this.currentMonth--;
+                if (this.currentMonth < 0) {
+                    this.currentMonth = 11;
+                    this.currentYear--;
+                }
+                this.renderCalendar();
+                this.renderSidebarEvents();
+            }
+            
+            nextMonth() {
+                this.currentMonth++;
+                if (this.currentMonth > 11) {
+                    this.currentMonth = 0;
+                    this.currentYear++;
+                }
+                this.renderCalendar();
+                this.renderSidebarEvents();
+            }
+            
+            changeView(view) {
+                // Update button states
+                document.querySelectorAll('.toggle-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelector(`[data-view="${view}"]`).classList.add('active');
+                
+                this.currentView = view;
+                this.showNotification(`Switched to ${view} view`);
+            }
+            
+            filterEvents(filter) {
+                // Update filter states
+                document.querySelectorAll('.filter-tag').forEach(tag => {
+                    tag.classList.remove('active');
+                });
+                document.querySelector(`[data-filter="${filter}"]`).classList.add('active');
+                
+                // Filter event cards
+                document.querySelectorAll('.event-card').forEach(card => {
+                    const category = card.dataset.category;
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                        card.classList.add('fade-in');
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                this.showNotification(`Showing ${filter === 'all' ? 'all' : filter} events`);
+            }
+            
+            showEventDetails(eventOrCard) {
+                let eventTitle;
+                if (typeof eventOrCard === 'object' && eventOrCard.title) {
+                    eventTitle = eventOrCard.title;
+                } else {
+                    eventTitle = eventOrCard.querySelector('.event-card-title').textContent;
+                }
+                this.showNotification(`Opening details for: ${eventTitle}`);
+            }
+            
+            getSocialPlatform(text) {
+                const platforms = {
+                    'f': 'Facebook',
+                    't': 'Twitter',
+                    'i': 'Instagram',
+                    'in': 'LinkedIn',
+                    'yt': 'YouTube'
+                };
+                return platforms[text] || 'Social Media';
+            }
+            
+            showNotification(message) {
+                const existing = document.querySelector('.notification');
+                if (existing) existing.remove();
+
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #2d3748;
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 6px;
+                    font-size: 14px;
+                    z-index: 10000;
+                    opacity: 0;
+                    transform: translateX(100%);
+                    transition: all 0.3s ease;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                `;
+
+                notification.textContent = message;
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.style.opacity = '1';
+                    notification.style.transform = 'translateX(0)';
+                }, 10);
+
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => notification.remove(), 300);
+                }, 2500);
+            }
+            
+            initializeAnimations() {
+                // Intersection Observer for scroll animations
+                const observerOptions = {
+                    threshold: 0.15,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+        }
+        
+        // Initialize calendar when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            new EventCalendar();
+            
+            // Header scroll effect
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const header = document.querySelector('.header');
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+            
+            // Button interactions
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const action = this.textContent;
+                    showNotification(`${action} clicked!`);
+                });
+            });
+        });
+        
+        // Global notification function
+        function showNotification(message) {
+            const existing = document.querySelector('.notification');
+            if (existing) existing.remove();
+
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #2d3748;
+                color: white;
+                padding: 12px 20px;
+                border-radius: 6px;
+                font-size: 14px;
+                z-index: 10000;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            `;
+
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 2500);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Sponsors - Ghanafest Alberta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Header */
+        
+
+        .top-banner {
+            background: linear-gradient(135deg, #74b3ff, #667eea);
+            color: white;
+            padding: 8px 0;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 24px;
+        }
+
+        .banner-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* .stars {
+            color: #ffd700;
+        } */
+        .header {
+            background-color: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            height: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover {
+            color: #4169E1;
+            background-color: rgba(65, 105, 225, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-links a {
+            width: 28px;
+            height: 28px;
+            background-color: #ddd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .star-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .star-icon:hover {
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #666;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        /* African Pattern Border */
+        .pattern-border {
+            height: 60px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 60"><defs><pattern id="africanPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="%23654321"/><circle cx="20" cy="20" r="15" fill="%23D2691E"/><polygon points="10,10 30,10 20,30" fill="%23FF6347"/><rect x="5" y="25" width="30" height="10" fill="%23FFD700"/></pattern></defs><rect width="100%" height="100%" fill="url(%23africanPattern)"/></svg>');
+            background-size: 80px 60px;
+            background-repeat: repeat-x;
+            border-top: 2px solid #8B4513;
+            border-bottom: 2px solid #8B4513;
+        }
+
+        /* Main content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Official Partners Section */
+        .partners-section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #74b3ff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .partners-carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            background: white;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            padding: 40px 20px;
+        }
+
+        .partners-track {
+            display: flex;
+            gap: 40px;
+            transition: transform 0.5s ease;
+            align-items: center;
+        }
+
+        .partner-card {
+            min-width: 280px;
+            height: 200px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+            border-color: #74b3ff;
+        }
+
+        .partner-logo {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            color: #6c757d;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .partner-card:hover .partner-logo {
+            border-color: #74b3ff;
+            background: #f8f9ff;
+        }
+
+        .partner-card.nfa {
+            border-left: 4px solid #ffd700;
+        }
+
+        .partner-card.black-business {
+            border-left: 4px solid #6f42c1;
+        }
+
+        .partner-card.ape-afro {
+            border-left: 4px solid #28a745;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.9);
+            border: 1px solid #e0e0e0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #666;
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            background: #74b3ff;
+            color: white;
+            border-color: #74b3ff;
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: #74b3ff;
+            transform: scale(1.2);
+        }
+
+        /* Media Partners Section */
+        .media-partners {
+            margin-bottom: 80px;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .media-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .media-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(116, 179, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .media-card:hover::before {
+            left: 100%;
+        }
+
+        .media-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            border-color: #74b3ff;
+        }
+
+        .media-logo {
+            height: 80px;
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #6c757d;
+            transition: all 0.3s ease;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .media-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .media-card:hover .media-logo {
+            border-color: #74b3ff;
+            background: #f8f9ff;
+        }
+
+        .media-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .media-type {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Sponsorship Packages Section */
+        .sponsorship-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 20px;
+            padding: 80px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 80px;
+        }
+
+        .sponsorship-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .sponsorship-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sponsorship-text {
+            text-align: left;
+        }
+
+        .sponsorship-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .sponsorship-description {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .sponsorship-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .sponsorship-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sponsorship-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .sponsorship-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .sponsorship-btn.secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        .sponsorship-image {
+            width: 100%;
+            height: 300px;
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .sponsorship-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .sponsorship-image:hover {
+            border-color: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 60px 24px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .contact-description {
+            font-size: 16px;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        .contact-btn {
+            background: #74b3ff;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(116, 179, 255, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem 0 2rem;
+            border-top: 1px solid #ecf0f1;
+            animation: fadeInUp 1s ease-out 1.7s both;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            color: #7f8c8d;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #3498db;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ecf0f1;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .sponsorship-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .sponsorship-text {
+                text-align: center;
+            }
+
+            .partners-track {
+                gap: 20px;
+            }
+
+            .partner-card {
+                min-width: 250px;
+            }
+
+            .media-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-banner {
+                flex-direction: column;
+                gap: 8px;
+                padding: 12px 16px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+            
+            .nav-container {
+                padding: 12px 16px;
+            }
+            
+            .main-content {
+                padding: 40px 16px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .sponsorship-section {
+                padding: 60px 30px;
+            }
+            
+            .sponsorship-title {
+                font-size: 32px;
+            }
+            
+            .sponsorship-buttons {
+                justify-content: center;
+            }
+            
+            .partner-card {
+                min-width: 200px;
+                height: 150px;
+            }
+            
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-nav {
+                gap: 20px;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    
+        <div class="top-banner">
+            <div class="banner-left">
+                <span class="stars">⭐⭐⭐⭐⭐</span>
+                <span>Top-Rated Festival in Edmonton!</span>
+            </div>
+            <div class="banner-right">
+                <span>A Festival of Trade, Arts & Culture For Peace & Unity</span>
+            </div>
+        </div>
+        
+        <header class="header">
+            <div class="logo">
+                <div
+                    style="width: 90px; height: 90px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                    <img src="assets/img/ghfest.png" />
+                </div>
+            </div>
+    
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="form_type.html">Forms</a></li>
+                    <li><a href="sponsors.html">Sponsors</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="payment_type.html">Payment</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="events.html">Event Calendar</a></li>
+                    <li><a href="contact.html">Contacts</a></li>
+                </ul>
+            </nav>
+    
+            <div class="header-right">
+                <div class="social-links">
+                    <a href="#" style="background: #3b5998;">f</a>
+                    <a href="#" style="background: #1da1f2;">t</a>
+                    <a href="#" style="background: #cd486b;">i</a>
+                    <a href="#" style="background: #0077b5;">in</a>
+                    <a href="#" style="background: #ff0000;">yt</a>
+                </div>
+                <div class=""
+                    style="width: 70px; height: 70px;  border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                    <a href="https://canadianchoiceaward.ca/winners/ab/edmonton/"><img src="assets/img/cert1.png"
+                            width="50px" /> </a>
+                </div>
+                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </header>
+
+    <!-- African Pattern Border -->
+    <!-- <div class="pattern-border">
+        <img src="assets/img/bar.jpg" />
+    </div> -->
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Official Partners Section -->
+        <section class="partners-section animate-on-scroll">
+            <div class="section-header">
+                <h2 class="section-title">Official Partners</h2>
+                <p class="section-description">Our official partners are key to Ghanafest Alberta's success, helping us celebrate culture, unite communities, and create lasting memories.</p>
+            </div>
+            
+            <div class="partners-carousel">
+                <div class="partners-track" id="partnersTrack">
+                    <div class="partner-card nfa">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                             <img src="assets/img/ghfest/national_p.jpg" />
+                            <div>National Film Authority Logo Placeholder</div>
+                        </div>
+                    </div>
+                    
+                    <div class="partner-card black-business">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/bb_p.jpg" />
+                            <div>Black Business Edmonton Logo Placeholder</div>
+                        </div>
+                    </div>
+                    
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/afro_pop_p.jpg" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/mof_p.png" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/gh_high_p.png" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/gtac_p.png" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/skin_p.jpg" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/kasoa_p.jpg" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/gh_high_p.png" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/denilex_p.jpg" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/denilex_p.jpg" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/arabella_p.png" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/national_p.jpg" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/mot_and_i_p.jpg" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/black_b_e_p.jpg" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/canada_chamber_p.png" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/king_mojoe.jpg" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/food-bank_p.jpg" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/misscentre_p.png" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/kid_tourism_p.jpg" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/national_film_p.jpg" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/babibi_nsromma_p.png" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/anwamo_festival_p.png" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/canada_chamber_p.png" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/GhanatourismAuth_p.png" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/afro_diaspora.jpg" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/_p" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="partner-card ape-afro">
+                        <div class="partner-logo">
+                            <!-- Replace with actual image -->
+                            <img src="assets/img/ghfest/afro_pop_p.jpg" />
+                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <button class="carousel-nav carousel-prev" id="prevBtn">‹</button>
+                <button class="carousel-nav carousel-next" id="nextBtn">›</button>
+                
+                <div class="carousel-dots">
+                    <div class="carousel-dot active"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Media Partners Section -->
+        <section class="media-partners animate-on-scroll">
+            <div class="section-header">
+                <h2 class="section-title">Media Partners</h2>
+                <p class="section-description">Our media partners amplify the culture, energy, and excitement of Ghanafest Alberta, bringing this vibrant celebration to the world.</p>
+            </div>
+            
+            <div class="media-grid">
+                <div class="media-card radio">
+                    <div class="media-logo">
+                        <!-- Replace with actual Star 103.5 FM logo -->
+                        <img src="assets/img/ghfest/star_fm.jpg" />
+                        <div>Star 103.5 FM </div>
+                    </div>
+                    <h3 class="media-name">Star 103.5 FM</h3>
+                    <p class="media-type">Radio Station</p>
+                </div>
+                
+                <div class="media-card radio">
+                    <div class="media-logo">
+                        <!-- Replace with actual A900 96.6 FM logo -->
+                        <img src="assets/img/ghfest/agoo_fm.jpg" />
+                        <div>Ag00 96.6 FM </div>
+                    </div>
+                    <h3 class="media-name">A900 96.6 FM</h3>
+                    <p class="media-type">Radio Station</p>
+                </div>
+                
+                <div class="media-card stream">
+                    <div class="media-logo">
+                        <!-- Replace with actual Stream Media logo -->
+                        <img src="assets/img/ghfest/stream_fm.jpg" />
+                        <div>Stream Media </div>
+                    </div>
+                    <h3 class="media-name">Stream Media</h3>
+                    <p class="media-type">Digital Platform</p>
+                </div>
+                
+                <div class="media-card heritage">
+                    <div class="media-logo">
+                        <!-- Replace with actual Daily Heritage logo -->
+                        <img src="assets/img/ghfest/daily_heritage_fm.jpg" />
+                        <div>Daily Heritage </div>
+                    </div>
+                    <h3 class="media-name">Daily Heritage</h3>
+                    <p class="media-type">News Publication</p>
+                </div>
+                
+                <div class="media-card radio">
+                    <div class="media-logo">
+                        <!-- Replace with actual Nature 102.5 FM logo -->
+                        <img src="assets/img/ghfest/UTV_Ghana_fm.png" />
+                        <div>UTV Ghana</div>
+                    </div>
+                    <h3 class="media-name">Nature 102.5 FM</h3>
+                    <p class="media-type">Radio Station</p>
+                </div>
+                <div class="media-card radio">
+                    <div class="media-logo">
+                        <!-- Replace with actual Nature 102.5 FM logo -->
+                        <img src="assets/img/ghfest/king_mojoe_fm.jpg" />
+                        <div>King Mojoe</div>
+                    </div>
+                    <h3 class="media-name">Nature 102.5 FM</h3>
+                    <p class="media-type">Radio Station</p>
+                </div>
+                <div class="media-card radio">
+                    <div class="media-logo">
+                        <!-- Replace with actual Nature 102.5 FM logo -->
+                        <img src="assets/img/ghfest/kasapa_fm.jpg" />
+                        <div>Kasapa fm</div>
+                    </div>
+                    <h3 class="media-name">Nature 102.5 FM</h3>
+                    <p class="media-type">Radio Station</p>
+                </div>
+                <div class="media-card radio">
+                    <div class="media-logo">
+                        <!-- Replace with actual Nature 102.5 FM logo -->
+                        <img src="assets/img/ghfest/gepa_fm.jpg" />
+                        <div>GEPA</div>
+                    </div>
+                    <h3 class="media-name">Nature 102.5 FM</h3>
+                    <p class="media-type">Radio Station</p>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-logo">
+                        <!-- Replace with actual D-HYPE logo -->
+                        <img src="assets/img/ghfest/djd-nyce_fm.jpg" />
+                        <div>DJd Nyce</div>
+                    </div>
+                    <h3 class="media-name">D-HYPE</h3>
+                    <p class="media-type">DJ & Entertainment</p>
+                </div>
+                <div class="media-card">
+                    <div class="media-logo">
+                        <!-- Replace with actual D-HYPE logo -->
+                        <img src="assets/img/ghfest/king_mojoe_fm.jpg" />
+                        <div>King Mojoe</div>
+                    </div>
+                    <h3 class="media-name">D-HYPE</h3>
+                    <p class="media-type">DJ & Entertainment</p>
+                </div>
+                <div class="media-card">
+                    <div class="media-logo">
+                        <!-- Replace with actual D-HYPE logo -->
+                        <img src="assets/img/ghfest/empire_fm.jpg" />
+                        <div>D-HYPE Logo Placeholder</div>
+                    </div>
+                    <h3 class="media-name">D-HYPE</h3>
+                    <p class="media-type">DJ & Entertainment</p>
+                </div>
+                <div class="media-card">
+                    <div class="media-logo">
+                        <!-- Replace with actual D-HYPE logo -->
+                        <img src="assets/img/ghfest/afriq.jpg" />
+                        <div>Afriq Culture</div>
+                    </div>
+                    <h3 class="media-name">D-HYPE</h3>
+                    <p class="media-type">DJ & Entertainment</p>
+                </div>
+                <div class="media-card">
+                    <div class="media-logo">
+                        <!-- Replace with actual D-HYPE logo -->
+                        <img src="assets/img/ghfest/live_xtra_fm.jpg" />
+                        <div>Live Xtra Fm</div>
+                    </div>
+                    <h3 class="media-name">D-HYPE</h3>
+                    <p class="media-type">DJ & Entertainment</p>
+                </div>
+                <div class="media-card">
+                    <div class="media-logo">
+                        <!-- Replace with actual D-HYPE logo -->
+                        <img src="assets/img/ghfest/afro_diaspora.jpg" />
+                        <div>Afro Diaspora</div>
+                    </div>
+                    <h3 class="media-name">D-HYPE</h3>
+                    <p class="media-type">DJ & Entertainment</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sponsorship Packages Section -->
+        <section class="sponsorship-section animate-on-scroll">
+            <div class="sponsorship-content">
+                <div class="sponsorship-text">
+                    <h2 class="sponsorship-title">Boost Your Brand with Ghanafest Alberta!</h2>
+                    <p class="sponsorship-description">Take center stage at GhanaFest Alberta, one of Canada's most celebrated cultural festivals! Endorsed by the Ghana High Commission and key government ministries, we offer the perfect platform to highlight your brand and reach a vibrant, diverse audience.</p>
+                    <div class="sponsorship-buttons">
+                        <a href="#contact" class="sponsorship-btn">Become a Sponsor (International)</a>
+                        <a href="#packages" class="sponsorship-btn secondary">View Sponsorship Packages (Canada)</a>
+                    </div>
+                </div>
+                <div class="sponsorship-image">
+                    <img src="assets/img/ghfest/sponsorship.jpeg" />
+                    <!-- <div>Festival Sponsorship Image Placeholder<br>
+                    <small>(Balloon arch, event photo, or celebration image)</small></div> -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Section -->
+    <section class="contact-section animate-on-scroll" id="contact">
+        <h2 class="contact-title">Ready to Partner With Us?</h2>
+        <p class="contact-description">Join our community of valued sponsors and help us celebrate Ghanaian heritage while boosting your brand visibility.</p>
+        <button class="contact-btn">Contact Partnership Team</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-placeholder"><img src="assets/img/ghfest.png" width="70px" /></div>
+            </div>
+
+            <nav class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#forms">Forms</a>
+                <a href="#sponsors">Sponsors</a>
+                <a href="#blog">Blog</a>
+                <a href="#payment">Payment</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#shop">Shop</a>
+                <a href="#about">About us</a>
+            </nav>
+
+            <div class="footer-social">
+                <div class="social-icon"><img src="assets/img/ghfest/Facebook.png" width="30px" /></div>
+                <div class="social-icon"><img src="assets/img/ghfest/LinkedIn.png" width="30px" /></div>
+                <div class="social-icon"><img src="assets/img/ghfest/Instagram.png" width="30px" /></div>
+                <div class="social-icon"><img src="assets/img/ghfest/YouTube.png" width="30px" /></div>
+                <div class="social-icon"><img src="assets/img/ghfest/Twitter.png" width="30px" /></div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Copyright © 2025 | All Rights Reserved | <a href="#terms">Terms and Conditions</a> | <a
+                    href="#privacy">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Sponsors page functionality
+        class SponsorsPage {
+            constructor() {
+                this.currentSlide = 0;
+                this.totalSlides = 3;
+                this.init();
+            }
+            
+            init() {
+                this.initializeAnimations();
+                this.initializeCarousel();
+                this.bindEvents();
+            }
+            
+            bindEvents() {
+                // Carousel navigation
+                document.getElementById('prevBtn').addEventListener('click', () => {
+                    this.previousSlide();
+                });
+                
+                document.getElementById('nextBtn').addEventListener('click', () => {
+                    this.nextSlide();
+                });
+                
+                // Carousel dots
+                document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        this.goToSlide(index);
+                    });
+                });
+                
+                // Partner cards
+                document.querySelectorAll('.partner-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const partnerName = card.querySelector('.partner-logo').textContent.trim();
+                        this.showPartnerDetails(partnerName);
+                    });
+                });
+                
+                // Media cards
+                document.querySelectorAll('.media-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const mediaName = card.querySelector('.media-name').textContent;
+                        this.showMediaDetails(mediaName);
+                    });
+                });
+                
+                // Sponsorship buttons
+                document.querySelectorAll('.sponsorship-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const action = btn.textContent.includes('Sponsor') ? 'sponsorship' : 'packages';
+                        this.handleSponsorshipAction(action);
+                    });
+                });
+                
+                // Contact button
+                document.querySelector('.contact-btn').addEventListener('click', () => {
+                    this.showNotification('Opening partnership contact form...');
+                });
+                
+                // Social icons
+                document.querySelectorAll('.social-icon, .footer-social-icon').forEach(icon => {
+                    icon.addEventListener('click', () => {
+                        const platform = this.getSocialPlatform(icon.textContent);
+                        this.showNotification(`Opening ${platform}...`);
+                    });
+                });
+                
+                // Auto-play carousel
+                this.startAutoPlay();
+            }
+            
+            initializeCarousel() {
+                this.updateCarousel();
+            }
+            
+            previousSlide() {
+                this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+                this.updateCarousel();
+            }
+            
+            nextSlide() {
+                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                this.updateCarousel();
+            }
+            
+            goToSlide(index) {
+                this.currentSlide = index;
+                this.updateCarousel();
+            }
+            
+            updateCarousel() {
+                const track = document.getElementById('partnersTrack');
+                const translateX = -this.currentSlide * 320; // 280px card width + 40px gap
+                track.style.transform = `translateX(${translateX}px)`;
+                
+                // Update dots
+                document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === this.currentSlide);
+                });
+            }
+            
+            startAutoPlay() {
+                setInterval(() => {
+                    this.nextSlide();
+                }, 4000); // Change slide every 4 seconds
+            }
+            
+            showPartnerDetails(partnerName) {
+                const partnerInfo = {
+                    'NATIONAL FILM AUTHORITY': 'Ghana\'s National Film Authority promotes and develops the film industry.',
+                    'BLACK BUSINESS EDMONTON': 'Supporting Black-owned businesses and entrepreneurs in Edmonton.',
+                    'APE AFRO POP EXPERIENCE': 'Celebrating African pop culture and entertainment experiences.'
+                };
+                
+                const info = partnerInfo[partnerName] || 'Learn more about this official partner.';
+                this.showNotification(`${partnerName}: ${info}`);
+            }
+            
+            showMediaDetails(mediaName) {
+                const mediaInfo = {
+                    'Star 103.5 FM': 'Edmonton\'s premier radio station for diverse music and community content.',
+                    'A900 96.6 FM': 'Connecting communities through music and cultural programming.',
+                    'Stream Media': 'Digital streaming platform for contemporary African content.',
+                    'Daily Heritage': 'News publication covering heritage and cultural stories.',
+                    'Nature 102.5 FM': 'Radio station celebrating natural and cultural diversity.',
+                    'D-HYPE': 'DJ and entertainment services for cultural events and celebrations.'
+                };
+                
+                const info = mediaInfo[mediaName] || 'Learn more about this media partner.';
+                this.showNotification(`${mediaName}: ${info}`);
+            }
+            
+            handleSponsorshipAction(action) {
+                if (action === 'sponsorship') {
+                    this.showNotification('Opening international sponsorship application...');
+                } else {
+                    this.showNotification('Viewing Canadian sponsorship packages...');
+                }
+            }
+            
+            initializeAnimations() {
+                // Intersection Observer for scroll animations
+                const observerOptions = {
+                    threshold: 0.15,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                    observer.observe(el);
+                });
+                
+                // Staggered animations for media cards
+                const mediaCards = document.querySelectorAll('.media-card');
+                mediaCards.forEach((card, index) => {
+                    card.style.animationDelay = `${index * 0.1}s`;
+                    card.classList.add('fade-in');
+                });
+            }
+            
+            getSocialPlatform(emoji) {
+                const platforms = {
+                    '📷': 'Instagram',
+                    '📺': 'YouTube',
+                    '🎵': 'TikTok',
+                    '❌': 'Twitter/X',
+                    '📘': 'Facebook',
+                    '💼': 'LinkedIn'
+                };
+                return platforms[emoji] || 'Social Media';
+            }
+            
+            showNotification(message) {
+                const existing = document.querySelector('.notification');
+                if (existing) existing.remove();
+
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #2d3748;
+                    color: white;
+                    padding: 16px 24px;
+                    border-radius: 8px;
+                    font-size: 14px;
+                    z-index: 10000;
+                    opacity: 0;
+                    transform: translateX(100%);
+                    transition: all 0.3s ease;
+                    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+                    max-width: 350px;
+                    line-height: 1.4;
+                `;
+
+                notification.textContent = message;
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.style.opacity = '1';
+                    notification.style.transform = 'translateX(0)';
+                }, 10);
+
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => notification.remove(), 300);
+                }, 4000);
+            }
+        }
+        
+        // Initialize sponsors page when DOM loads
+        document.addEventListener('DOMContentLoaded', function() {
+            new SponsorsPage();
+            
+            // Header scroll effect
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const header = document.querySelector('.header');
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Add fade-in animation class
+            const style = document.createElement('style');
+            style.textContent = `
+                .fade-in {
+                    animation: fadeInUp 0.6s ease forwards;
+                }
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Add hover effects for interactive elements
+            document.querySelectorAll('.partner-card, .media-card').forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.filter = 'brightness(1.05)';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.filter = 'brightness(1)';
+                });
+            });
+        });
+        
+        // Keyboard navigation for carousel
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                document.getElementById('prevBtn').click();
+            } else if (e.key === 'ArrowRight') {
+                document.getElementById('nextBtn').click();
+            }
+        });
+    </script>
+</body>
+</html>

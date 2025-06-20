@@ -491,57 +491,63 @@
     
     /* Footer */
     .footer {
-        background-color: white;
-        padding: 30px 20px;
-        border-top: 1px solid #e0e0e0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .footer-nav {
-        display: flex;
-        gap: 30px;
-        list-style: none;
-    }
-    
-    .footer-nav a {
-        text-decoration: none;
-        color: #8B92B8;
-        font-size: 14px;
-    }
-    
-    .footer-social {
-        display: flex;
-        gap: 10px;
-    }
-    
-    .footer-social a {
-        width: 30px;
-        height: 30px;
-        background-color: #ddd;
-        border-radius: 3px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        color: white;
-        font-size: 14px;
-    }
-    
-    .footer-bottom {
-        text-align: center;
-        padding: 20px;
-        color: #999;
-        font-size: 12px;
-        border-top: 1px solid #f0f0f0;
-    }
-    
-    .footer-bottom a {
-        color: #8B92B8;
-        text-decoration: none;
-    }
-    
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem 0 2rem;
+            border-top: 1px solid #ecf0f1;
+            animation: fadeInUp 1s ease-out 1.7s both;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            color: #7f8c8d;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #3498db;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ecf0f1;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: #3498db;
+            text-decoration: none;
+        }
     /* Responsive Design */
     @media (max-width: 1200px) {
         .main-content {
@@ -811,7 +817,7 @@
     <nav>
         <ul class="nav-menu">
             <li><a href="index.html">Home</a></li>
-            <li><a href="#forms">Forms</a></li>
+            <li><a href="form_type.html">Forms</a></li>
             <li><a href="sponsors.html">Sponsors</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a href="payment_type.html">Payment</a></li>
@@ -950,11 +956,11 @@
     </div>
 </footer>
 
-<div class="footer-bottom">
+<!-- <div class="footer-bottom">
     Copyright © 2025 - All Rights Reserved - 
     <a href="#terms">Terms and Conditions</a> | 
     <a href="#privacy">Privacy Policy</a>
-</div>
+</div> -->
 
 <script>
     // Mobile menu functionality
