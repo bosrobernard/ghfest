@@ -3,6 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tourm" />
+    <meta
+      name="description"
+      content="A festival of trade, arts & culture for peace & unity "
+    />
+    <meta
+      name="keywords"
+      content="A festival of trade, arts & culture for peace & unity "
+    />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,shrink-to-fit=no"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="assets/img/favicons/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="assets/img/favicons/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="assets/img/favicons/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="assets/img/favicons/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="assets/img/favicons/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="assets/img/favicons/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="assets/img/favicons/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="assets/img/favicons/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/img/favicons/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="assets/img/favicons/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/img/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="assets/img/favicons/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/img/favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/img/favicons/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="assets/img/favicons/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Manrope:wght@200..800&amp;family=Montez&amp;display=swap"
+      rel="stylesheet"
+    />
     <title>Our Sponsors - Ghanafest Alberta</title>
     <style>
         * {
@@ -19,19 +117,16 @@
         }
 
         /* Header */
-        
-
         .top-banner {
             background: linear-gradient(135deg, #74b3ff, #667eea);
             color: white;
-            padding: 8px 0;
+            padding: 8px 24px;
             text-align: center;
             font-size: 14px;
             font-weight: 500;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 24px;
         }
 
         .banner-left {
@@ -40,9 +135,6 @@
             gap: 8px;
         }
 
-        /* .stars {
-            color: #ffd700;
-        } */
         .header {
             background-color: white;
             padding: 15px 20px;
@@ -143,7 +235,11 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
-            padding: 5px;
+            padding: 8px;
+            z-index: 1002;
+            background: none;
+            border: none;
+            position: relative;
         }
 
         .mobile-menu-toggle span {
@@ -151,21 +247,176 @@
             height: 3px;
             background-color: #666;
             margin: 3px 0;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             border-radius: 2px;
+            transform-origin: center;
         }
 
         .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
+            transform: rotate(45deg) translate(5px, 5px);
+            background-color: #fff;
         }
 
         .mobile-menu-toggle.active span:nth-child(2) {
             opacity: 0;
+            transform: scale(0);
         }
 
         .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
+            transform: rotate(-45deg) translate(7px, -6px);
+            background-color: #fff;
         }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            z-index: 1001;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow-y: auto;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            padding: 30px 20px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .mobile-menu-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-logo img {
+            width: 40px;
+            height: auto;
+        }
+
+        .mobile-menu-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .mobile-menu-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+        }
+
+        .mobile-nav-menu {
+            padding: 20px 0;
+        }
+
+        .mobile-nav-menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-nav-menu a:hover,
+        .mobile-nav-menu a.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-left-color: #FFD700;
+            transform: translateX(5px);
+        }
+
+        .mobile-nav-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .mobile-nav-menu a:hover::before {
+            left: 100%;
+        }
+
+        .mobile-menu-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .mobile-social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-social-links a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .mobile-menu-contact {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+        }
+
         /* African Pattern Border */
         .pattern-border {
             height: 60px;
@@ -646,84 +897,6 @@
             text-decoration: none;
         }
 
-
-        /* Mobile Responsive */
-        @media (max-width: 968px) {
-            .sponsorship-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                text-align: center;
-            }
-
-            .sponsorship-text {
-                text-align: center;
-            }
-
-            .partners-track {
-                gap: 20px;
-            }
-
-            .partner-card {
-                min-width: 250px;
-            }
-
-            .media-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .top-banner {
-                flex-direction: column;
-                gap: 8px;
-                padding: 12px 16px;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-            
-            .nav-container {
-                padding: 12px 16px;
-            }
-            
-            .main-content {
-                padding: 40px 16px;
-            }
-            
-            .section-title {
-                font-size: 28px;
-            }
-            
-            .sponsorship-section {
-                padding: 60px 30px;
-            }
-            
-            .sponsorship-title {
-                font-size: 32px;
-            }
-            
-            .sponsorship-buttons {
-                justify-content: center;
-            }
-            
-            .partner-card {
-                min-width: 200px;
-                height: 150px;
-            }
-            
-            .media-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-nav {
-                gap: 20px;
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
         /* Animations */
         .animate-on-scroll {
             opacity: 0;
@@ -739,69 +912,326 @@
         html {
             scroll-behavior: smooth;
         }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .sponsorship-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .sponsorship-text {
+                text-align: center;
+            }
+
+            .partners-track {
+                gap: 30px;
+            }
+
+            .partner-card {
+                min-width: 260px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .sponsorship-title {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-banner {
+                flex-direction: column;
+                gap: 8px;
+                padding: 12px 16px;
+                font-size: 12px;
+            }
+
+            .banner-left,
+            .banner-right {
+                text-align: center;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .social-links {
+                display: none;
+            }
+
+            .header {
+                padding: 12px 16px;
+            }
+
+            .main-content {
+                padding: 40px 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .section-description {
+                font-size: 16px;
+            }
+
+            .sponsorship-section {
+                padding: 50px 30px;
+                margin-bottom: 60px;
+            }
+
+            .sponsorship-title {
+                font-size: 28px;
+            }
+
+            .sponsorship-description {
+                font-size: 16px;
+            }
+
+            .sponsorship-buttons {
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sponsorship-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .partner-card {
+                min-width: 240px;
+                height: 180px;
+            }
+
+            .partners-track {
+                gap: 20px;
+            }
+
+            .media-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+
+            .media-card {
+                padding: 20px 15px;
+            }
+
+            .contact-section {
+                padding: 40px 20px;
+            }
+
+            .contact-title {
+                font-size: 24px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-nav {
+                gap: 20px;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-banner {
+                padding: 10px 12px;
+                font-size: 11px;
+            }
+
+            .header {
+                padding: 10px 12px;
+            }
+
+            .logo img {
+                width: 40px;
+            }
+
+            .main-content {
+                padding: 30px 12px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .partners-section,
+            .media-partners {
+                margin-bottom: 60px;
+            }
+
+            .partner-card {
+                min-width: 200px;
+                height: 160px;
+            }
+
+            .media-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .sponsorship-section {
+                padding: 40px 20px;
+                border-radius: 12px;
+            }
+
+            .sponsorship-title {
+                font-size: 24px;
+            }
+
+            .sponsorship-description {
+                font-size: 14px;
+            }
+
+            .contact-section {
+                padding: 30px 15px;
+            }
+
+            .mobile-menu {
+                width: 280px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .mobile-menu {
+                width: 100%;
+            }
+
+            .partner-card {
+                min-width: 180px;
+                height: 140px;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+
+            .sponsorship-title {
+                font-size: 22px;
+            }
+        }
+
+        /* High DPI / Retina displays */
+        @media only screen and (-webkit-min-device-pixel-ratio: 2),
+               only screen and (min--moz-device-pixel-ratio: 2),
+               only screen and (-o-min-device-pixel-ratio: 2/1),
+               only screen and (min-device-pixel-ratio: 2),
+               only screen and (min-resolution: 192dpi),
+               only screen and (min-resolution: 2dppx) {
+            .logo img, .media-logo img, .partner-logo img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    
-        <div class="top-banner">
-            <div class="banner-left">
-                <span class="stars">⭐⭐⭐⭐⭐</span>
-                <span>Top-Rated Festival in Edmonton!</span>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo">
+                <img src="assets/img/ghfest.png" alt="Ghanafest" />
             </div>
-            <div class="banner-right">
-                <span>A Festival of Trade, Arts & Culture For Peace & Unity</span>
-            </div>
+            <div class="mobile-menu-title">Ghanafest Alberta</div>
+            <div class="mobile-menu-subtitle">Trade, Arts & Culture Festival</div>
         </div>
         
-        <header class="header">
-            <div class="logo">
-                <div
-                    style="width: 90px; height: 90px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-                    <img src="assets/img/ghfest.png" />
-                </div>
-            </div>
-    
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="form_type.html">Forms</a></li>
-                    <li><a href="sponsors.html">Sponsors</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="payment_type.html">Payment</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="about.html">About us</a></li>
-                    <li><a href="events.html">Event Calendar</a></li>
-                    <li><a href="contact.html">Contacts</a></li>
-                </ul>
-            </nav>
-    
-            <div class="header-right">
-                <div class="social-links">
-                    <a href="#" style="background: #3b5998;">f</a>
-                    <a href="#" style="background: #1da1f2;">t</a>
-                    <a href="#" style="background: #cd486b;">i</a>
-                    <a href="#" style="background: #0077b5;">in</a>
-                    <a href="#" style="background: #ff0000;">yt</a>
-                </div>
-                <div class=""
-                    style="width: 70px; height: 70px;  border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-                    <a href="https://canadianchoiceaward.ca/winners/ab/edmonton/"><img src="assets/img/cert1.png"
-                            width="50px" /> </a>
-                </div>
-                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </header>
+        <nav class="mobile-nav-menu">
+            <a href="index.html">Home</a>
+            <a href="form_type.html">Forms</a>
+            <a href="sponsors.html" class="active">Sponsors</a>
+            <a href="blog.html">Blog</a>
+            <a href="payment_type.html">Payment</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About us</a>
+            <a href="events.html">Event Calendar</a>
+            <a href="contact.html">Contacts</a>
+        </nav>
 
-    <!-- African Pattern Border -->
-    <!-- <div class="pattern-border">
-        <img src="assets/img/bar.jpg" />
-    </div> -->
+        <div class="mobile-menu-footer">
+            <div class="mobile-social-links">
+                <a href="#" style="background: #3b5998;">f</a>
+                <a href="#" style="background: #1da1f2;">t</a>
+                <a href="#" style="background: #cd486b;">i</a>
+                <a href="#" style="background: #0077b5;">in</a>
+                <a href="#" style="background: #ff0000;">yt</a>
+            </div>
+            <div class="mobile-menu-contact">
+                Connect with us on social media
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="top-banner">
+        <div class="banner-left">
+            <span class="stars">⭐⭐⭐⭐⭐</span>
+            <span>Top-Rated Festival in Edmonton!</span>
+        </div>
+        <div class="banner-right">
+            <span>A Festival of Trade, Arts & Culture For Peace & Unity</span>
+        </div>
+    </div>
+    
+    <header class="header">
+        <div class="logo">
+            <div style="width: 90px; height: 90px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                <img src="assets/img/ghfest.png" alt="Ghanafest Logo" />
+            </div>
+        </div>
+
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="form_type.html">Forms</a></li>
+                <li><a href="sponsors.html">Sponsors</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="payment_type.html">Payment</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="events.html">Event Calendar</a></li>
+                <li><a href="contact.html">Contacts</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right">
+            <div class="social-links">
+                <a href="#" style="background: #3b5998;">f</a>
+                <a href="#" style="background: #1da1f2;">t</a>
+                <a href="#" style="background: #cd486b;">i</a>
+                <a href="#" style="background: #0077b5;">in</a>
+                <a href="#" style="background: #ff0000;">yt</a>
+            </div>
+            <div style="width: 70px; height: 70px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                <a href="https://canadianchoiceaward.ca/winners/ab/edmonton/">
+                    <img src="assets/img/cert1.png" width="50px" alt="Canadian Choice Award" />
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
 
     <!-- Main Content -->
     <main class="main-content">
@@ -816,207 +1246,138 @@
                 <div class="partners-track" id="partnersTrack">
                     <div class="partner-card nfa">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                             <img src="assets/img/ghfest/national_p.jpg" />
+                            <img src="assets/img/ghfest/national_p.jpg" alt="National Film Authority" />
                             <div>National Film Authority Logo Placeholder</div>
                         </div>
                     </div>
                     
                     <div class="partner-card black-business">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/bb_p.jpg" />
+                            <img src="assets/img/ghfest/bb_p.jpg" alt="Black Business Edmonton" />
                             <div>Black Business Edmonton Logo Placeholder</div>
                         </div>
                     </div>
                     
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/afro_pop_p.jpg" />
+                            <img src="assets/img/ghfest/afro_pop_p.jpg" alt="APE Afro Pop Experience" />
                             <div>APE Afro Pop Experience Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/mof_p.png" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/mof_p.png" alt="Ministry of Finance" />
+                            <div>Ministry of Finance Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/gh_high_p.png" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/gh_high_p.png" alt="Ghana High Commission" />
+                            <div>Ghana High Commission Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/gtac_p.png" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/gtac_p.png" alt="GTAC" />
+                            <div>GTAC Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/skin_p.jpg" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/skin_p.jpg" alt="Skin Care Partner" />
+                            <div>Skin Care Partner Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/kasoa_p.jpg" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/kasoa_p.jpg" alt="Kasoa Partner" />
+                            <div>Kasoa Partner Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/gh_high_p.png" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/denilex_p.jpg" alt="Denilex" />
+                            <div>Denilex Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/denilex_p.jpg" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/arabella_p.png" alt="Arabella" />
+                            <div>Arabella Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/denilex_p.jpg" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/mot_and_i_p.jpg" alt="MOT and I" />
+                            <div>MOT and I Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/arabella_p.png" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/black_b_e_p.jpg" alt="Black Business Edmonton" />
+                            <div>Black Business Edmonton Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/national_p.jpg" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/canada_chamber_p.png" alt="Canada Chamber" />
+                            <div>Canada Chamber Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/mot_and_i_p.jpg" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/king_mojoe.jpg" alt="King Mojoe" />
+                            <div>King Mojoe Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/black_b_e_p.jpg" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
-                        </div>
-                    </div>
-
-                    <div class="partner-card ape-afro">
-                        <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/canada_chamber_p.png" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
-                        </div>
-                    </div>
-
-                    <div class="partner-card ape-afro">
-                        <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/king_mojoe.jpg" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
-                        </div>
-                    </div>
-
-                    <div class="partner-card ape-afro">
-                        <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/food-bank_p.jpg" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/food-bank_p.jpg" alt="Food Bank" />
+                            <div>Food Bank Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/misscentre_p.png" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/misscentre_p.png" alt="Miss Centre" />
+                            <div>Miss Centre Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/kid_tourism_p.jpg" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
-                        </div>
-                    </div>
-                
-                    <div class="partner-card ape-afro">
-                        <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/national_film_p.jpg" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/kid_tourism_p.jpg" alt="Kids Tourism" />
+                            <div>Kids Tourism Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/babibi_nsromma_p.png" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/national_film_p.jpg" alt="National Film" />
+                            <div>National Film Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/anwamo_festival_p.png" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/babibi_nsromma_p.png" alt="Babibi Nsromma" />
+                            <div>Babibi Nsromma Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/canada_chamber_p.png" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/anwamo_festival_p.png" alt="Anwamo Festival" />
+                            <div>Anwamo Festival Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/GhanatourismAuth_p.png" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/GhanatourismAuth_p.png" alt="Ghana Tourism Authority" />
+                            <div>Ghana Tourism Authority Logo Placeholder</div>
                         </div>
                     </div>
                     <div class="partner-card ape-afro">
                         <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/afro_diaspora.jpg" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
+                            <img src="assets/img/ghfest/afro_diaspora.jpg" alt="Afro Diaspora" />
+                            <div>Afro Diaspora Logo Placeholder</div>
                         </div>
                     </div>
-                    <div class="partner-card ape-afro">
-                        <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/_p" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
-                        </div>
-                    </div>
-                    <div class="partner-card ape-afro">
-                        <div class="partner-logo">
-                            <!-- Replace with actual image -->
-                            <img src="assets/img/ghfest/afro_pop_p.jpg" />
-                            <div>APE Afro Pop Experience Logo Placeholder</div>
-                        </div>
-                    </div>
-
                 </div>
                 
                 <button class="carousel-nav carousel-prev" id="prevBtn">‹</button>
@@ -1040,9 +1401,8 @@
             <div class="media-grid">
                 <div class="media-card radio">
                     <div class="media-logo">
-                        <!-- Replace with actual Star 103.5 FM logo -->
-                        <img src="assets/img/ghfest/star_fm.jpg" />
-                        <div>Star 103.5 FM </div>
+                        <img src="assets/img/ghfest/star_fm.jpg" alt="Star 103.5 FM" />
+                        <div>Star 103.5 FM</div>
                     </div>
                     <h3 class="media-name">Star 103.5 FM</h3>
                     <p class="media-type">Radio Station</p>
@@ -1050,9 +1410,8 @@
                 
                 <div class="media-card radio">
                     <div class="media-logo">
-                        <!-- Replace with actual A900 96.6 FM logo -->
-                        <img src="assets/img/ghfest/agoo_fm.jpg" />
-                        <div>Ag00 96.6 FM </div>
+                        <img src="assets/img/ghfest/agoo_fm.jpg" alt="A900 96.6 FM" />
+                        <div>A900 96.6 FM</div>
                     </div>
                     <h3 class="media-name">A900 96.6 FM</h3>
                     <p class="media-type">Radio Station</p>
@@ -1060,9 +1419,8 @@
                 
                 <div class="media-card stream">
                     <div class="media-logo">
-                        <!-- Replace with actual Stream Media logo -->
-                        <img src="assets/img/ghfest/stream_fm.jpg" />
-                        <div>Stream Media </div>
+                        <img src="assets/img/ghfest/stream_fm.jpg" alt="Stream Media" />
+                        <div>Stream Media</div>
                     </div>
                     <h3 class="media-name">Stream Media</h3>
                     <p class="media-type">Digital Platform</p>
@@ -1070,9 +1428,8 @@
                 
                 <div class="media-card heritage">
                     <div class="media-logo">
-                        <!-- Replace with actual Daily Heritage logo -->
-                        <img src="assets/img/ghfest/daily_heritage_fm.jpg" />
-                        <div>Daily Heritage </div>
+                        <img src="assets/img/ghfest/daily_heritage_fm.jpg" alt="Daily Heritage" />
+                        <div>Daily Heritage</div>
                     </div>
                     <h3 class="media-name">Daily Heritage</h3>
                     <p class="media-type">News Publication</p>
@@ -1080,94 +1437,74 @@
                 
                 <div class="media-card radio">
                     <div class="media-logo">
-                        <!-- Replace with actual Nature 102.5 FM logo -->
-                        <img src="assets/img/ghfest/UTV_Ghana_fm.png" />
+                        <img src="assets/img/ghfest/UTV_Ghana_fm.png" alt="UTV Ghana" />
                         <div>UTV Ghana</div>
                     </div>
-                    <h3 class="media-name">Nature 102.5 FM</h3>
-                    <p class="media-type">Radio Station</p>
+                    <h3 class="media-name">UTV Ghana</h3>
+                    <p class="media-type">Television</p>
                 </div>
+                
                 <div class="media-card radio">
                     <div class="media-logo">
-                        <!-- Replace with actual Nature 102.5 FM logo -->
-                        <img src="assets/img/ghfest/king_mojoe_fm.jpg" />
+                        <img src="assets/img/ghfest/king_mojoe_fm.jpg" alt="King Mojoe" />
                         <div>King Mojoe</div>
                     </div>
-                    <h3 class="media-name">Nature 102.5 FM</h3>
-                    <p class="media-type">Radio Station</p>
+                    <h3 class="media-name">King Mojoe</h3>
+                    <p class="media-type">Entertainment</p>
                 </div>
+                
                 <div class="media-card radio">
                     <div class="media-logo">
-                        <!-- Replace with actual Nature 102.5 FM logo -->
-                        <img src="assets/img/ghfest/kasapa_fm.jpg" />
-                        <div>Kasapa fm</div>
+                        <img src="assets/img/ghfest/kasapa_fm.jpg" alt="Kasapa FM" />
+                        <div>Kasapa FM</div>
                     </div>
-                    <h3 class="media-name">Nature 102.5 FM</h3>
+                    <h3 class="media-name">Kasapa FM</h3>
                     <p class="media-type">Radio Station</p>
                 </div>
+                
                 <div class="media-card radio">
                     <div class="media-logo">
-                        <!-- Replace with actual Nature 102.5 FM logo -->
-                        <img src="assets/img/ghfest/gepa_fm.jpg" />
+                        <img src="assets/img/ghfest/gepa_fm.jpg" alt="GEPA" />
                         <div>GEPA</div>
                     </div>
-                    <h3 class="media-name">Nature 102.5 FM</h3>
+                    <h3 class="media-name">GEPA</h3>
+                    <p class="media-type">Media Partner</p>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-logo">
+                        <img src="assets/img/ghfest/djd-nyce_fm.jpg" alt="DJD Nyce" />
+                        <div>DJD Nyce</div>
+                    </div>
+                    <h3 class="media-name">DJD Nyce</h3>
+                    <p class="media-type">DJ & Entertainment</p>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-logo">
+                        <img src="assets/img/ghfest/empire_fm.jpg" alt="Empire FM" />
+                        <div>Empire FM</div>
+                    </div>
+                    <h3 class="media-name">Empire FM</h3>
                     <p class="media-type">Radio Station</p>
                 </div>
                 
                 <div class="media-card">
                     <div class="media-logo">
-                        <!-- Replace with actual D-HYPE logo -->
-                        <img src="assets/img/ghfest/djd-nyce_fm.jpg" />
-                        <div>DJd Nyce</div>
-                    </div>
-                    <h3 class="media-name">D-HYPE</h3>
-                    <p class="media-type">DJ & Entertainment</p>
-                </div>
-                <div class="media-card">
-                    <div class="media-logo">
-                        <!-- Replace with actual D-HYPE logo -->
-                        <img src="assets/img/ghfest/king_mojoe_fm.jpg" />
-                        <div>King Mojoe</div>
-                    </div>
-                    <h3 class="media-name">D-HYPE</h3>
-                    <p class="media-type">DJ & Entertainment</p>
-                </div>
-                <div class="media-card">
-                    <div class="media-logo">
-                        <!-- Replace with actual D-HYPE logo -->
-                        <img src="assets/img/ghfest/empire_fm.jpg" />
-                        <div>D-HYPE Logo Placeholder</div>
-                    </div>
-                    <h3 class="media-name">D-HYPE</h3>
-                    <p class="media-type">DJ & Entertainment</p>
-                </div>
-                <div class="media-card">
-                    <div class="media-logo">
-                        <!-- Replace with actual D-HYPE logo -->
-                        <img src="assets/img/ghfest/afriq.jpg" />
+                        <img src="assets/img/ghfest/afriq.jpg" alt="Afriq Culture" />
                         <div>Afriq Culture</div>
                     </div>
-                    <h3 class="media-name">D-HYPE</h3>
-                    <p class="media-type">DJ & Entertainment</p>
+                    <h3 class="media-name">Afriq Culture</h3>
+                    <p class="media-type">Cultural Media</p>
                 </div>
+                
                 <div class="media-card">
                     <div class="media-logo">
-                        <!-- Replace with actual D-HYPE logo -->
-                        <img src="assets/img/ghfest/live_xtra_fm.jpg" />
-                        <div>Live Xtra Fm</div>
+                        <img src="assets/img/ghfest/live_xtra_fm.jpg" alt="Live Xtra FM" />
+                        <div>Live Xtra FM</div>
                     </div>
-                    <h3 class="media-name">D-HYPE</h3>
-                    <p class="media-type">DJ & Entertainment</p>
-                </div>
-                <div class="media-card">
-                    <div class="media-logo">
-                        <!-- Replace with actual D-HYPE logo -->
-                        <img src="assets/img/ghfest/afro_diaspora.jpg" />
-                        <div>Afro Diaspora</div>
-                    </div>
-                    <h3 class="media-name">D-HYPE</h3>
-                    <p class="media-type">DJ & Entertainment</p>
+                    <h3 class="media-name">Live Xtra FM</h3>
+                    <p class="media-type">Radio Station</p>
                 </div>
             </div>
         </section>
@@ -1184,9 +1521,7 @@
                     </div>
                 </div>
                 <div class="sponsorship-image">
-                    <img src="assets/img/ghfest/sponsorship.jpeg" />
-                    <!-- <div>Festival Sponsorship Image Placeholder<br>
-                    <small>(Balloon arch, event photo, or celebration image)</small></div> -->
+                    <img src="assets/img/ghfest/sponsorship.jpeg" alt="Festival Sponsorship" />
                 </div>
             </div>
         </section>
@@ -1203,7 +1538,9 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <div class="logo-placeholder"><img src="assets/img/ghfest.png" width="70px" /></div>
+                <div class="logo-placeholder">
+                    <img src="assets/img/ghfest.png" width="70px" alt="Ghanafest Logo" />
+                </div>
             </div>
 
             <nav class="footer-nav">
@@ -1218,33 +1555,134 @@
             </nav>
 
             <div class="footer-social">
-                <div class="social-icon"><img src="assets/img/ghfest/Facebook.png" width="30px" /></div>
-                <div class="social-icon"><img src="assets/img/ghfest/LinkedIn.png" width="30px" /></div>
-                <div class="social-icon"><img src="assets/img/ghfest/Instagram.png" width="30px" /></div>
-                <div class="social-icon"><img src="assets/img/ghfest/YouTube.png" width="30px" /></div>
-                <div class="social-icon"><img src="assets/img/ghfest/Twitter.png" width="30px" /></div>
+                <div class="social-icon">
+                    <img src="assets/img/ghfest/Facebook.png" width="30px" alt="Facebook" />
+                </div>
+                <div class="social-icon">
+                    <img src="assets/img/ghfest/LinkedIn.png" width="30px" alt="LinkedIn" />
+                </div>
+                <div class="social-icon">
+                    <img src="assets/img/ghfest/Instagram.png" width="30px" alt="Instagram" />
+                </div>
+                <div class="social-icon">
+                    <img src="assets/img/ghfest/YouTube.png" width="30px" alt="YouTube" />
+                </div>
+                <div class="social-icon">
+                    <img src="assets/img/ghfest/Twitter.png" width="30px" alt="Twitter" />
+                </div>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>Copyright © 2025 | All Rights Reserved | <a href="#terms">Terms and Conditions</a> | <a
-                    href="#privacy">Privacy Policy</a></p>
+            <p>Copyright © 2025 | All Rights Reserved | <a href="#terms">Terms and Conditions</a> | <a href="#privacy">Privacy Policy</a></p>
         </div>
     </footer>
 
     <script>
-        // Sponsors page functionality
+        // Enhanced Sponsors page functionality with mobile menu
         class SponsorsPage {
             constructor() {
                 this.currentSlide = 0;
                 this.totalSlides = 3;
+                this.mobileMenuOpen = false;
                 this.init();
             }
             
             init() {
                 this.initializeAnimations();
                 this.initializeCarousel();
+                this.initializeMobileMenu();
                 this.bindEvents();
+            }
+            
+            initializeMobileMenu() {
+                const toggle = document.getElementById('mobileMenuToggle');
+                const menu = document.getElementById('mobileMenu');
+                const overlay = document.getElementById('mobileMenuOverlay');
+                
+                // Mobile menu toggle
+                toggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.toggleMobileMenu();
+                });
+                
+                // Close menu when clicking overlay
+                overlay.addEventListener('click', () => {
+                    this.closeMobileMenu();
+                });
+                
+                // Close menu when clicking menu links
+                document.querySelectorAll('.mobile-nav-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        this.closeMobileMenu();
+                    });
+                });
+                
+                // Close menu on escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.mobileMenuOpen) {
+                        this.closeMobileMenu();
+                    }
+                });
+                
+                // Prevent body scroll when menu is open
+                menu.addEventListener('touchmove', (e) => {
+                    if (this.mobileMenuOpen) {
+                        e.stopPropagation();
+                    }
+                });
+            }
+            
+            toggleMobileMenu() {
+                if (this.mobileMenuOpen) {
+                    this.closeMobileMenu();
+                } else {
+                    this.openMobileMenu();
+                }
+            }
+            
+            openMobileMenu() {
+                const toggle = document.getElementById('mobileMenuToggle');
+                const menu = document.getElementById('mobileMenu');
+                const overlay = document.getElementById('mobileMenuOverlay');
+                
+                this.mobileMenuOpen = true;
+                toggle.classList.add('active');
+                menu.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Add staggered animation to menu items
+                const menuItems = document.querySelectorAll('.mobile-nav-menu a');
+                menuItems.forEach((item, index) => {
+                    item.style.transform = 'translateX(50px)';
+                    item.style.opacity = '0';
+                    setTimeout(() => {
+                        item.style.transition = 'all 0.3s ease';
+                        item.style.transform = 'translateX(0)';
+                        item.style.opacity = '1';
+                    }, 100 + (index * 50));
+                });
+            }
+            
+            closeMobileMenu() {
+                const toggle = document.getElementById('mobileMenuToggle');
+                const menu = document.getElementById('mobileMenu');
+                const overlay = document.getElementById('mobileMenuOverlay');
+                
+                this.mobileMenuOpen = false;
+                toggle.classList.remove('active');
+                menu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Reset menu items animation
+                const menuItems = document.querySelectorAll('.mobile-nav-menu a');
+                menuItems.forEach(item => {
+                    item.style.transition = '';
+                    item.style.transform = '';
+                    item.style.opacity = '';
+                });
             }
             
             bindEvents() {
@@ -1267,7 +1705,7 @@
                 // Partner cards
                 document.querySelectorAll('.partner-card').forEach(card => {
                     card.addEventListener('click', () => {
-                        const partnerName = card.querySelector('.partner-logo').textContent.trim();
+                        const partnerName = card.querySelector('.partner-logo div').textContent.trim();
                         this.showPartnerDetails(partnerName);
                     });
                 });
@@ -1294,16 +1732,15 @@
                     this.showNotification('Opening partnership contact form...');
                 });
                 
-                // Social icons
-                document.querySelectorAll('.social-icon, .footer-social-icon').forEach(icon => {
-                    icon.addEventListener('click', () => {
-                        const platform = this.getSocialPlatform(icon.textContent);
-                        this.showNotification(`Opening ${platform}...`);
-                    });
-                });
-                
                 // Auto-play carousel
                 this.startAutoPlay();
+                
+                // Handle window resize
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768 && this.mobileMenuOpen) {
+                        this.closeMobileMenu();
+                    }
+                });
             }
             
             initializeCarousel() {
@@ -1338,19 +1775,21 @@
             
             startAutoPlay() {
                 setInterval(() => {
-                    this.nextSlide();
-                }, 4000); // Change slide every 4 seconds
+                    if (!this.mobileMenuOpen) {
+                        this.nextSlide();
+                    }
+                }, 4000);
             }
             
             showPartnerDetails(partnerName) {
                 const partnerInfo = {
-                    'NATIONAL FILM AUTHORITY': 'Ghana\'s National Film Authority promotes and develops the film industry.',
-                    'BLACK BUSINESS EDMONTON': 'Supporting Black-owned businesses and entrepreneurs in Edmonton.',
-                    'APE AFRO POP EXPERIENCE': 'Celebrating African pop culture and entertainment experiences.'
+                    'National Film Authority Logo Placeholder': 'Ghana\'s National Film Authority promotes and develops the film industry.',
+                    'Black Business Edmonton Logo Placeholder': 'Supporting Black-owned businesses and entrepreneurs in Edmonton.',
+                    'APE Afro Pop Experience Logo Placeholder': 'Celebrating African pop culture and entertainment experiences.'
                 };
                 
                 const info = partnerInfo[partnerName] || 'Learn more about this official partner.';
-                this.showNotification(`${partnerName}: ${info}`);
+                this.showNotification(`${partnerName.replace(' Logo Placeholder', '')}: ${info}`);
             }
             
             showMediaDetails(mediaName) {
@@ -1359,8 +1798,8 @@
                     'A900 96.6 FM': 'Connecting communities through music and cultural programming.',
                     'Stream Media': 'Digital streaming platform for contemporary African content.',
                     'Daily Heritage': 'News publication covering heritage and cultural stories.',
-                    'Nature 102.5 FM': 'Radio station celebrating natural and cultural diversity.',
-                    'D-HYPE': 'DJ and entertainment services for cultural events and celebrations.'
+                    'UTV Ghana': 'Leading television broadcaster in Ghana.',
+                    'DJD Nyce': 'DJ and entertainment services for cultural events and celebrations.'
                 };
                 
                 const info = mediaInfo[mediaName] || 'Learn more about this media partner.';
@@ -1376,7 +1815,6 @@
             }
             
             initializeAnimations() {
-                // Intersection Observer for scroll animations
                 const observerOptions = {
                     threshold: 0.15,
                     rootMargin: '0px 0px -50px 0px'
@@ -1394,24 +1832,11 @@
                     observer.observe(el);
                 });
                 
-                // Staggered animations for media cards
                 const mediaCards = document.querySelectorAll('.media-card');
                 mediaCards.forEach((card, index) => {
                     card.style.animationDelay = `${index * 0.1}s`;
                     card.classList.add('fade-in');
                 });
-            }
-            
-            getSocialPlatform(emoji) {
-                const platforms = {
-                    '📷': 'Instagram',
-                    '📺': 'YouTube',
-                    '🎵': 'TikTok',
-                    '❌': 'Twitter/X',
-                    '📘': 'Facebook',
-                    '💼': 'LinkedIn'
-                };
-                return platforms[emoji] || 'Social Media';
             }
             
             showNotification(message) {
@@ -1526,6 +1951,98 @@
                 document.getElementById('nextBtn').click();
             }
         });
+
+        // Touch/swipe support for carousel
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.getElementById('partnersTrack').addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.getElementById('partnersTrack').addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left - next slide
+                    document.getElementById('nextBtn').click();
+                } else {
+                    // Swipe right - previous slide
+                    document.getElementById('prevBtn').click();
+                }
+            }
+        }
+
+        // Performance optimization: Intersection Observer for lazy loading
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    }
+                }
+            });
+        });
+
+        // Observe all images for lazy loading
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+
+        // Accessibility improvements
+        document.addEventListener('keydown', function(e) {
+            // Focus management for mobile menu
+            if (e.key === 'Tab') {
+                const mobileMenu = document.getElementById('mobileMenu');
+                const focusableElements = mobileMenu.querySelectorAll('a, button');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+
+                if (mobileMenu.classList.contains('active')) {
+                    if (e.shiftKey && document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    } else if (!e.shiftKey && document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
+        });
+
+        // Preload critical images
+        function preloadImages() {
+            const criticalImages = [
+                'assets/img/ghfest.png',
+                'assets/img/ghfest/sponsorship.jpeg'
+            ];
+            
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        }
+
+        // Call preload on page load
+        window.addEventListener('load', preloadImages);
+
+        // Reduce motion for users who prefer it
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        
+        if (prefersReducedMotion.matches) {
+            document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+            document.documentElement.style.setProperty('--transition-duration', '0.01ms');
+        }
     </script>
 </body>
 </html>
