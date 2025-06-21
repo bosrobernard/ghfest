@@ -6364,8 +6364,8 @@ ol.wp-block-rss {
   margin-bottom: 33px;
 }
 .th-widget-about .about-text {
-  /* color: #fff; */
-    color: #7f8c8d;
+  color: #fff;
+    /* color: #7f8c8d; */
   margin-bottom: 20px;
   margin-top: -0.5em;
 }
@@ -7699,7 +7699,7 @@ ol.wp-block-rss {
   display: none;
 }
 .footer-wrapper {
- /* background-image: url("../img/bg.png");  */
+ background-image: url("../img/bg.png"); 
   background-position: center center; 
   position: relative;
   z-index: 2;

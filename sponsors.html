@@ -144,13 +144,14 @@
             align-items: center;
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 998;
             transition: all 0.3s ease;
         }
 
         .logo {
             display: flex;
             align-items: center;
+            z-index: 1003;
         }
 
         .logo img {
@@ -184,6 +185,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            z-index: 1003;
         }
 
         .social-links {
@@ -230,16 +232,20 @@
             box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
         }
 
-        /* Mobile Menu Toggle */
+        /* Mobile Menu Toggle - Updated to match forms page */
         .mobile-menu-toggle {
             display: none;
             flex-direction: column;
             cursor: pointer;
             padding: 8px;
-            z-index: 1002;
-            background: none;
-            border: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
             position: relative;
+            z-index: 1004;
+        }
+
+        .mobile-menu-toggle:hover {
+            background-color: rgba(0,0,0,0.05);
         }
 
         .mobile-menu-toggle span {
@@ -247,14 +253,14 @@
             height: 3px;
             background-color: #666;
             margin: 3px 0;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             border-radius: 2px;
             transform-origin: center;
         }
 
         .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-            background-color: #fff;
+            transform: rotate(45deg) translate(6px, 6px);
+            background-color: #4169E1;
         }
 
         .mobile-menu-toggle.active span:nth-child(2) {
@@ -263,158 +269,161 @@
         }
 
         .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-            background-color: #fff;
+            transform: rotate(-45deg) translate(6px, -6px);
+            background-color: #4169E1;
         }
 
-        /* Mobile Menu Overlay */
-        .mobile-menu-overlay {
+        /* Mobile Navigation Overlay - Updated to match forms page */
+        .mobile-nav-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            opacity: 0;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
             visibility: hidden;
+            opacity: 0;
             transition: all 0.3s ease;
+            z-index: 1001;
         }
 
-        .mobile-menu-overlay.active {
-            opacity: 1;
+        .mobile-nav-overlay.active {
             visibility: visible;
+            opacity: 1;
         }
 
-        /* Mobile Menu */
-        .mobile-menu {
+        /* Mobile Navigation - Updated to match forms page EXACTLY */
+        .mobile-nav {
             position: fixed;
             top: 0;
-            right: -100%;
-            width: 300px;
-            height: 100vh;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            z-index: 1001;
+            left: -320px;
+            width: 320px;
+            height: 100%;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1002;
+            padding-top: 30px;
             overflow-y: auto;
-            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
         }
 
-        .mobile-menu.active {
-            right: 0;
+        .mobile-nav.active {
+            left: 0;
         }
 
-        .mobile-menu-header {
-            padding: 30px 20px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
+        .mobile-nav-header {
+            padding: 0 25px 25px;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 20px;
         }
 
-        .mobile-menu-logo {
+        .mobile-nav-header .logo {
+            margin-bottom: 15px;
+        }
+
+        .mobile-nav-header .logo img {
             width: 60px;
-            height: 60px;
-            margin: 0 auto 15px;
-            background: white;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .mobile-menu-logo img {
-            width: 40px;
-            height: auto;
-        }
-
-        .mobile-menu-title {
-            color: white;
+        .mobile-nav-title {
             font-size: 18px;
             font-weight: 600;
-            margin-bottom: 5px;
+            color: #333;
+            margin: 0;
         }
 
-        .mobile-menu-subtitle {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 12px;
+        .mobile-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        .mobile-nav-menu {
-            padding: 20px 0;
+        .mobile-nav-list li {
+            margin: 0;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.3s ease;
         }
 
-        .mobile-nav-menu a {
+        .mobile-nav.active .mobile-nav-list li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .mobile-nav-list li:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-nav-list li:nth-child(2) { transition-delay: 0.15s; }
+        .mobile-nav-list li:nth-child(3) { transition-delay: 0.2s; }
+        .mobile-nav-list li:nth-child(4) { transition-delay: 0.25s; }
+        .mobile-nav-list li:nth-child(5) { transition-delay: 0.3s; }
+        .mobile-nav-list li:nth-child(6) { transition-delay: 0.35s; }
+        .mobile-nav-list li:nth-child(7) { transition-delay: 0.4s; }
+        .mobile-nav-list li:nth-child(8) { transition-delay: 0.45s; }
+        .mobile-nav-list li:nth-child(9) { transition-delay: 0.5s; }
+        .mobile-nav-list li:nth-child(10) { transition-delay: 0.55s; }
+
+        .mobile-nav-list a {
             display: block;
-            color: white;
+            padding: 15px 25px;
+            color: #555;
             text-decoration: none;
-            padding: 15px 30px;
             font-size: 16px;
             font-weight: 500;
+            border-left: 4px solid transparent;
             transition: all 0.3s ease;
-            border-left: 3px solid transparent;
             position: relative;
             overflow: hidden;
         }
 
-        .mobile-nav-menu a:hover,
-        .mobile-nav-menu a.active {
-            background: rgba(255, 255, 255, 0.1);
-            border-left-color: #FFD700;
-            transform: translateX(5px);
-        }
-
-        .mobile-nav-menu a::before {
+        .mobile-nav-list a::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(65, 105, 225, 0.1), transparent);
             transition: left 0.5s ease;
         }
 
-        .mobile-nav-menu a:hover::before {
+        .mobile-nav-list a:hover::before {
             left: 100%;
         }
 
-        .mobile-menu-footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .mobile-nav-list a:hover,
+        .mobile-nav-list a:focus {
+            color: #4169E1;
+            background-color: rgba(65, 105, 225, 0.05);
+            border-left-color: #4169E1;
+            transform: translateX(8px);
         }
 
-        .mobile-social-links {
-            display: flex;
+        .mobile-nav-social {
+            margin-top: 30px;
+            padding: 0 25px;
+        }
+
+        .mobile-nav-social .social-links {
             justify-content: center;
             gap: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
-        .mobile-social-links a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
+        .mobile-nav-social .social-links a {
+            width: 35px;
+            height: 35px;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+
+        .mobile-nav-social .cert-link {
             display: flex;
-            align-items: center;
             justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
         }
 
-        .mobile-social-links a:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-        }
-
-        .mobile-menu-contact {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 12px;
+        .mobile-nav-social .cert-link img {
+            width: 50px;
+            height: auto;
         }
 
         /* African Pattern Border */
@@ -839,7 +848,8 @@
 
         /* Footer */
         .footer {
-            background: rgba(255, 255, 255, 0.95);
+            background-image: url('assets/img/bg.png');
+            /* background: rgba(255, 255, 255, 0.95); */
             padding: 3rem 0 2rem;
             border-top: 1px solid #ecf0f1;
             animation: fadeInUp 1s ease-out 1.7s both;
@@ -869,7 +879,7 @@
         }
 
         .footer-nav a {
-            color: #7f8c8d;
+            color: #fff;
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -888,7 +898,7 @@
             margin-top: 2rem;
             padding-top: 2rem;
             border-top: 1px solid #ecf0f1;
-            color: #bdc3c7;
+            color: #fff;
             font-size: 0.9rem;
         }
 
@@ -1044,6 +1054,11 @@
                 flex-direction: column;
                 align-items: center;
             }
+
+            .mobile-nav {
+                width: 280px;
+                left: -280px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1099,15 +1114,12 @@
             .contact-section {
                 padding: 30px 15px;
             }
-
-            .mobile-menu {
-                width: 280px;
-            }
         }
 
         @media (max-width: 360px) {
-            .mobile-menu {
+            .mobile-nav {
                 width: 100%;
+                left: -100%;
             }
 
             .partner-card {
@@ -1139,42 +1151,43 @@
     </style>
 </head>
 <body>
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" onclick="closeMobileMenu()"></div>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <div class="mobile-menu-logo">
+    <!-- Mobile Navigation - Updated to match forms page EXACTLY -->
+    <div class="mobile-nav">
+        <div class="mobile-nav-header">
+            <div class="logo">
                 <img src="assets/img/ghfest.png" alt="Ghanafest" />
             </div>
-            <div class="mobile-menu-title">Ghanafest Alberta</div>
-            <div class="mobile-menu-subtitle">Trade, Arts & Culture Festival</div>
+            <h3 class="mobile-nav-title">Ghanafest Alberta</h3>
         </div>
         
-        <nav class="mobile-nav-menu">
-            <a href="index.html">Home</a>
-            <a href="form_type.html">Forms</a>
-            <a href="sponsors.html" class="active">Sponsors</a>
-            <a href="blog.html">Blog</a>
-            <a href="payment_type.html">Payment</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="shop.html">Shop</a>
-            <a href="about.html">About us</a>
-            <a href="events.html">Event Calendar</a>
-            <a href="contact.html">Contacts</a>
-        </nav>
-
-        <div class="mobile-menu-footer">
-            <div class="mobile-social-links">
-                <a href="#" style="background: #3b5998;">f</a>
-                <a href="#" style="background: #1da1f2;">t</a>
-                <a href="#" style="background: #cd486b;">i</a>
-                <a href="#" style="background: #0077b5;">in</a>
-                <a href="#" style="background: #ff0000;">yt</a>
+        <ul class="mobile-nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="form_type.html">Forms</a></li>
+            <li><a href="sponsors.html">Sponsors</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="payment_type.html">Payment</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="events.html">Event Calendar</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+        </ul>
+        
+        <div class="mobile-nav-social">
+            <div class="social-links">
+                <a href="#" style="background: #3b5998;"> <img src="assets/img/ghfest/fb.png" width="20px" /></a>
+                <a href="#" style="background: #1da1f2;"><img src="assets/img/ghfest/x.png" width="20px" /></a>
+                <a href="#" style="background: #cd486b;"><img src="assets/img/ghfest/ig.png" width="20px" /></a>
+                <a href="#" style="background: #0077b5;"><img src="assets/img/ghfest/link.png" width="20px" /></a>
+                <a href="#" style="background: #ff0000;"><img src="assets/img/ghfest/yt.png" width="20px" /></a>
             </div>
-            <div class="mobile-menu-contact">
-                Connect with us on social media
+            <div class="cert-link">
+                <a href="https://canadianchoiceaward.ca/winners/ab/edmonton/">
+                    <img src="assets/img/cert1.png" alt="Canadian Choice Award" />
+                </a>
             </div>
         </div>
     </div>
@@ -1225,14 +1238,18 @@
                     <img src="assets/img/cert1.png" width="50px" alt="Canadian Choice Award" />
                 </a>
             </div>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
-            </button>
+            </div>
         </div>
     </header>
 
+    <div style="width: 100%">
+        <img src="assets/img/bar.jpg" height="80px" style="width: 100%;"/>
+    </div>
+    
     <!-- Main Content -->
     <main class="main-content">
         <!-- Official Partners Section -->
@@ -1579,6 +1596,106 @@
     </footer>
 
     <script>
+        // Enhanced mobile menu functionality - EXACTLY like forms page
+        function toggleMobileMenu() {
+            const mobileNav = document.querySelector('.mobile-nav');
+            const overlay = document.querySelector('.mobile-nav-overlay');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            const isActive = mobileNav.classList.contains('active');
+            
+            if (isActive) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
+        
+        function openMobileMenu() {
+            const mobileNav = document.querySelector('.mobile-nav');
+            const overlay = document.querySelector('.mobile-nav-overlay');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+            
+            // Show overlay first
+            overlay.classList.add('active');
+            
+            // Then slide in menu
+            setTimeout(() => {
+                mobileNav.classList.add('active');
+                toggle.classList.add('active');
+            }, 50);
+        }
+        
+        function closeMobileMenu() {
+            const mobileNav = document.querySelector('.mobile-nav');
+            const overlay = document.querySelector('.mobile-nav-overlay');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            // Restore body scroll
+            document.body.style.overflow = '';
+            
+            // Hide menu first
+            mobileNav.classList.remove('active');
+            toggle.classList.remove('active');
+            
+            // Then hide overlay
+            setTimeout(() => {
+                overlay.classList.remove('active');
+            }, 400);
+        }
+
+        // Close mobile menu when clicking on navigation links
+        document.querySelectorAll('.mobile-nav-list a').forEach(link => {
+            link.addEventListener('click', function() {
+                closeMobileMenu();
+            });
+        });
+
+        // Close mobile menu on window resize if desktop view
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 992) {
+                closeMobileMenu();
+            }
+        });
+
+        // Touch gesture support for mobile menu
+        let startX = 0;
+        let currentX = 0;
+        let isSwipping = false;
+
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        });
+
+        document.addEventListener('touchmove', function(e) {
+            if (!startX) return;
+            
+            currentX = e.touches[0].clientX;
+            const diffX = startX - currentX;
+            
+            // If swiping from left edge to right, open menu
+            if (startX < 50 && diffX < -50 && !isSwipping) {
+                openMobileMenu();
+                isSwipping = true;
+            }
+            
+            // If menu is open and swiping left, close menu
+            const mobileNav = document.querySelector('.mobile-nav');
+            if (mobileNav.classList.contains('active') && diffX > 50 && !isSwipping) {
+                closeMobileMenu();
+                isSwipping = true;
+            }
+        });
+
+        document.addEventListener('touchend', function() {
+            startX = 0;
+            currentX = 0;
+            isSwipping = false;
+        });
+
         // Enhanced Sponsors page functionality with mobile menu
         class SponsorsPage {
             constructor() {
@@ -1591,98 +1708,7 @@
             init() {
                 this.initializeAnimations();
                 this.initializeCarousel();
-                this.initializeMobileMenu();
                 this.bindEvents();
-            }
-            
-            initializeMobileMenu() {
-                const toggle = document.getElementById('mobileMenuToggle');
-                const menu = document.getElementById('mobileMenu');
-                const overlay = document.getElementById('mobileMenuOverlay');
-                
-                // Mobile menu toggle
-                toggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    this.toggleMobileMenu();
-                });
-                
-                // Close menu when clicking overlay
-                overlay.addEventListener('click', () => {
-                    this.closeMobileMenu();
-                });
-                
-                // Close menu when clicking menu links
-                document.querySelectorAll('.mobile-nav-menu a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        this.closeMobileMenu();
-                    });
-                });
-                
-                // Close menu on escape key
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && this.mobileMenuOpen) {
-                        this.closeMobileMenu();
-                    }
-                });
-                
-                // Prevent body scroll when menu is open
-                menu.addEventListener('touchmove', (e) => {
-                    if (this.mobileMenuOpen) {
-                        e.stopPropagation();
-                    }
-                });
-            }
-            
-            toggleMobileMenu() {
-                if (this.mobileMenuOpen) {
-                    this.closeMobileMenu();
-                } else {
-                    this.openMobileMenu();
-                }
-            }
-            
-            openMobileMenu() {
-                const toggle = document.getElementById('mobileMenuToggle');
-                const menu = document.getElementById('mobileMenu');
-                const overlay = document.getElementById('mobileMenuOverlay');
-                
-                this.mobileMenuOpen = true;
-                toggle.classList.add('active');
-                menu.classList.add('active');
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Add staggered animation to menu items
-                const menuItems = document.querySelectorAll('.mobile-nav-menu a');
-                menuItems.forEach((item, index) => {
-                    item.style.transform = 'translateX(50px)';
-                    item.style.opacity = '0';
-                    setTimeout(() => {
-                        item.style.transition = 'all 0.3s ease';
-                        item.style.transform = 'translateX(0)';
-                        item.style.opacity = '1';
-                    }, 100 + (index * 50));
-                });
-            }
-            
-            closeMobileMenu() {
-                const toggle = document.getElementById('mobileMenuToggle');
-                const menu = document.getElementById('mobileMenu');
-                const overlay = document.getElementById('mobileMenuOverlay');
-                
-                this.mobileMenuOpen = false;
-                toggle.classList.remove('active');
-                menu.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-                
-                // Reset menu items animation
-                const menuItems = document.querySelectorAll('.mobile-nav-menu a');
-                menuItems.forEach(item => {
-                    item.style.transition = '';
-                    item.style.transform = '';
-                    item.style.opacity = '';
-                });
             }
             
             bindEvents() {
@@ -1738,7 +1764,7 @@
                 // Handle window resize
                 window.addEventListener('resize', () => {
                     if (window.innerWidth > 768 && this.mobileMenuOpen) {
-                        this.closeMobileMenu();
+                        closeMobileMenu();
                     }
                 });
             }
@@ -2003,12 +2029,12 @@
         document.addEventListener('keydown', function(e) {
             // Focus management for mobile menu
             if (e.key === 'Tab') {
-                const mobileMenu = document.getElementById('mobileMenu');
-                const focusableElements = mobileMenu.querySelectorAll('a, button');
+                const mobileNav = document.querySelector('.mobile-nav');
+                const focusableElements = mobileNav.querySelectorAll('a, button');
                 const firstElement = focusableElements[0];
                 const lastElement = focusableElements[focusableElements.length - 1];
 
-                if (mobileMenu.classList.contains('active')) {
+                if (mobileNav.classList.contains('active')) {
                     if (e.shiftKey && document.activeElement === firstElement) {
                         e.preventDefault();
                         lastElement.focus();
