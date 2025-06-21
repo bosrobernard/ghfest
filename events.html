@@ -120,6 +120,9 @@
             flex-direction: column;
             cursor: pointer;
             padding: 5px;
+            background: none;
+            border: none;
+            z-index: 2000;
         }
 
         .mobile-menu-toggle span {
@@ -142,6 +145,119 @@
         .mobile-menu-toggle.active span:nth-child(3) {
             transform: rotate(45deg) translate(-5px, -6px);
         }
+
+        /* Mobile Navigation Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            z-index: 1600;
+            transition: left 0.3s ease;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            left: 0;
+        }
+
+        .mobile-nav-header {
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-nav-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .mobile-nav-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .mobile-nav-menu li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .mobile-nav-menu a {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-menu a:hover {
+            background: #f8f9fa;
+            color: #4169E1;
+            padding-left: 30px;
+        }
+
+        .mobile-social-section {
+            padding: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .mobile-social-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .mobile-social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .mobile-social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-social-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
         @keyframes slowRotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -195,6 +311,8 @@
             border-radius: 12px;
             border: 1px solid #e0e0e0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .calendar-nav {
@@ -560,6 +678,7 @@
         .event-actions {
             display: flex;
             gap: 12px;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -753,8 +872,17 @@
             text-decoration: none;
         }
 
-
         /* Mobile Responsive */
+        @media (max-width: 1200px) {
+            .main-content {
+                padding: 40px 20px;
+            }
+            
+            .events-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
         @media (max-width: 968px) {
             .calendar-container {
                 grid-template-columns: 1fr;
@@ -764,28 +892,53 @@
             .calendar-controls {
                 flex-direction: column;
                 gap: 20px;
+                text-align: center;
+            }
+
+            .calendar-nav {
+                justify-content: center;
+            }
+
+            .view-toggle {
+                justify-content: center;
             }
 
             .events-grid {
                 grid-template-columns: 1fr;
             }
-        }
 
-        @media (max-width: 768px) {
             .nav-menu {
                 display: none;
             }
-            
-            .nav-container {
-                padding: 12px 16px;
+
+            .mobile-menu-toggle {
+                display: flex;
             }
-            
+
+            .social-links {
+                display: none;
+            }
+
+            .header-right > div:not(.mobile-menu-toggle) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
             .main-content {
-                padding: 40px 16px;
+                padding: 30px 16px;
             }
             
             .page-title {
                 font-size: 36px;
+            }
+
+            .page-subtitle {
+                font-size: 14px;
+            }
+
+            .page-description {
+                font-size: 16px;
             }
             
             .calendar-controls {
@@ -796,15 +949,121 @@
                 font-size: 20px;
                 min-width: auto;
             }
+
+            .nav-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
             
             .filter-options {
                 justify-content: center;
+            }
+
+            .event-sidebar {
+                padding: 16px;
+            }
+
+            .sidebar-title {
+                font-size: 18px;
+            }
+
+            .calendar-day {
+                padding: 8px 4px;
+            }
+
+            .day-number {
+                font-size: 14px;
+            }
+
+            .day-header {
+                padding: 12px 4px;
+                font-size: 12px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .event-card-title {
+                font-size: 18px;
+            }
+
+            .contact-title {
+                font-size: 20px;
+            }
+
+            .contact-section {
+                padding: 40px 16px;
+                margin: 40px 16px;
             }
             
             .footer-nav {
                 gap: 20px;
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 12px 16px;
+            }
+
+            .logo img {
+                width: 40px;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .calendar-controls {
+                padding: 12px;
+            }
+
+            .current-month {
+                font-size: 18px;
+            }
+
+            .calendar-nav {
+                gap: 15px;
+            }
+
+            .view-toggle {
+                gap: 6px;
+            }
+
+            .toggle-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .events-grid {
+                gap: 20px;
+            }
+
+            .event-content {
+                padding: 16px;
+            }
+
+            .mobile-nav {
+                width: 280px;
+                left: -280px;
+            }
+
+            .filter-options {
+                gap: 8px;
+            }
+
+            .filter-tag {
+                padding: 4px 8px;
+                font-size: 11px;
             }
         }
 
@@ -841,6 +1100,41 @@
     </style>
 </head>
 <body>
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="logo">
+                <img src="assets/img/ghfest.png" alt="GhanaFest Alberta" style="width: 50px;">
+            </div>
+            <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
+        </div>
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="form_type.html">Forms</a></li>
+            <li><a href="sponsors.html">Sponsors</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="payment_type.html">Payment</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="events.html">Event Calendar</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+        </ul>
+        <div class="mobile-social-section">
+            <div class="mobile-social-title">Follow Us</div>
+            <div class="mobile-social-links">
+                <a href="#" style="background: #3b5998;">f</a>
+                <a href="#" style="background: #1da1f2;">t</a>
+                <a href="#" style="background: #cd486b;">i</a>
+                <a href="#" style="background: #0077b5;">in</a>
+                <a href="#" style="background: #ff0000;">yt</a>
+            </div>
+        </div>
+    </nav>
+
     <!-- Header -->
     <header class="header">
         <div class="logo">
@@ -878,11 +1172,11 @@
                 <a href="https://canadianchoiceaward.ca/winners/ab/edmonton/"><img src="assets/img/cert1.png"
                         width="50px" /> </a>
             </div>
-            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </header>
 
@@ -1170,6 +1464,76 @@
     </footer>
 
     <script>
+        // Mobile Menu Functionality
+        class MobileMenu {
+            constructor() {
+                this.mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                this.mobileNav = document.getElementById('mobileNav');
+                this.mobileNavOverlay = document.getElementById('mobileNavOverlay');
+                this.mobileNavClose = document.getElementById('mobileNavClose');
+                
+                this.init();
+            }
+            
+            init() {
+                this.bindEvents();
+            }
+            
+            bindEvents() {
+                // Toggle mobile menu
+                this.mobileMenuToggle.addEventListener('click', () => {
+                    this.toggleMenu();
+                });
+                
+                // Close mobile menu
+                this.mobileNavClose.addEventListener('click', () => {
+                    this.closeMenu();
+                });
+                
+                // Close menu when clicking overlay
+                this.mobileNavOverlay.addEventListener('click', () => {
+                    this.closeMenu();
+                });
+                
+                // Close menu when clicking on menu links
+                document.querySelectorAll('.mobile-nav-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        this.closeMenu();
+                    });
+                });
+                
+                // Handle window resize
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 968) {
+                        this.closeMenu();
+                    }
+                });
+            }
+            
+            toggleMenu() {
+                const isOpen = this.mobileNav.classList.contains('active');
+                if (isOpen) {
+                    this.closeMenu();
+                } else {
+                    this.openMenu();
+                }
+            }
+            
+            openMenu() {
+                this.mobileMenuToggle.classList.add('active');
+                this.mobileNav.classList.add('active');
+                this.mobileNavOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            closeMenu() {
+                this.mobileMenuToggle.classList.remove('active');
+                this.mobileNav.classList.remove('active');
+                this.mobileNavOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
         // Calendar functionality
         class EventCalendar {
             constructor() {
@@ -1360,15 +1724,15 @@
                 
                 // Add click event
                 if (monthType === 'current-month') {
-                    dayDiv.addEventListener('click', () => {
-                        this.selectDate(dayDate);
+                    dayDiv.addEventListener('click', (event) => {
+                        this.selectDate(dayDate, event);
                     });
                 }
                 
                 return dayDiv;
             }
             
-            selectDate(date) {
+            selectDate(date, event) {
                 // Remove previous selection
                 document.querySelectorAll('.calendar-day.selected').forEach(day => {
                     day.classList.remove('selected');
@@ -1557,8 +1921,12 @@
             }
         }
         
-        // Initialize calendar when page loads
+        // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize mobile menu
+            new MobileMenu();
+            
+            // Initialize calendar
             new EventCalendar();
             
             // Header scroll effect
@@ -1581,6 +1949,22 @@
                 btn.addEventListener('click', function() {
                     const action = this.textContent;
                     showNotification(`${action} clicked!`);
+                });
+            });
+
+            // Social links interaction
+            document.querySelectorAll('.social-links a, .mobile-social-links a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const platform = this.textContent;
+                    const platforms = {
+                        'f': 'Facebook',
+                        't': 'Twitter', 
+                        'i': 'Instagram',
+                        'in': 'LinkedIn',
+                        'yt': 'YouTube'
+                    };
+                    showNotification(`Opening ${platforms[platform] || 'Social Media'}...`);
                 });
             });
         });

@@ -121,6 +121,9 @@
             flex-direction: column;
             cursor: pointer;
             padding: 5px;
+            background: none;
+            border: none;
+            z-index: 2000;
         }
 
         .mobile-menu-toggle span {
@@ -144,6 +147,117 @@
             transform: rotate(45deg) translate(-5px, -6px);
         }
 
+        /* Mobile Navigation Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            z-index: 1600;
+            transition: left 0.3s ease;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            left: 0;
+        }
+
+        .mobile-nav-header {
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-nav-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .mobile-nav-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .mobile-nav-menu li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .mobile-nav-menu a {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-menu a:hover {
+            background: #f8f9fa;
+            color: #4169E1;
+            padding-left: 30px;
+        }
+
+        .mobile-social-section {
+            padding: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .mobile-social-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .mobile-social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .mobile-social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-social-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
 
         @keyframes slowRotate {
             from {
@@ -235,10 +349,17 @@
             background-size: cover;
             background-position: center;
             transition: transform 0.3s ease;
+            overflow: hidden;
         }
 
         .story-image:hover {
             transform: scale(1.02);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .story-image-1 {
@@ -398,6 +519,12 @@
             overflow: hidden;
         }
 
+        .festival-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .festival-info {
             padding-top: 40px;
         }
@@ -539,10 +666,17 @@
             background-position: center;
             transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
 
         .feature-image:hover {
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .feature-content {
@@ -687,7 +821,44 @@
         }
 
         /* Mobile Responsive */
+        @media (max-width: 1200px) {
+            .main-content {
+                padding: 40px 20px;
+            }
+
+            .story-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .festival-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
         @media (max-width: 968px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .social-links {
+                display: none;
+            }
+
+            .header-right > div:not(.mobile-menu-toggle) {
+                display: none;
+            }
+
             .story-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -715,34 +886,32 @@
         }
 
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .nav-container {
+            .header {
                 padding: 12px 16px;
             }
 
-            .social-icons {
-                gap: 4px;
-            }
-
-            .social-icon {
-                width: 28px;
-                height: 28px;
-                font-size: 10px;
+            .logo img {
+                width: 40px;
             }
 
             .main-content {
-                padding: 40px 16px;
+                padding: 30px 16px;
             }
 
             .about-title {
-                font-size: 36px;
+                font-size: 32px;
+            }
+
+            .about-tagline {
+                font-size: 16px;
+            }
+
+            .story-title, .festival-title, .key-features-title {
+                font-size: 28px;
             }
 
             .festival-main-title {
-                font-size: 28px;
+                font-size: 24px;
             }
 
             .features-grid {
@@ -755,16 +924,82 @@
                 gap: 20px;
             }
 
-            .footer-nav {
-                gap: 20px;
-                flex-direction: column;
-                align-items: center;
+            .contact-section {
+                padding: 40px 16px;
+                margin: 40px 16px;
             }
 
-            .star-badge {
-                width: 40px;
-                height: 40px;
-                right: 10px;
+            .contact-title {
+                font-size: 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .footer-nav {
+                justify-content: center;
+                gap: 1.5rem;
+            }
+
+            .mobile-nav {
+                width: 280px;
+                left: -280px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-title {
+                font-size: 28px;
+            }
+
+            .about-subtitle {
+                font-size: 14px;
+                letter-spacing: 1px;
+            }
+
+            .story-title, .festival-title, .key-features-title {
+                font-size: 24px;
+            }
+
+            .festival-main-title {
+                font-size: 20px;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+
+            .story-images {
+                gap: 15px;
+            }
+
+            .story-image {
+                height: 200px;
+            }
+
+            .festival-image {
+                height: 300px;
+            }
+
+            .feature-image {
+                height: 150px;
+            }
+
+            .member-photo {
+                width: 150px;
+                height: 180px;
+            }
+
+            .contact-section {
+                padding: 30px 12px;
+            }
+
+            .footer-nav {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
 
@@ -787,6 +1022,41 @@
 </head>
 
 <body>
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="logo">
+                <img src="assets/img/ghfest.png" alt="GhanaFest Alberta" style="width: 50px;">
+            </div>
+            <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
+        </div>
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="form_type.html">Forms</a></li>
+            <li><a href="sponsors.html">Sponsors</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="payment_type.html">Payment</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="events.html">Event Calendar</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+        </ul>
+        <div class="mobile-social-section">
+            <div class="mobile-social-title">Follow Us</div>
+            <div class="mobile-social-links">
+                <a href="#" style="background: #3b5998;">f</a>
+                <a href="#" style="background: #1da1f2;">t</a>
+                <a href="#" style="background: #cd486b;">i</a>
+                <a href="#" style="background: #0077b5;">in</a>
+                <a href="#" style="background: #ff0000;">yt</a>
+            </div>
+        </div>
+    </nav>
+
     <!-- Header -->
     <header class="header">
         <div class="logo">
@@ -824,11 +1094,11 @@
                 <a href="https://canadianchoiceaward.ca/winners/ab/edmonton/"><img src="assets/img/cert1.png"
                         width="50px" /> </a>
             </div>
-            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </header>
 
@@ -893,75 +1163,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Team Section -->
-        <!-- <section class="team-section animate-on-scroll">
-            <h2 class="team-title">MEET OUR DEDICATED TEAM</h2>
-            <p class="team-subtitle">MEET THE PASSIONATE MINDS BEHIND GHANAFEST ALBERTA. WITH DEDICATION AND VISION,
-                THEY WORK TIRELESSLY TO BRING THIS VIBRANT CELEBRATION OF CULTURE AND COMMUNITY TO LIFE.</p>
-
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-photo" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
-                    <h3 class="member-name">Drew Cano</h3>
-                    <p class="member-role">Founder & CEO</p>
-                    <div class="member-social">
-                        <div class="member-social-icon">@</div>
-                        <div class="member-social-icon">in</div>
-                    </div>
-                </div>
-
-                <div class="team-member">
-                    <div class="member-photo" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
-                    <h3 class="member-name">Drew Cano</h3>
-                    <p class="member-role">Co - Founder</p>
-                    <div class="member-social">
-                        <div class="member-social-icon">@</div>
-                        <div class="member-social-icon">in</div>
-                    </div>
-                </div>
-
-                <div class="team-member">
-                    <div class="member-photo" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
-                    <h3 class="member-name">Lana Stainer</h3>
-                    <p class="member-role">UI/UX Designer</p>
-                    <div class="member-social">
-                        <div class="member-social-icon">@</div>
-                        <div class="member-social-icon">in</div>
-                    </div>
-                </div>
-
-                <div class="team-member">
-                    <div class="member-photo" style="background: linear-gradient(135deg, #43e97b, #38f9d7);"></div>
-                    <h3 class="member-name">Robret Gol</h3>
-                    <p class="member-role">Designer</p>
-                    <div class="member-social">
-                        <div class="member-social-icon">@</div>
-                        <div class="member-social-icon">in</div>
-                    </div>
-                </div>
-
-                <div class="team-member">
-                    <div class="member-photo" style="background: linear-gradient(135deg, #fa709a, #fee140);"></div>
-                    <h3 class="member-name">Robret Gol</h3>
-                    <p class="member-role">Designer</p>
-                    <div class="member-social">
-                        <div class="member-social-icon">@</div>
-                        <div class="member-social-icon">in</div>
-                    </div>
-                </div>
-
-                <div class="team-member">
-                    <div class="member-photo" style="background: linear-gradient(135deg, #a8edea, #fed6e3);"></div>
-                    <h3 class="member-name">Robret Gol</h3>
-                    <p class="member-role">Designer</p>
-                    <div class="member-social">
-                        <div class="member-social-icon">@</div>
-                        <div class="member-social-icon">in</div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
 
         <!-- Festival Section -->
         <section class="festival-section animate-on-scroll">
@@ -1084,67 +1285,171 @@
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+        // Mobile Menu Functionality
+        class MobileMenu {
+            constructor() {
+                this.mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                this.mobileNav = document.getElementById('mobileNav');
+                this.mobileNavOverlay = document.getElementById('mobileNavOverlay');
+                this.mobileNavClose = document.getElementById('mobileNavClose');
+                
+                this.init();
+            }
+            
+            init() {
+                this.bindEvents();
+            }
+            
+            bindEvents() {
+                // Toggle mobile menu
+                this.mobileMenuToggle.addEventListener('click', () => {
+                    this.toggleMenu();
+                });
+                
+                // Close mobile menu
+                this.mobileNavClose.addEventListener('click', () => {
+                    this.closeMenu();
+                });
+                
+                // Close menu when clicking overlay
+                this.mobileNavOverlay.addEventListener('click', () => {
+                    this.closeMenu();
+                });
+                
+                // Close menu when clicking on menu links
+                document.querySelectorAll('.mobile-nav-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        this.closeMenu();
                     });
+                });
+                
+                // Handle window resize
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 968) {
+                        this.closeMenu();
+                    }
+                });
+            }
+            
+            toggleMenu() {
+                const isOpen = this.mobileNav.classList.contains('active');
+                if (isOpen) {
+                    this.closeMenu();
+                } else {
+                    this.openMenu();
                 }
+            }
+            
+            openMenu() {
+                this.mobileMenuToggle.classList.add('active');
+                this.mobileNav.classList.add('active');
+                this.mobileNavOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            closeMenu() {
+                this.mobileMenuToggle.classList.remove('active');
+                this.mobileNav.classList.remove('active');
+                this.mobileNavOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize mobile menu
+            new MobileMenu();
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
             });
-        });
 
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        };
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Interactive elements
+            document.querySelectorAll('.team-member').forEach(member => {
+                member.addEventListener('click', function () {
+                    const name = this.querySelector('.member-name').textContent;
+                    const role = this.querySelector('.member-role').textContent;
+                    showNotification(`Learn more about ${name} - ${role}`);
+                });
+            });
+
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.addEventListener('click', function () {
+                    const title = this.querySelector('.feature-title').textContent;
+                    showNotification(`Exploring: ${title}`);
+                });
+            });
+
+            document.querySelector('.tickets-btn').addEventListener('click', function () {
+                showNotification('Redirecting to ticket purchase page...');
+            });
+
+            document.querySelector('.contact-btn').addEventListener('click', function () {
+                showNotification('Opening contact form...');
+            });
+
+            // Social icons interaction
+            document.querySelectorAll('.social-icon, .footer-social-icon, .member-social-icon, .social-links a, .mobile-social-links a').forEach(icon => {
+                icon.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const platform = getSocialPlatform(this.textContent);
+                    showNotification(`Opening ${platform}...`);
+                });
+            });
+
+            // Header scroll effect
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function () {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const header = document.querySelector('.header');
+
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
                 }
+
+                lastScrollTop = scrollTop;
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
+            // Add parallax effect to images
+            window.addEventListener('scroll', function () {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.story-image, .festival-image, .feature-image');
 
-        // Interactive elements
-        document.querySelectorAll('.team-member').forEach(member => {
-            member.addEventListener('click', function () {
-                const name = this.querySelector('.member-name').textContent;
-                const role = this.querySelector('.member-role').textContent;
-                showNotification(`Learn more about ${name} - ${role}`);
-            });
-        });
-
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('click', function () {
-                const title = this.querySelector('.feature-title').textContent;
-                showNotification(`Exploring: ${title}`);
-            });
-        });
-
-        document.querySelector('.tickets-btn').addEventListener('click', function () {
-            showNotification('Redirecting to ticket purchase page...');
-        });
-
-        document.querySelector('.contact-btn').addEventListener('click', function () {
-            showNotification('Opening contact form...');
-        });
-
-        // Social icons interaction
-        document.querySelectorAll('.social-icon, .footer-social-icon, .member-social-icon').forEach(icon => {
-            icon.addEventListener('click', function () {
-                const platform = getSocialPlatform(this.textContent);
-                showNotification(`Opening ${platform}...`);
+                parallaxElements.forEach((element, index) => {
+                    const speed = 0.02;
+                    const yPos = -(scrolled * speed * (index + 1));
+                    element.style.transform = `translateY(${yPos}px)`;
+                });
             });
         });
 
@@ -1199,51 +1504,6 @@
             }, 2500);
         }
 
-        // Header scroll effect
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', function () {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const header = document.querySelector('.header');
-
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                header.style.transform = 'translateY(0)';
-            }
-
-            lastScrollTop = scrollTop;
-        });
-
-        // Add parallax effect to images
-        window.addEventListener('scroll', function () {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.story-image, .festival-image, .feature-image');
-
-            parallaxElements.forEach((element, index) => {
-                const speed = 0.02;
-                const yPos = -(scrolled * speed * (index + 1));
-                element.style.transform = `translateY(${yPos}px)`;
-            });
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') {
-                const notification = document.querySelector('.notification');
-                if (notification) notification.remove();
-            }
-        });
-
-        // Mobile menu toggle (for future enhancement)
-        const createMobileMenu = () => {
-            if (window.innerWidth <= 768) {
-                console.log('Mobile view detected');
-            }
-        };
-
-        window.addEventListener('resize', createMobileMenu);
-        createMobileMenu();
-
         // Performance: Debounce scroll events
         function debounce(func, wait) {
             let timeout;
@@ -1256,28 +1516,6 @@
                 timeout = setTimeout(later, wait);
             };
         }
-
-        // Add focus states for accessibility
-        document.querySelectorAll('button, a, .team-member, .feature-card').forEach(element => {
-            element.addEventListener('focus', function () {
-                this.style.outline = '2px solid #007bff';
-                this.style.outlineOffset = '2px';
-            });
-
-            element.addEventListener('blur', function () {
-                this.style.outline = 'none';
-            });
-        });
-
-        // Loading animation on page load
-        window.addEventListener('load', function () {
-            document.querySelectorAll('.animate-on-scroll').forEach((element, index) => {
-                setTimeout(() => {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }, index * 100);
-            });
-        });
 
         // Smooth reveal animation for sections
         const revealSections = () => {
@@ -1297,7 +1535,4 @@
     </script>
 </body>
 
-</html>item">
-<span class="detail-label">Date:</span> July 25th - 27th, 2025
-</div>
-<div class="detail-
+</html>
