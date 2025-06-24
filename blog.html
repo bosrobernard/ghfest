@@ -669,6 +669,7 @@
         .sidebar-section:nth-child(2) { animation-delay: 1.5s; }
         .sidebar-section:nth-child(3) { animation-delay: 1.7s; }
         .sidebar-section:nth-child(4) { animation-delay: 1.9s; }
+        .sidebar-section:nth-child(5) { animation-delay: 2.1s; }
 
         .sidebar-title {
             font-size: 1.3rem;
@@ -867,6 +868,37 @@
         .archive-link:hover .archive-count {
             background: #3498db;
             color: white;
+        }
+
+        /* Categories */
+        .category-list {
+            list-style: none;
+        }
+
+        .category-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+        }
+
+        .category-link {
+            color: #2c3e50;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .category-link:hover {
+            color: #3498db;
+            background: rgba(52, 152, 219, 0.05);
+            padding-left: 1rem;
         }
 
         /* Pagination */
@@ -1511,6 +1543,14 @@
                     <!-- Archives will be dynamically generated -->
                 </ul>
             </div>
+
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Categories</h3>
+                <ul class="category-list" id="categoriesList">
+                    <!-- Categories will be dynamically generated -->
+                </ul>
+            </div>
         </div>
     </main>
 
@@ -1518,7 +1558,7 @@
     <section class="cta-section">
         <div class="cta-content">
             <h2 class="cta-title">Have any questions? Reach us here!</h2>
-            <a href="#contact" class="cta-btn">Get in touch</a>
+            <a href="contact.html" class="cta-btn">Get in touch</a>
         </div>
     </section>
 
@@ -1530,14 +1570,14 @@
             </div>
 
             <nav class="footer-nav">
-                <a href="#home">Home</a>
-                <a href="#forms">Forms</a>
-                <a href="#sponsors">Sponsors</a>
-                <a href="#blog">Blog</a>
-                <a href="#payment">Payment</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#shop">Shop</a>
-                <a href="#about">About us</a>
+                <a href="index.html">Home</a>
+                <a href="form_type.html">Forms</a>
+                <a href="sponsors.html">Sponsors</a>
+                <a href="blog.html">Blog</a>
+                <a href="payment_type.html">Payment</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About us</a>
             </nav>
 
             <div class="footer-social">
@@ -1556,7 +1596,7 @@
     </footer>
 
     <script>
-        // Blog data
+        // Updated blog data with real content from live website
         const blogPosts = [
             {
                 id: 1,
@@ -1564,119 +1604,115 @@
                 excerpt: "We are profoundly grateful to our Guest of Honor, whose esteemed presence elevated the prestige of this occasion. To our special guests, your participation infused the event with warmth and significance. A heartfelt thank you to our dedicated council members, valued partners, generous sponsors, media collaborators, and all attendees—your unwavering support and vibrant energy transformed this inaugural Canadian [...]",
                 image: "assets/img/ghfest/blog2.jpg",
                 date: "June 15, 2024",
-                category: "Event",
-                author: "GhanaFest Team",
-                authorInitials: "GT",
+                category: "Uncategorized",
+                author: "CGCC Team",
+                authorInitials: "CT",
                 readTime: "5 min read",
                 views: 1247,
                 comments: 23
             },
             {
                 id: 2,
-                title: "Thank You for Making Our Maiden Edition in Canada a Success | CGCC",
-                excerpt: "We are profoundly grateful to our Guest of Honor, whose esteemed presence elevated the prestige of this occasion. To our special guests, your participation infused the event with warmth and significance. A heartfelt thank you to our dedicated council members, valued partners, generous sponsors, media collaborators, and all attendees—your unwavering support and vibrant energy transformed this inaugural Canadian [...]",
-                image: "assets/img/ghfest/blog.jpg",
-                date: "June 12, 2024",
-                category: "Community",
-                author: "Admin Team",
-                authorInitials: "AT",
+                title: "GhanaFest Alberta 2025 Scheduled for July 25–27, 2025",
+                excerpt: "Accra, June 11, GNA – The third annual GhanaFest Alberta will take place from July 25 to 27, 2025, in Edmonton, Canada. This vibrant two-day festival, themed \"Bridging Cultures from Ghana to the World,\" aims to foster unity and celebrate Ghanaian traditions within Canada's diverse cultural landscape. The event is organized by GhanaFest Alberta Incorporated, in collaboration with the Diaspora Africa Forum",
+                image: "assets/img/ghfest/square-img.jpg",
+                date: "June 11, 2024",
+                category: "Uncategorized",
+                author: "GNA Reporter",
+                authorInitials: "GR",
                 readTime: "4 min read",
                 views: 892,
                 comments: 16
             },
             {
                 id: 3,
-                title: "GhanaFest Alberta 2024: A Celebration of Culture and Heritage",
-                excerpt: "Join us for the biggest Ghanaian cultural celebration in Alberta! GhanaFest Alberta 2024 promises to be an unforgettable experience featuring traditional music, dance, authentic cuisine, and cultural displays. This year's festival will showcase the rich heritage of Ghana while bringing together the Ghanaian diaspora and friends of Ghana in a spectacular celebration.",
-                image: "assets/img/ghfest/blog3.jpg",
+                title: "Successful Press Soiree – Congrats Team Ghanafest Alberta!",
+                excerpt: "Team Ghanafest Alberta kicked off the excitement for this year's festival with an inspiring Press Soiree, bringing together media, sponsors, and community leaders. The event highlighted the vision for Ghanafest Alberta 2024, featuring engaging presentations, networking opportunities, delicious Ghanaian cuisine, and growing media buzz. This was just the first taste of what's to come—a vibrant celebration of",
+                image: "assets/img/ghfest/blog.jpg",
                 date: "June 8, 2024",
-                category: "Festival",
-                author: "Event Coordinator",
-                authorInitials: "EC",
+                category: "blog",
+                author: "GhanaFest Team",
+                authorInitials: "GT",
                 readTime: "6 min read",
                 views: 2156,
                 comments: 45
             },
             {
                 id: 4,
-                title: "Accra, June 11, GNA – The third annual GhanaFest Alberta",
-                excerpt: "The third annual GhanaFest Alberta will take place from July 25 to 27, 2025, in Edmonton, Canada. This premier cultural event continues to grow, bringing together Ghanaians and friends of Ghana in Western Canada for a celebration of our rich heritage, traditions, and community spirit.",
-                image: "assets/img/ghfest/mahama.jpeg",
-                date: "June 11, 2024",
-                category: "News",
-                author: "GNA Reporter",
-                authorInitials: "GR",
+                title: "Ghanafest Alberta Team meets with AMB.Dr. Erieka Bennett",
+                excerpt: "In a significant step toward fostering cultural and diplomatic collaboration, the Ghanafest Alberta team had the honor of meeting with Ambassador Dr. Erieka Bennett, Head of Mission for the Diaspora African Forum (DAF). The meeting, held on June 10, 2025, served as a platform to strengthen the bond between Ghanaian diaspora leaders and cultural advocates in Alberta, Canada. Ambassador Dr.",
+                image: "assets/img/ghfest/square-img1.jpg",
+                date: "June 10, 2025",
+                category: "blog",
+                author: "Diplomatic Team",
+                authorInitials: "DT",
                 readTime: "3 min read",
                 views: 687,
                 comments: 12
             },
             {
                 id: 5,
-                title: "Feed the Street 2024: Community Outreach Success",
-                excerpt: "Our annual Feed the Street initiative continues to make a positive impact in the Edmonton community. This year's event brought together volunteers from across Alberta to provide meals and support to those in need, demonstrating the spirit of Ubuntu that defines our Ghanaian community.",
-                image: "assets/img/ghfest/WhatsApp-Image-2025-06-10-at-17.07.55_9f80f757.png",
-                date: "May 20, 2024",
-                category: "Community",
-                author: "Volunteer Team",
-                authorInitials: "VT",
+                title: "Justice for Africans & People of African Descent. | Prez. John Dramani Mahama",
+                excerpt: "On Africa Day 2025, President John Dramani Mahama of Ghana serving as the African Union's (AU) Champion for Reparatory Justice delivered a compelling message emphasizing the continent's pursuit of justice and equity. This aligns with the AU's designation of 2025 as the \"Year of Reparations: Justice for Africans & People of African Descent.\" African Union.",
+                image: "assets/img/ghfest/mahama.jpeg",
+                date: "May 25, 2025",
+                category: "blog",
+                author: "Political Desk",
+                authorInitials: "PD",
                 readTime: "4 min read",
                 views: 534,
                 comments: 8
             }
         ];
 
+        // Updated recent posts data with real content
         const recentPostsData = [
             {
-                title: "Thank you for making our Maiden Edition in Canada a success",
+                title: "Thank You for Making Our Maiden Edition in Canada a Success | CGCC",
                 date: "June 15, 2024",
                 image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzY2N2VlYSIvPjwvc3ZnPg=="
             },
             {
-                title: "We are profoundly grateful to our Guest of Honor, whose esteemed presence elevated the prestige of this occasion.",
-                date: "June 12, 2024",
+                title: "GhanaFest Alberta 2025 Scheduled for July 25–27, 2025",
+                date: "June 11, 2024",
                 image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzI3YWU2MCIvPjwvc3ZnPg=="
             },
             {
-                title: "Thank you for making our Maiden Edition in Canada a success",
+                title: "Successful Press Soiree – Congrats Team Ghanafest Alberta!",
                 date: "June 8, 2024",
                 image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2U3NGMzYyIvPjwvc3ZnPg=="
             },
             {
-                title: "Accra, June 11, GNA – The third annual GhanaFest Alberta will take place from July 25 to 27, 2025, in Edmonton, Canada.",
-                date: "June 11, 2024",
+                title: "Ghanafest Alberta Team meets with AMB.Dr. Erieka Bennett",
+                date: "June 10, 2025",
                 image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzM0OThkYiIvPjwvc3ZnPg=="
+            },
+            {
+                title: "Justice for Africans & People of African Descent. | Prez. John Dramani Mahama",
+                date: "May 25, 2025",
+                image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzk5NTNhMSIvPjwvc3ZnPg=="
             }
         ];
 
+        // Updated comments data with real content 
         const commentsData = [
             {
-                author: "John Doe",
-                text: "Amazing event! Thanks for organizing...",
-                postTitle: "Thank you for making our Maiden Edition in Canada a success"
-            },
-            {
-                author: "Sarah Wilson",
-                text: "The cultural displays were incredible...",
-                postTitle: "GhanaFest Alberta 2024: A Celebration of Culture"
-            },
-            {
-                author: "Michael Asante",
-                text: "Proud to be part of this community...",
-                postTitle: "Feed the Street 2024: Community Outreach"
-            },
-            {
-                author: "Grace Mensah",
-                text: "Looking forward to next year's event...",
-                postTitle: "Thank you for making our Maiden Edition in Canada a success"
+                author: "Bra",
+                text: "Great partnership announcement...",
+                postTitle: "National Commission on Culture Signs MoU with Ghanafest Alberta Inc."
             }
         ];
 
+        // Updated archives data with real content
         const archivesData = [
-            { month: "May 2025", count: 5 },
-            { month: "June 2024", count: 12 },
-            { month: "May 2024", count: 8 },
-            { month: "April 2024", count: 6 },
-            { month: "March 2024", count: 4 }
+            { month: "June 2025", count: 3 },
+            { month: "May 2025", count: 2 }
+        ];
+
+        // Updated categories data with real content
+        const categoriesData = [
+            { name: "blog", count: 3 },
+            { name: "Uncategorized", count: 2 }
         ];
 
         // State management
@@ -1790,6 +1826,7 @@
             renderRecentPosts();
             renderRecentComments();
             renderArchives();
+            renderCategories();
 
             // Page loading animation
             const loadingOverlay = document.getElementById('loadingOverlay');
@@ -1922,6 +1959,28 @@
             });
         }
 
+        // Render categories sidebar
+        function renderCategories() {
+            const container = document.getElementById('categoriesList');
+            if (!container) return;
+            
+            container.innerHTML = '';
+
+            categoriesData.forEach(category => {
+                const listItem = document.createElement('li');
+                listItem.className = 'category-item';
+
+                listItem.innerHTML = `
+                    <a href="#" class="category-link" onclick="filterByCategory('${category.name}')">
+                        <span>${category.name}</span>
+                        <span class="archive-count">${category.count}</span>
+                    </a>
+                `;
+
+                container.appendChild(listItem);
+            });
+        }
+
         // Category filtering
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('category-btn')) {
@@ -1940,8 +1999,7 @@
                 filteredPosts = [...blogPosts];
             } else {
                 filteredPosts = blogPosts.filter(post =>
-                    post.category.toLowerCase() === currentCategory ||
-                    currentCategory === 'blog'
+                    post.category.toLowerCase() === currentCategory.toLowerCase()
                 );
             }
             renderBlogPosts();
@@ -1988,6 +2046,23 @@
         function filterByArchive(month) {
             showNotification(`Filtering posts from ${month}`);
             console.log('Filtering by month:', month);
+        }
+
+        // Filter by category from sidebar
+        function filterByCategory(categoryName) {
+            // Update active category button
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            
+            if (categoryName.toLowerCase() === 'uncategorized') {
+                document.querySelector('[data-category="uncategorized"]').classList.add('active');
+                currentCategory = 'uncategorized';
+            } else if (categoryName.toLowerCase() === 'blog') {
+                document.querySelector('[data-category="blog"]').classList.add('active');
+                currentCategory = 'blog';
+            }
+            
+            filterPosts();
+            showNotification(`Showing ${categoryName} posts`);
         }
 
         // Show notification

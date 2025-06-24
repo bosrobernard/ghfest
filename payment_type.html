@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Tourm" />
+    <meta name="author" content="Ghana Fest Alberta" />
     <meta name="description" content="A festival of trade, arts & culture for peace & unity " />
     <meta name="keywords" content="A festival of trade, arts & culture for peace & unity " />
     <meta name="robots" content="INDEX,FOLLOW" />
@@ -33,7 +33,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Manrope:wght@200..800&amp;family=Montez&amp;display=swap"
         rel="stylesheet" />
-    <title>Payment - Ghana Albertha</title>
+    <title>Payment - Ghana Fest Alberta</title>
     <style>
         * {
             margin: 0;
@@ -379,12 +379,21 @@
             padding: 0 24px;
         }
 
+        /* Page title */
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
         /* Payment options - flat design exactly like image */
         .payment-options {
             display: flex;
             flex-direction: column;
             gap: 16px;
-            margin-bottom: 80px;
+            margin-bottom: 30px;
         }
 
         .payment-card {
@@ -456,6 +465,36 @@
             color: #333;
         }
 
+        /* Security note */
+        .security-note {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .security-note p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .security-note strong {
+            color: #333;
+        }
+
+        .security-note a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .security-note a:hover {
+            text-decoration: underline;
+        }
+
         /* Blog section */
         .blog-section {
             margin: 80px 0;
@@ -510,6 +549,11 @@
             background: linear-gradient(135deg, #667eea, #764ba2);
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
         }
 
         .blog-image img {
@@ -554,7 +598,7 @@
             font-weight: 500;
         }
 
-        .blog-date {
+        .blog-date, .blog-author {
             color: #666;
         }
 
@@ -564,10 +608,29 @@
             color: #333;
             line-height: 1.4;
             transition: color 0.3s ease;
+            margin-bottom: 8px;
         }
 
         .blog-card:hover .blog-title-text {
             color: #007bff;
+        }
+
+        .blog-excerpt {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .read-more {
+            color: #007bff;
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
         }
 
         .explore-btn {
@@ -752,6 +815,10 @@
             .main-content {
                 padding: 0 16px;
                 margin: 40px auto;
+            }
+
+            .page-title {
+                font-size: 24px;
             }
 
             .payment-card {
@@ -952,6 +1019,8 @@
 
     <!-- Main Content -->
     <main class="main-content">
+        <h1 class="page-title">CHOOSE TYPE OF</h1>
+        
         <!-- Payment Options -->
         <section id="payment" class="payment-options">
             <div class="payment-card loading" style="animation-delay: 0.1s;">
@@ -969,10 +1038,12 @@
                 <div class="payment-text">Donation</div>
             </div>
         </section>
+
+        <!-- Security Note -->
+        <div class="security-note">
+            <p><strong>Note:</strong> All payments made on <a href="https://www.ghanafestalberta.com" target="_blank">ghanafestalberta.com</a> are fully secure and protected.</p>
+        </div>
     </main>
-
-
-  
 
     <!-- Blog Section -->
     <section id="blog" class="blog-section animate-on-scroll">
@@ -981,52 +1052,49 @@
 
             <div class="blog-grid">
                 <article class="blog-card loading" style="animation-delay: 0.4s;">
-                    <div class="blog-image"><img src="assets/img/ghfest/IMG-20250611-WA0027.png" /></div>
+                    <div class="blog-image"><img src="assets/img/ghfest/blog2.jpg"/></div>
                     <div class="blog-content">
                         <div class="blog-meta">
-                            <span class="blog-category">Business</span>
-                            <span class="blog-date">April 25, 2022</span>
+                            <span class="blog-category">Uncategorized</span>
+                            <span class="blog-author">Paul Nyamedom</span>
+                            <span class="blog-date">June 13, 2025</span>
                         </div>
-                        <h3 class="blog-title-text">Twitter board meets Musk to discuss bid - Reports</h3>
+                        <h3 class="blog-title-text">Thank You for Making Our Maiden Edition in Canada a Success | CGCC</h3>
+                        <p class="blog-excerpt">We are profoundly grateful to our Guest of Honor, whose esteemed presence elevated the prestige of…</p>
+                        <a href="#" class="read-more">Continue Reading »</a>
                     </div>
                 </article>
 
                 <article class="blog-card loading" style="animation-delay: 0.5s;">
-                    <div class="blog-image"><img src="assets/img/ghfest/kkd.png" /></div>
+                    <div class="blog-image"><img src="assets/img/ghfest/square-img.jpg"/></div>
                     <div class="blog-content">
                         <div class="blog-meta">
-                            <span class="blog-category">Technology</span>
-                            <span class="blog-date">June 16, 2022</span>
+                            <span class="blog-category">Uncategorized</span>
+                            <span class="blog-author">Paul Nyamedom</span>
+                            <span class="blog-date">June 13, 2025</span>
                         </div>
-                        <h3 class="blog-title-text">Actors launch campaign against AI Show stealers</h3>
+                        <h3 class="blog-title-text">GhanaFest Alberta 2025 Scheduled for July 25–27, 2025</h3>
+                        <p class="blog-excerpt">Accra, June 11, GNA – The third annual GhanaFest Alberta will take place from July 25 to…</p>
+                        <a href="#" class="read-more">Continue Reading »</a>
                     </div>
                 </article>
 
                 <article class="blog-card loading" style="animation-delay: 0.6s;">
-                    <div class="blog-image"><img
-                            src="assets/img/ghfest/WhatsApp-Image-2025-06-11-at-15.41.37_ee71be7c.png" /></div>
+                    <div class="blog-image"><img src="assets/img/ghfest/blog.jpg"/></div>
                     <div class="blog-content">
                         <div class="blog-meta">
-                            <span class="blog-category">Technology</span>
-                            <span class="blog-date">June 16, 2022</span>
+                            <span class="blog-category">Blog</span>
+                            <span class="blog-author">Paul Nyamedom</span>
+                            <span class="blog-date">June 11, 2025</span>
                         </div>
-                        <h3 class="blog-title-text">Actors launch campaign against AI Show stealers</h3>
-                    </div>
-                </article>
-
-                <article class="blog-card loading" style="animation-delay: 0.7s;">
-                    <div class="blog-image"><img src="assets/img/ghfest/IMG-20250507-WA0115.png" /></div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-category">Science</span>
-                            <span class="blog-date">May 19, 2022</span>
-                        </div>
-                        <h3 class="blog-title-text">OneWeb UK satellite firm does deal to use Indian rockets</h3>
+                        <h3 class="blog-title-text">Successful Press Soiree – Congrats Team Ghanafest Alberta!</h3>
+                        <p class="blog-excerpt">Team Ghanafest Alberta kicked off the excitement for this year's festival with an inspiring Press Soiree,…</p>
+                        <a href="#" class="read-more">Continue Reading »</a>
                     </div>
                 </article>
             </div>
 
-            <button class="explore-btn">Explore all blogs</button>
+            <button class="explore-btn" ><a href="blog.html">Explore all blogs</a></button>
         </div>
     </section>
 
@@ -1064,8 +1132,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>Copyright © 2025 | All Rights Reserved | <a href="#terms">Terms and Conditions</a> | <a
-                    href="#privacy">Privacy Policy</a></p>
+            <p>Copyright © 2025 | Ghanafest Alberta - All Rights Reserved | <a href="#terms">Terms and Condition of Use</a> | <a href="#privacy">Ghanafest Alberta Inc</a></p>
         </div>
     </footer>
 

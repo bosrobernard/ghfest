@@ -38,7 +38,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Manrope:wght@200..800&amp;family=Montez&amp;display=swap"
         rel="stylesheet" />
-    <title>Photo Library - GhanaFest Alberta</title>
+    <title>Photo Gallery - GhanaFest Alberta</title>
     <style>
         * {
             margin: 0;
@@ -442,27 +442,139 @@
             margin-bottom: 2rem;
         }
 
-        .gallery-1 .photo-grid {
+        .gallery-1 .photo-grid,
+        .gallery-3 .photo-grid,
+        .gallery-5 .photo-grid,
+        .gallery-7 .photo-grid,
+        .gallery-9 .photo-grid {
             grid-template-columns: 2fr 1fr 1fr;
             grid-template-rows: repeat(2, 200px);
         }
 
-        .gallery-1 .photo-item:first-child {
+        .gallery-1 .photo-item:first-child,
+        .gallery-3 .photo-item:first-child,
+        .gallery-5 .photo-item:first-child,
+        .gallery-7 .photo-item:first-child,
+        .gallery-9 .photo-item:first-child {
             grid-row: 1 / 3;
         }
 
-        .gallery-2 .photo-grid {
+        .gallery-2 .photo-grid,
+        .gallery-4 .photo-grid,
+        .gallery-6 .photo-grid,
+        .gallery-8 .photo-grid {
             grid-template-columns: 1fr 1fr 2fr;
             grid-template-rows: repeat(2, 200px);
         }
 
-        .gallery-2 .photo-item:last-child {
+        .gallery-2 .photo-item:last-child,
+        .gallery-4 .photo-item:last-child,
+        .gallery-6 .photo-item:last-child,
+        .gallery-8 .photo-item:last-child {
             grid-row: 1 / 3;
         }
 
-        .gallery-3 .photo-grid {
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 200px);
+        /* Video Gallery Styles */
+        .video-gallery {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .video-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            animation: fadeInUp 1s ease-out both;
+            aspect-ratio: 16/9;
+        }
+
+        .video-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .video-item:hover .video-thumbnail {
+            transform: scale(1.1);
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+
+        .video-item:hover .video-overlay {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.8), rgba(46, 204, 113, 0.6));
+        }
+
+        .video-play-btn {
+            width: 80px;
+            height: 80px;
+            border: 3px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .video-item:hover .video-play-btn {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .video-play-btn::before {
+            content: '▶';
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+
+        .video-title {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .video-date {
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            opacity: 0.9;
+            font-weight: 500;
+            text-align: center;
         }
 
         .photo-item {
@@ -926,15 +1038,33 @@
 
             .gallery-1 .photo-grid,
             .gallery-2 .photo-grid,
-            .gallery-3 .photo-grid {
+            .gallery-3 .photo-grid,
+            .gallery-4 .photo-grid,
+            .gallery-5 .photo-grid,
+            .gallery-6 .photo-grid,
+            .gallery-7 .photo-grid,
+            .gallery-8 .photo-grid,
+            .gallery-9 .photo-grid {
                 grid-template-columns: 1fr 1fr;
                 grid-template-rows: repeat(3, 180px);
             }
 
             .gallery-1 .photo-item:first-child,
-            .gallery-2 .photo-item:last-child {
+            .gallery-2 .photo-item:last-child,
+            .gallery-3 .photo-item:first-child,
+            .gallery-4 .photo-item:last-child,
+            .gallery-5 .photo-item:first-child,
+            .gallery-6 .photo-item:last-child,
+            .gallery-7 .photo-item:first-child,
+            .gallery-8 .photo-item:last-child,
+            .gallery-9 .photo-item:first-child {
                 grid-row: auto;
                 grid-column: 1 / -1;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
 
             .lightbox-nav {
@@ -975,8 +1105,20 @@
                 gap: 15px;
             }
 
+            .video-grid {
+                grid-template-columns: 1fr !important;
+                gap: 15px;
+            }
+
             .gallery-1 .photo-item:first-child,
-            .gallery-2 .photo-item:last-child {
+            .gallery-2 .photo-item:last-child,
+            .gallery-3 .photo-item:first-child,
+            .gallery-4 .photo-item:last-child,
+            .gallery-5 .photo-item:first-child,
+            .gallery-6 .photo-item:last-child,
+            .gallery-7 .photo-item:first-child,
+            .gallery-8 .photo-item:last-child,
+            .gallery-9 .photo-item:first-child {
                 grid-row: auto !important;
                 grid-column: auto !important;
             }
@@ -1085,7 +1227,7 @@
     <div class="mobile-nav">
         <div class="mobile-nav-header">
             <div class="logo">
-                <img src="assets/img/ghfest.png" alt="Ghana Fest" />
+                <img src="placeholder-logo.png" alt="Ghana Fest" />
             </div>
             <h3 class="mobile-nav-title">Ghana Fest Alberta</h3>
         </div>
@@ -1105,15 +1247,15 @@
 
         <div class="mobile-nav-social">
             <div class="social-links">
-                <a href="#" style="background: #3b5998;"> <img src="assets/img/ghfest/fb.png" width="20px" /></a>
-                <a href="#" style="background: #1da1f2;"><img src="assets/img/ghfest/x.png" width="20px" /></a>
-                <a href="#" style="background: #cd486b;"><img src="assets/img/ghfest/ig.png" width="20px" /></a>
-                <a href="#" style="background: #0077b5;"><img src="assets/img/ghfest/link.png" width="20px" /></a>
-                <a href="#" style="background: #ff0000;"><img src="assets/img/ghfest/yt.png" width="20px" /></a>
+                <a href="#" style="background: #3b5998;"> <img src="placeholder-fb.png" width="20px" /></a>
+                <a href="#" style="background: #1da1f2;"><img src="placeholder-x.png" width="20px" /></a>
+                <a href="#" style="background: #cd486b;"><img src="placeholder-ig.png" width="20px" /></a>
+                <a href="#" style="background: #0077b5;"><img src="placeholder-linkedin.png" width="20px" /></a>
+                <a href="#" style="background: #ff0000;"><img src="placeholder-youtube.png" width="20px" /></a>
             </div>
             <div class="cert-link">
                 <a href="https://canadianchoiceaward.ca/winners/ab/edmonton/">
-                    <img src="assets/img/cert1.png" alt="Certification" />
+                    <img src="placeholder-cert.png" alt="Canadian Choice Award" />
                 </a>
             </div>
         </div>
@@ -1133,6 +1275,7 @@
         </div>
     </div>
 
+  
     <header class="header">
         <div class="logo">
             <div
@@ -1169,11 +1312,11 @@
                 <a href="https://canadianchoiceaward.ca/winners/ab/edmonton/"><img src="assets/img/cert1.png"
                         width="50px" /> </a>
             </div>
-            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </header>
 
@@ -1182,28 +1325,85 @@
     </div>
 
     <main class="main-container">
-        <h1 class="page-title">PHOTO LIBRARY</h1>
+        <h1 class="page-title">PHOTO GALLERY</h1>
 
-        <!-- Gallery Section 1 -->
+        <!-- Feed The Street October 2023 -->
         <div class="gallery-section gallery-1" style="animation-delay: 0.7s;">
+            <h2 class="section-title">FEED THE STREET</h2>
             <div class="photo-grid" id="gallery1">
                 <!-- Photos will be dynamically generated -->
             </div>
         </div>
 
-        <!-- Summer Event Section -->
-        <div class="gallery-section gallery-2" style="animation-delay: 1.5s;">
-            <h2 class="section-title">SUMMER EVENT JULY 2024</h2>
+        <!-- Launch of GhanaFest Alberta November 2023 -->
+        <div class="gallery-section gallery-2" style="animation-delay: 1.0s;">
+            <h2 class="section-title">LAUNCH OF GHANAFEST ALBERTA (FESTIVAL)</h2>
             <div class="photo-grid" id="gallery2">
                 <!-- Photos will be dynamically generated -->
             </div>
         </div>
 
-        <!-- Feed The Street Section -->
-        <div class="gallery-section gallery-3" style="animation-delay: 2.3s;">
-            <h2 class="section-title">FEED THE STREET 2024</h2>
+        <!-- Summer Event July 2024 -->
+        <div class="gallery-section gallery-3" style="animation-delay: 1.3s;">
+            <h2 class="section-title">SUMMER EVENT</h2>
             <div class="photo-grid" id="gallery3">
                 <!-- Photos will be dynamically generated -->
+            </div>
+        </div>
+
+        <!-- Boat Cruise July 2024 -->
+        <div class="gallery-section gallery-4" style="animation-delay: 1.6s;">
+            <h2 class="section-title">BOAT CRUISE</h2>
+            <div class="photo-grid" id="gallery4">
+                <!-- Photos will be dynamically generated -->
+            </div>
+        </div>
+
+        <!-- Feed The Street 2024 -->
+        <div class="gallery-section gallery-5" style="animation-delay: 1.9s;">
+            <h2 class="section-title">FEED THE STREET</h2>
+            <div class="photo-grid" id="gallery5">
+                <!-- Photos will be dynamically generated -->
+            </div>
+        </div>
+
+        <!-- Kojo Antwi Calgary Event 2024 -->
+        <div class="gallery-section gallery-6" style="animation-delay: 2.2s;">
+            <h2 class="section-title">KOJO ANTWI CALGARY EVENT</h2>
+            <div class="photo-grid" id="gallery6">
+                <!-- Photos will be dynamically generated -->
+            </div>
+        </div>
+
+        <!-- GhanaFest Alberta Team with Ambassador Bennett 2025 -->
+        <div class="gallery-section gallery-7" style="animation-delay: 2.5s;">
+            <h2 class="section-title">GHANAFEST ALBERTA TEAM WITH AMBASSADOR BENNETT</h2>
+            <div class="photo-grid" id="gallery7">
+                <!-- Photos will be dynamically generated -->
+            </div>
+        </div>
+
+        <!-- Press Soiree 2025 -->
+        <div class="gallery-section gallery-8" style="animation-delay: 2.8s;">
+            <h2 class="section-title">PRESS SOIREE OF GHANAFEST ALBERTA</h2>
+            <div class="photo-grid" id="gallery8">
+                <!-- Photos will be dynamically generated -->
+            </div>
+        </div>
+
+        <!-- CEO's Connect 2025 -->
+        <div class="gallery-section gallery-9" style="animation-delay: 3.1s;">
+            <h2 class="section-title">CEO'S CONNECT</h2>
+            <div class="photo-grid" id="gallery9">
+                <!-- Photos will be dynamically generated -->
+            </div>
+        </div>
+
+        <!-- Video Gallery Section -->
+        <div class="gallery-section video-gallery" style="animation-delay: 3.4s;">
+            <h2 class="section-title">VIDEO GALLERY</h2>
+            <div class="video-grid" id="videoGallery">
+                <!-- Videos will be dynamically generated -->
             </div>
         </div>
     </main>
@@ -1212,7 +1412,7 @@
     <section class="cta-section">
         <div class="cta-content">
             <h2 class="cta-title">Have any questions? Reach us here!</h2>
-            <a href="#contact" class="cta-btn">Get in touch</a>
+            <a href="contact.html" class="cta-btn">Get in touch</a>
         </div>
     </section>
 
@@ -1250,100 +1450,304 @@
     </footer>
 
     <script>
-        // Gallery data
+        // Gallery data - updated with real content from live website
         const galleryData = {
             gallery1: [
                 {
                     title: "FEED THE STREET",
                     date: "October 2023",
-                    image: "assets/img/ghfest/launch3.png"
+                    image: "assets/img/ghfest/launch.png"
                 },
                 {
-                    title: "FESTIVAL LAUNCH",
-                    date: "November 2023",
-                    image: "assets/img/ghfest/launch2.png"
-                },
-                {
-                    title: "FESTIVAL LAUNCH",
-                    date: "November 2023",
-                    image: "assets/img/ghfest/launch2.png"
-                },
-                {
-                    title: "FESTIVAL LAUNCH",
-                    date: "November 2023",
-                    image: "assets/img/ghfest/launch2.png"
-                },
-                {
-                    title: "FESTIVAL LAUNCH",
-                    date: "November 2023",
-                    image: "assets/img/ghfest/launch2.png"
+                    title: "FEED THE STREET",
+                    date: "October 2023",
+                    image: "assets/img/ghfest/community.jpg"
                 },
                 {
                     title: "FEED THE STREET",
                     date: "October 2023",
                     image: "assets/img/ghfest/launch.png"
+                },
+                {
+                    title: "FEED THE STREET",
+                    date: "October 2023",
+                    image: "assets/img/ghfest/feed.png"
+                },
+                {
+                    title: "FEED THE STREET",
+                    date: "October 2023",
+                    image: "assets/img/ghfest/feed2.png"
                 }
             ],
             gallery2: [
                 {
-                    title: "FEED THE STREET",
-                    date: "October 2023",
-                    image: "assets/img/ghfest/launch3.png"
+                    title: "LAUNCH OF GHANAFEST ALBERTA (FESTIVAL)",
+                    date: "November 2023",
+                    image: "assets/img/ghfest/event.jpeg"
                 },
                 {
-                    title: "FESTIVAL LAUNCH",
+                    title: "LAUNCH OF GHANAFEST ALBERTA (FESTIVAL)",
                     date: "November 2023",
                     image: "assets/img/ghfest/launch2.png"
                 },
                 {
-                    title: "FESTIVAL LAUNCH",
+                    title: "LAUNCH OF GHANAFEST ALBERTA (FESTIVAL)",
                     date: "November 2023",
-                    image: "assets/img/ghfest/launch2.png"
+                    image: "assets/img/ghfest/Image.png"
                 },
                 {
-                    title: "FESTIVAL LAUNCH",
+                    title: "LAUNCH OF GHANAFEST ALBERTA (FESTIVAL)",
                     date: "November 2023",
-                    image: "assets/img/ghfest/launch2.png"
-                },
-                {
-                    title: "FEED THE STREET",
-                    date: "October 2023",
                     image: "assets/img/ghfest/launch.png"
+                },
+                {
+                    title: "LAUNCH OF GHANAFEST ALBERTA (FESTIVAL)",
+                    date: "November 2023",
+                    image: "assets/img/ghfest/launch2.png"
                 }
             ],
             gallery3: [
                 {
-                    title: "FEED THE STREET 2024",
-                    date: "Community Event",
+                    title: "SUMMER EVENT",
+                    date: "July 2024",
+                    image: "assets/img/ghfest/boat-cruis.jpeg"
+                },
+                {
+                    title: "SUMMER EVENT",
+                    date: "July 2024",
+                    image: "assets/img/ghfest/boat-cruis2.jpeg"
+                },
+                {
+                    title: "SUMMER EVENT",
+                    date: "July 2024",
+                    image: "assets/img/ghfest/boat-cruise1.jpeg"
+                },
+                {
+                    title: "SUMMER EVENT",
+                    date: "July 2024",
+                    image: "assets/img/ghfest/boat-cruise4.jpeg"
+                },
+                {
+                    title: "SUMMER EVENT",
+                    date: "July 2024",
+                    image: "assets/img/ghfest/boat-cruise5.jpeg"
+                }
+            ],
+            gallery4: [
+                {
+                    title: "BOAT CRUISE",
+                    date: "July 2024",
+                    image: "assets/img/ghfest/boat-cruis.jpeg"
+                },
+                {
+                    title: "BOAT CRUISE",
+                    date: "July 2024",
+                    image: "assets/img/ghfest/boat-cruis2.jpeg"
+                },
+                {
+                    title: "BOAT CRUISE",
+                    date: "July 2024",
+                    image: "assets/img/ghfest/boat-cruise1.jpeg"
+                },
+                {
+                    title: "BOAT CRUISE",
+                    date: "July 2024",
+                    image: "assets/img/ghfest/boat-cruise4.jpeg"
+                },
+                {
+                    title: "BOAT CRUISE",
+                    date: "July 2024",
+                    image: "assets/img/ghfest/boat-cruise5.jpeg"
+                }
+            ],
+            gallery5: [
+                {
+                    title: "FEED THE STREET",
+                    date: "2024",
+                    image: "assets/img/ghfest/launch.png"
+                },
+                {
+                    title: "FEED THE STREET",
+                    date: "2024",
+                    image: "assets/img/ghfest/community.jpg"
+                },
+                {
+                    title: "FEED THE STREET",
+                    date: "2024",
+                    image: "assets/img/ghfest/launch.png"
+                },
+                {
+                    title: "FEED THE STREET",
+                    date: "2024",
                     image: "assets/img/ghfest/feed.png"
                 },
                 {
-                    title: "FEED THE STREET 2024",
-                    date: "Community Event",
+                    title: "FEED THE STREET",
+                    date: "2024",
                     image: "assets/img/ghfest/feed2.png"
+                }
+            ],
+            gallery6: [
+                {
+                    title: "KOJO ANTWI CALGARY EVENT",
+                    date: "2024",
+                    image: "placeholder-kojo1.png"
                 },
                 {
-                    title: "FEED THE STREET 2024",
-                    date: "Community Event",
-                    image: "assets/img/ghfest/feed3.png"
+                    title: "KOJO ANTWI CALGARY EVENT",
+                    date: "2024",
+                    image: "placeholder-kojo2.png"
                 },
                 {
-                    title: "FEED THE STREET 2024",
-                    date: "Community Event",
-                    image: "assets/img/ghfest/feed3.png"
+                    title: "KOJO ANTWI CALGARY EVENT",
+                    date: "2024",
+                    image: "placeholder-kojo3.png"
                 },
                 {
-                    title: "FEED THE STREET 2024",
-                    date: "Community Event",
-                    image: "assets/img/ghfest/feed.png"
+                    title: "KOJO ANTWI CALGARY EVENT",
+                    date: "2024",
+                    image: "placeholder-kojo4.png"
                 },
                 {
-                    title: "FEED THE STREET 2024",
-                    date: "Community Event",
-                    image: "assets/img/ghfest/feed2.png"
+                    title: "KOJO ANTWI CALGARY EVENT",
+                    date: "2024",
+                    image: "placeholder-kojo5.png"
+                }
+            ],
+            gallery7: [
+                {
+                    title: "GHANAFEST ALBERTA TEAM WITH AMBASSADOR BENNETT",
+                    date: "2025",
+                    image: "assets/img/ghfest/team.jpg"
+                },
+                {
+                    title: "GHANAFEST ALBERTA TEAM WITH AMBASSADOR BENNETT",
+                    date: "2025",
+                    image: "assets/img/ghfest/team3.jpg"
+                },
+                {
+                    title: "GHANAFEST ALBERTA TEAM WITH AMBASSADOR BENNETT",
+                    date: "2025",
+                    image: "assets/img/ghfest/team2.jpg"
+                },
+                {
+                    title: "GHANAFEST ALBERTA TEAM WITH AMBASSADOR BENNETT",
+                    date: "2025",
+                    image: "assets/img/ghfest/team1.jpg"
+                },
+                {
+                    title: "GHANAFEST ALBERTA TEAM WITH AMBASSADOR BENNETT",
+                    date: "2025",
+                    image: "assets/img/ghfest/team.jpg"
+                }
+            ],
+            gallery8: [
+                {
+                    title: "PRESS SOIREE OF GHANAFEST ALBERTA",
+                    date: "2025",
+                    image: "assets/img/ghfest/team.jpg"
+                },
+                {
+                    title: "PRESS SOIREE OF GHANAFEST ALBERTA",
+                    date: "2025",
+                    image: "placeholder-press2.png"
+                },
+                {
+                    title: "PRESS SOIREE OF GHANAFEST ALBERTA",
+                    date: "2025",
+                    image: "placeholder-press3.png"
+                },
+                {
+                    title: "PRESS SOIREE OF GHANAFEST ALBERTA",
+                    date: "2025",
+                    image: "placeholder-press4.png"
+                },
+                {
+                    title: "PRESS SOIREE OF GHANAFEST ALBERTA",
+                    date: "2025",
+                    image: "placeholder-press5.png"
+                }
+            ],
+            gallery9: [
+                {
+                    title: "CEO'S CONNECT",
+                    date: "2025",
+                    image: "assets/img/ghfest/ceo.png"
+                },
+                {
+                    title: "CEO'S CONNECT",
+                    date: "2025",
+                    image: "assets/img/ghfest/ceo.png"
+                },
+                {
+                    title: "CEO'S CONNECT",
+                    date: "2025",
+                    image: "assets/img/ghfest/ceo.png"
+                },
+                {
+                    title: "CEO'S CONNECT",
+                    date: "2025",
+                    image: "assets/img/ghfest/ceo.png"
+                },
+                {
+                    title: "CEO'S CONNECT",
+                    date: "2025",
+                    image: "assets/img/ghfest/ceo.png"
                 }
             ]
         };
+
+        // Video gallery data - updated with real content from live website
+        const videoData = [
+            {
+                title: "FEED THE STREET 2023",
+                date: "October 2023",
+                thumbnail: "placeholder-video-thumb1.jpg",
+                videoUrl: "placeholder-feed-street-2023.mp4"
+            },
+            {
+                title: "LAUNCH OF GHANAFEST ALBERTA (FESTIVAL)",
+                date: "November 2023",
+                thumbnail: "placeholder-video-thumb2.jpg",
+                videoUrl: "placeholder-launch-2023.mp4"
+            },
+            {
+                title: "SUMMER EVENT",
+                date: "July 2024",
+                thumbnail: "placeholder-video-thumb3.jpg",
+                videoUrl: "placeholder-summer-2024.mp4"
+            },
+            {
+                title: "BOAT CRUISE",
+                date: "July 2024",
+                thumbnail: "placeholder-video-thumb4.jpg",
+                videoUrl: "placeholder-boat-cruise-2024.mp4"
+            },
+            {
+                title: "FEED THE STREET 2024",
+                date: "2024",
+                thumbnail: "placeholder-video-thumb5.jpg",
+                videoUrl: "placeholder-feed-street-2024.mp4"
+            },
+            {
+                title: "KOJO ANTWI CALGARY EVENT",
+                date: "2024",
+                thumbnail: "placeholder-video-thumb6.jpg",
+                videoUrl: "placeholder-kojo-antwi-2024.mp4"
+            },
+            {
+                title: "PRESS SOIREE (GHANAFEST ALBERTA)",
+                date: "2025",
+                thumbnail: "placeholder-video-thumb7.jpg",
+                videoUrl: "placeholder-press-soiree-2025.mp4"
+            },
+            {
+                title: "CEO'S CONNECT",
+                date: "2025",
+                thumbnail: "placeholder-video-thumb8.jpg",
+                videoUrl: "placeholder-ceo-2025.mp4"
+            }
+        ];
 
         // Current lightbox state
         let currentGallery = null;
@@ -1418,12 +1822,19 @@
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function () {
             renderGalleries();
+            renderVideoGallery();
 
             // Flatten all images for lightbox navigation
             allImages = [
                 ...galleryData.gallery1,
                 ...galleryData.gallery2,
-                ...galleryData.gallery3
+                ...galleryData.gallery3,
+                ...galleryData.gallery4,
+                ...galleryData.gallery5,
+                ...galleryData.gallery6,
+                ...galleryData.gallery7,
+                ...galleryData.gallery8,
+                ...galleryData.gallery9
             ];
 
             // Page loading animation
@@ -1438,6 +1849,53 @@
             renderGallery('gallery1', galleryData.gallery1);
             renderGallery('gallery2', galleryData.gallery2);
             renderGallery('gallery3', galleryData.gallery3);
+            renderGallery('gallery4', galleryData.gallery4);
+            renderGallery('gallery5', galleryData.gallery5);
+            renderGallery('gallery6', galleryData.gallery6);
+            renderGallery('gallery7', galleryData.gallery7);
+            renderGallery('gallery8', galleryData.gallery8);
+            renderGallery('gallery9', galleryData.gallery9);
+        }
+
+        // Render video gallery
+        function renderVideoGallery() {
+            const container = document.getElementById('videoGallery');
+            container.innerHTML = '';
+
+            videoData.forEach((video, index) => {
+                const videoItem = createVideoItem(video, index);
+                container.appendChild(videoItem);
+            });
+        }
+
+        // Create video item
+        function createVideoItem(video, index) {
+            const item = document.createElement('div');
+            item.className = 'video-item';
+            item.style.animationDelay = `${0.1 * index}s`;
+
+            item.innerHTML = `
+                <img src="${video.thumbnail}" alt="${video.title}" class="video-thumbnail" loading="lazy">
+                <div class="video-overlay">
+                    <div class="video-play-btn"></div>
+                    <div class="video-title">${video.title}</div>
+                    <div class="video-date">${video.date}</div>
+                </div>
+            `;
+
+            // Add click event for video playback
+            item.addEventListener('click', () => {
+                playVideo(video);
+            });
+
+            return item;
+        }
+
+        // Play video functionality
+        function playVideo(video) {
+            // For now, we'll show a placeholder modal
+            // In production, you would integrate with a video player or streaming service
+            alert(`Playing video: ${video.title}\n\nIn production, this would open the video player with: ${video.videoUrl}`);
         }
 
         // Render individual gallery
