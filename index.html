@@ -39,11 +39,23 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Manrope:wght@200..800&amp;family=Montez&amp;display=swap"
     rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Syne:wght@400..800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="assets/css/fontawesome.min.css" />
   <link rel="stylesheet" href="assets/css/magnific-popup.min.css" />
   <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css"
+    integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Syne:wght@400..800&display=swap"
+    rel="stylesheet">
   <style>
     .video-thumbnail {
       position: relative;
@@ -122,344 +134,964 @@
     .video-thumbnail {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
+
+
+    /* First Visit Modal Styles */
+    .first-visit-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .first-visit-modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      animation: fadeIn 0.4s ease;
+    }
+
+    .modal-container {
+      background: white;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 25px 50px rgba(0, 123, 255, 0.3);
+      transform: scale(0.8) translateY(50px);
+      transition: all 0.4s ease;
+      animation: modalSlideIn 0.6s ease forwards;
+    }
+
+    .first-visit-modal.show .modal-container {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      color: #666;
+      z-index: 10;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .modal-close:hover {
+      background: #f8f9fa;
+      color: #333;
+      transform: scale(1.1);
+    }
+
+    .modal-content {
+      padding: 0;
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, #007bff 0%, #74b3ff 100%);
+      color: white;
+      padding: 40px 30px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .modal-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    .modal-logo {
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .modal-logo img {
+      width: 80px;
+      height: auto;
+      filter: brightness(1.2);
+    }
+
+    .modal-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .modal-subtitle {
+      font-size: 16px;
+      opacity: 0.9;
+      position: relative;
+      z-index: 2;
+    }
+
+    .modal-image {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .modal-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(0, 123, 255, 0.8), rgba(116, 179, 255, 0.6));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .event-badge {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px 30px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      transform: translateY(10px);
+      animation: badgeFloat 0.8s ease 0.3s forwards;
+    }
+
+    .badge-text {
+      font-size: 24px;
+      font-weight: 700;
+      color: #007bff;
+      margin-bottom: 5px;
+    }
+
+    .badge-location {
+      font-size: 14px;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .modal-body {
+      padding: 30px;
+      text-align: center;
+    }
+
+    .modal-body h3 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .modal-body p {
+      font-size: 16px;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .modal-highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .highlight-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 10px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .highlight-item:hover {
+      background: #e3f2fd;
+      transform: translateY(-3px);
+    }
+
+    .highlight-icon {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .highlight-item span {
+      font-size: 12px;
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .modal-btn {
+      flex: 1;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      min-width: 150px;
+    }
+
+    .modal-btn.primary {
+      background: linear-gradient(45deg, #007bff, #74b3ff);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    }
+
+    .modal-btn.primary:hover {
+      background: linear-gradient(45deg, #0056b3, #007bff);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+    }
+
+    .modal-btn.secondary {
+      background: white;
+      color: #007bff;
+      border: 2px solid #007bff;
+    }
+
+    .modal-btn.secondary:hover {
+      background: #007bff;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .modal-footer {
+      border-top: 1px solid #e9ecef;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .dont-show-again {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #666;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .dont-show-again input[type="checkbox"] {
+      display: none;
+    }
+
+    .checkmark {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .dont-show-again input[type="checkbox"]:checked+.checkmark {
+      background: #007bff;
+      border-color: #007bff;
+    }
+
+    .dont-show-again input[type="checkbox"]:checked+.checkmark::after {
+      content: '✓';
+      position: absolute;
+      top: -2px;
+      left: 2px;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8) translateY(50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    @keyframes badgeFloat {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      }
+
+      100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+    }
+
+    /* Mobile Responsive - IMPROVED VERSION */
+@media (max-width: 768px) {
+    .modal-container {
+        width: 85%; /* Reduced from 95% to leave more space */
+        max-height: 85vh; /* Reduced from 95vh */
+        border-radius: 15px;
+        margin: 20px; /* Add explicit margin */
+    }
+    
+    .modal-header {
+        padding: 30px 20px 20px;
+    }
+    
+    .modal-title {
+        font-size: 24px;
+    }
+    
+    .modal-subtitle {
+        font-size: 14px;
+    }
+    
+    .modal-image {
+        height: 200px;
+    }
+    
+    .event-badge {
+        padding: 15px 20px;
+    }
+    
+    .badge-text {
+        font-size: 20px;
+    }
+    
+    .badge-location {
+        font-size: 12px;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+    
+    .modal-body h3 {
+        font-size: 20px;
+    }
+    
+    .modal-highlights {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .modal-btn {
+        min-width: auto;
+    }
+    
+    .modal-footer {
+        padding: 15px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .first-visit-modal {
+        padding: 15px; /* Add padding to the modal wrapper */
+    }
+    
+    .modal-container {
+        width: 100%; /* Use available space within padding */
+        max-width: none; /* Remove max-width constraint */
+        max-height: 80vh; /* Reduce height further */
+        border-radius: 12px;
+        margin: 0; /* Remove margin since we're using padding on parent */
+        box-sizing: border-box;
+    }
+    
+    .modal-close {
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+    }
+    
+    .modal-logo img {
+        width: 60px;
+    }
+    
+    .modal-title {
+        font-size: 20px;
+    }
+    
+    .modal-image {
+        height: 180px; /* Reduce image height on mobile */
+    }
+    
+    .modal-body {
+        padding: 15px; /* Reduce padding */
+    }
+    
+    .modal-body h3 {
+        font-size: 18px;
+    }
+    
+    .modal-body p {
+        font-size: 14px;
+    }
+    
+    .highlight-item {
+        padding: 10px 5px;
+    }
+    
+    .highlight-item span {
+        font-size: 11px;
+    }
+    
+    .highlight-icon {
+        font-size: 20px;
+    }
+    
+    .modal-footer {
+        padding: 12px 15px;
+    }
+    
+    .dont-show-again {
+        font-size: 12px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .first-visit-modal {
+        padding: 10px; /* Even more conservative padding */
+    }
+    
+    .modal-container {
+        max-height: 75vh; /* Further reduce height */
+    }
+    
+    .modal-header {
+        padding: 20px 15px 15px;
+    }
+    
+    .modal-title {
+        font-size: 18px;
+    }
+    
+    .modal-subtitle {
+        font-size: 12px;
+    }
+    
+    .modal-image {
+        height: 150px;
+    }
+    
+    .event-badge {
+        padding: 10px 15px;
+    }
+    
+    .badge-text {
+        font-size: 18px;
+    }
+    
+    .modal-highlights {
+        gap: 8px;
+    }
+    
+    .highlight-item {
+        padding: 8px 4px;
+    }
+    
+    .modal-btn {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+}
   </style>
 
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body>
-  <div class="cursor-follower"></div>
-  <div class="slider-drag-cursor">
-    <i class="fas fa-angle-left me-2"></i> DRAG
-    <i class="fas fa-angle-right ms-2"></i>
+
+  <!-- First Visit Modal -->
+  <div id="firstVisitModal" class="first-visit-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+      <button class="modal-close" id="closeModal">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-logo">
+            <img src="assets/img/ghfest.png" alt="GhanaFest Alberta" />
+          </div>
+          <h2 class="modal-title">Welcome to GhanaFest Alberta!</h2>
+          <p class="modal-subtitle">Experience the Vibrant Culture of Ghana</p>
+        </div>
+
+        <div class="modal-image">
+          <!-- Placeholder image - replace with your actual promotional image -->
+          <img src="assets/img/landingimg_.jpg" alt="GhanaFest Alberta 2025" />
+          <div class="image-overlay">
+            <div class="event-badge">
+              <div class="badge-text">JULY 25, 2025</div>
+              <div class="badge-location">Louise McKinney Riverfront Park</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <h3>Join Us for the Biggest Cultural Celebration!</h3>
+          <p>Experience authentic Ghanaian culture, music, dance, cuisine, and community. Don't miss this spectacular
+            festival bringing together cultures and creating opportunities.</p>
+
+          <div class="modal-highlights">
+            <div class="highlight-item">
+              <div class="highlight-icon">🎭</div>
+              <span>Cultural Performances</span>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">🍽️</div>
+              <span>Authentic Cuisine</span>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">🛍️</div>
+              <span>Artisan Marketplace</span>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">🎵</div>
+              <span>Live Music</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="modal-btn primary" onclick="scrollToSection('about-sec')">Explore Festival</button>
+          <button class="modal-btn secondary" id="getTicketsBtn">Get Early Bird Tickets</button>
+        </div>
+
+        <div class="modal-footer">
+          <label class="dont-show-again">
+            <input type="checkbox" id="dontShowAgain" />
+            <span class="checkmark"></span>
+            Don't show this again
+          </label>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="sidemenu-wrapper sidemenu-info">
-    <div class="sidemenu-content">
-      <button class="closeButton sideMenuCls">
-        <i class="far fa-times"></i>
-      </button>
-      <div class="widget">
-        <div class="th-widget-about">
-          <div class="about-logo">
-            <a href="home-travel.html"><img src="assets/img/ghfest.png" alt="Tourm" /></a>
-          </div>
-          <p class="about-text">
-            <!-- Rapidiously myocardinate cross-platform intellectual capital
+  <div>
+    <div class="cursor-follower"></div>
+    <div class="slider-drag-cursor">
+      <i class="fas fa-angle-left me-2"></i> DRAG
+      <i class="fas fa-angle-right ms-2"></i>
+    </div>
+
+    <div class="sidemenu-wrapper sidemenu-info">
+      <div class="sidemenu-content">
+        <button class="closeButton sideMenuCls">
+          <i class="far fa-times"></i>
+        </button>
+        <div class="widget">
+          <div class="th-widget-about">
+            <div class="about-logo">
+              <a href="home-travel.html"><img src="assets/img/ghfest.png" alt="Tourm" /></a>
+            </div>
+            <p class="about-text">
+              <!-- Rapidiously myocardinate cross-platform intellectual capital
               model. Appropriately create interactive infrastructures -->
-          </p>
-          <div class="th-social">
-            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.whatsapp.com/"><i class="fab fa-whatsapp"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="widget">
-        <h3 class="widget_title">Recent Posts</h3>
-        <div class="recent-post-wrap">
-          <div class="recent-post">
-            <div class="media-img">
-              <a href="blog-details.html"><img src="assets/img/blog/recent-post-1-1.jpg" alt="Blog Image" /></a>
-            </div>
-            <div class="media-body">
-              <div class="recent-post-meta">
-                <a href="blog.html"><i class="far fa-calendar"></i>24 Jun , 2025</a>
-              </div>
-              <h4 class="post-title">
-                <a class="text-inherit" href="blog-details.html">Where Vision Meets Concrete Reality</a>
-              </h4>
-            </div>
-          </div>
-          <div class="recent-post">
-            <div class="media-img">
-              <a href="blog-details.html"><img src="assets/img/blog/recent-post-1-2.jpg" alt="Blog Image" /></a>
-            </div>
-            <div class="media-body">
-              <div class="recent-post-meta">
-                <a href="blog.html"><i class="far fa-calendar"></i>22 Jun , 2025</a>
-              </div>
-              <h4 class="post-title">
-                <a class="text-inherit" href="blog-details.html">Raising the Bar in Construction.</a>
-              </h4>
+            </p>
+            <div class="th-social">
+              <a href="https://web.facebook.com/ghanafest.alberta.2025/"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://x.com/elonmusk/status/1914556969161036010?t=pDRquQ3ZFgnicImVKK7mkw&s=08"><i
+                  class="fab fa-twitter"></i></a>
+              <a
+                href="https://www.linkedin.com/in/ghanafest-alberta-80964a361?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i
+                  class="fab fa-linkedin-in"></i></a>
+              <!-- <a href="https://www.whatsapp.com/"><i class="fab fa-whatsapp"></i></a> -->
+              <a href="https://www.instagram.com/reel/DIvsrW7xjel/?igsh=dm9ndmJqdmhmZGhz"><i
+                  class="fab fa-instagram"></i></a>
+              <a href="https://www.tiktok.com/@ghanafestalberta?lang=en"><i class="ri-tiktok-fill"></i></a>
+              <a href=" https://youtube.com/@ghanafestalberta-1?si=q7k-MQVnn5TTaHDw"><i class="ri-youtube-fill"></i></a>
             </div>
           </div>
         </div>
-      </div>
-      <div class="widget">
-        <h3 class="widget_title">Get In Touch</h3>
-        <div class="th-widget-contact">
-          <div class="info-box_text">
-            <div class="icon">
-              <img src="assets/img/icon/phone.svg" alt="img" />
+        <div class="widget">
+          <h3 class="widget_title">Recent Posts</h3>
+          <div class="recent-post-wrap">
+            <div class="recent-post">
+              <div class="media-img">
+                <a href="blog-details.html"><img src="assets/img/blog/recent-post-1-1.jpg" alt="Blog Image" /></a>
+              </div>
+              <div class="media-body">
+                <div class="recent-post-meta">
+                  <a href="blog.html"><i class="far fa-calendar"></i>24 Jun , 2025</a>
+                </div>
+                <h4 class="post-title">
+                  <a class="text-inherit" href="blog-details.html">Where Vision Meets Concrete Reality</a>
+                </h4>
+              </div>
             </div>
-            <div class="details">
-              <p>
-                <a href="tel:+01234567890" class="info-box_link">+01 234 567 890</a>
-              </p>
-              <p>
-                <a href="tel:+09876543210" class="info-box_link">+09 876 543 210</a>
-              </p>
+            <div class="recent-post">
+              <div class="media-img">
+                <a href="blog-details.html"><img src="assets/img/blog/recent-post-1-2.jpg" alt="Blog Image" /></a>
+              </div>
+              <div class="media-body">
+                <div class="recent-post-meta">
+                  <a href="blog.html"><i class="far fa-calendar"></i>22 Jun , 2025</a>
+                </div>
+                <h4 class="post-title">
+                  <a class="text-inherit" href="blog-details.html">Raising the Bar in Construction.</a>
+                </h4>
+              </div>
             </div>
           </div>
-          <div class="info-box_text">
-            <div class="icon">
-              <img src="assets/img/icon/envelope.svg" alt="img" />
+        </div>
+        <div class="widget">
+          <h3 class="widget_title">Get In Touch</h3>
+          <div class="th-widget-contact">
+            <div class="info-box_text">
+              <div class="icon">
+                <img src="assets/img/icon/phone.svg" alt="img" />
+              </div>
+              <div class="details">
+                <p>
+                  <a href="tel:+01234567890" class="info-box_link">+01 234 567 890</a>
+                </p>
+                <p>
+                  <a href="tel:+09876543210" class="info-box_link">+09 876 543 210</a>
+                </p>
+              </div>
             </div>
-            <div class="details">
-              <p>
-                <a href="mailto:mailinfo00@tourm.com" class="info-box_link">mailinfo00@tourm.com</a>
-              </p>
-              <p>
-                <a href="mailto:support24@tourm.com" class="info-box_link">support24@tourm.com</a>
-              </p>
+            <div class="info-box_text">
+              <div class="icon">
+                <img src="assets/img/icon/envelope.svg" alt="img" />
+              </div>
+              <div class="details">
+                <p>
+                  <a href="mailto:mailinfo00@tourm.com" class="info-box_link">mailinfo00@tourm.com</a>
+                </p>
+                <p>
+                  <a href="mailto:support24@tourm.com" class="info-box_link">support24@tourm.com</a>
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="info-box_text">
+            <!-- <div class="info-box_text">
             <div class="icon">
               <img src="assets/img/icon/location-dot.svg" alt="img" />
             </div>
             <div class="details">
               <p>789 Inner Lane, Holy park, California, USA</p>
             </div>
+          </div> -->
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="popup-search-box">
-    <button class="searchClose"><i class="fal fa-times"></i></button>
-    <form action="#">
-      <input type="text" placeholder="What are you looking for?" />
-      <button type="submit"><i class="fal fa-search"></i></button>
-    </form>
-  </div>
-  <div class="th-menu-wrapper onepage-nav">
-    <div class="th-menu-area text-center">
-      <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
-      <div class="mobile-logo">
-        <a href="index.html"><img src="assets/img/ghfest.png" alt="ghanafestalberta" width="100" /></a>
-      </div>
-      <div class="th-mobile-menu">
-        <ul>
-          <li class="">
-            <a class="active" href="index.html">Home</a>
-          </li>
-          <li class="menu-item-has-children">
-            <a href="about.html">About Us</a>
-            <ul class="sub-menu">
-              <li><a href="events.html">Event Calendar</a></li>
-              <!-- <li>
+    <div class="popup-search-box">
+      <button class="searchClose"><i class="fal fa-times"></i></button>
+      <form action="#">
+        <input type="text" placeholder="What are you looking for?" />
+        <button type="submit"><i class="fal fa-search"></i></button>
+      </form>
+    </div>
+    <div class="th-menu-wrapper onepage-nav">
+      <div class="th-menu-area text-center">
+        <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
+        <div class="mobile-logo">
+          <a href="index.html"><img src="assets/img/ghfest.png" alt="ghanafestalberta" width="100" /></a>
+        </div>
+        <div class="th-mobile-menu">
+          <ul>
+            <li class="">
+              <a class="active" href="index.html">Home</a>
+            </li>
+            <li class="menu-item-has-children">
+              <a href="about.html">About Us</a>
+              <ul class="sub-menu">
+                <li><a href="events.html">Event Calendar</a></li>
+                <!-- <li>
                   <a href="">Our Team</a>
                 </li> -->
-              <li>
-                <a href="contact.html">Contact Us</a>
-              </li>
-            </ul>
-          </li>
-          <li><a href="form_type.html">Forms</a></li>
-          <li><a href="sponsors.html">Sponsors</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="payment_type.html">Payment</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="shop.html">Shop</a></li>
-        </ul>
+                <li>
+                  <a href="contact.html">Contact Us</a>
+                </li>
+              </ul>
+            </li>
+            <li><a href="form_type.html">Forms</a></li>
+            <li><a href="sponsors.html">Sponsors</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="payment_type.html">Payment</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="shop.html">Shop</a></li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 
-  <header class="th-header header-layout3 header-absolute">
-    <div class="sticky-wrapper">
-      <div class="menu-area">
-        <div class="container">
-          <div class="row align-items-center justify-content-between">
-            <div class="col-auto">
-              <nav class="main-menu d-none d-xl-block">
-                <ul>
-                  <li class="">
-                    <a class="active" href="index.html">Home</a>
-                  </li>
-                  <li class="menu-item-has-children">
-                    <a href="about.html">About Us</a>
-                    <ul class="sub-menu">
-                      <li><a href="events.html">Event Calendar</a></li>
-                      <!--<li>
+    <header class="th-header header-layout3 header-absolute">
+      <div class="sticky-wrapper">
+        <div class="menu-area">
+          <div class="container">
+            <div class="row align-items-center justify-content-between">
+              <div class="col-auto">
+                <nav class="main-menu d-none d-xl-block">
+                  <ul>
+                    <li class="">
+                      <a class="active" href="index.html">Home</a>
+                    </li>
+                    <li class="menu-item-has-children">
+                      <a href="about.html">About Us</a>
+                      <ul class="sub-menu">
+                        <li><a href="events.html">Event Calendar</a></li>
+                        <!--<li>
                           <a href="#">Our Team</a>
                         </li> -->
-                      <li>
-                        <a href="contact.html">Contact Us</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li><a href="form_type.html">Forms</a></li>
-                  <li><a href="sponsors.html">Sponsors</a></li>
-                </ul>
-              </nav>
-            </div>
-            <div class="col-auto">
-              <div class="header-logo">
-                <a href="index.html"><img src="assets/img/ghfest.png" alt="GhanaFest" width="90px" /></a>
-                <a href="https://canadianchoiceaward.ca/winners/ab/edmonton/"><img src="assets/img/cert1.png"
-                    alt="GhanaFest" width="90px" /></a>
+                        <li>
+                          <a href="contact.html">Contact Us</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a href="form_type.html">Forms</a></li>
+                    <li><a href="sponsors.html">Sponsors</a></li>
+                  </ul>
+                </nav>
               </div>
-            </div>
-            <div class="col-auto">
-              <nav class="main-menu d-none d-xl-block">
-                <ul>
-                  <li><a href="blog.html">Blog</a></li>
-                  <li><a href="payment_type.html">Payment</a></li>
-                  <li><a href="gallery.html">Gallery</a></li>
-                  <li><a href="shop.html">Shop</a></li>
-                </ul>
-              </nav>
-              <button type="button" class="th-menu-toggle d-block d-xl-none">
-                <i class="far fa-bars"></i>
-              </button>
+              <div class="col-auto">
+                <div class="header-logo">
+                  <a href="index.html"><img src="assets/img/ghfest.png" alt="GhanaFest" width="90px" /></a>
+                  <a href="https://canadianchoiceaward.ca/winners/ab/edmonton/"><img src="assets/img/cert1.png"
+                      alt="GhanaFest" width="90px" /></a>
+                </div>
+              </div>
+              <div class="col-auto">
+                <nav class="main-menu d-none d-xl-block">
+                  <ul>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="payment_type.html">Payment</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                  </ul>
+                </nav>
+                <button type="button" class="th-menu-toggle d-block d-xl-none">
+                  <i class="far fa-bars"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </header>
+
+
+
+    <div class="kente_bar">
+      <img class="kente_bar" src="assets/img/bar.jpg" alt="" />
     </div>
-  </header>
-
-
-
-  <div class="kente_bar">
-    <img class="kente_bar" src="assets/img/bar.jpg" alt="" />
-  </div>
-  <div class="hero-2" id="hero">
-    <div class="hero2-overlay" data-bg-src="assets/img/landingimg_.jpg"></div>
-    <div class="swiper hero-slider-2" id="heroSlide2">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <div class="hero-inner">
-            <div class="th-hero-bg" data-bg-src="assets/img/landingimg_.jpg"></div>
-            <div class="container">
-              <div class="hero-style2">
-                <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">
-                  GhanaFest Alberta
-                  <span class="hero-text">Bridging Cultures, Creating Opportunities</span>
-                </h1>
-                <p class="hero-desc" data-ani="slideinup" data-ani-delay="0.5s">
-                  A celebration of Ghanaian identity, heritage, and global
-                  partnerships.
-                </p>
-                <div class="btn-group" data-ani="slideinup" data-ani-delay="0.6s">
-                  <a href="#" class="th-btn white-btn th-icon">About Us</a>
+    <div class="hero-2" id="hero">
+      <div class="hero2-overlay" data-bg-src="assets/img/landingimg_.jpg"></div>
+      <div class="swiper hero-slider-2" id="heroSlide2">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="hero-inner">
+              <div class="th-hero-bg" data-bg-src="assets/img/landingimg_.jpg"></div>
+              <div class="container">
+                <div class="hero-style2">
+                  <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">
+                    GhanaFest Alberta
+                    <span class="hero-text">Bridging Cultures, Creating Opportunities</span>
+                  </h1>
+                  <p class="hero-desc" data-ani="slideinup" data-ani-delay="0.5s">
+                    A celebration of Ghanaian identity, heritage, and global
+                    partnerships.
+                  </p>
+                  <div class="btn-group" data-ani="slideinup" data-ani-delay="0.6s">
+                    <a href="#" class="th-btn white-btn th-icon">About Us</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="hero-inner">
+              <video autoplay loop muted>
+                <source src="assets/img/hero/hero-video4.mp4" type="video/mp4" />
+              </video>
+              <div class="container">
+                <div class="hero-style2">
+                  <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">
+                    GhanaFest Alberta
+                    <span class="hero-text">Bridging Cultures, Creating Opportunities</span>
+                  </h1>
+                  <p class="hero-desc" data-ani="slideinup" data-ani-delay="0.5s">
+                    A celebration of Ghanaian identity, heritage, and global
+                    partnerships.
+                  </p>
+                  <div class="btn-group" data-ani="slideinup" data-ani-delay="0.6s">
+                    <a href="#" class="th-btn white-btn th-icon">About Us</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="swiper-slide">
-          <div class="hero-inner">
-            <video autoplay loop muted>
-              <source src="assets/img/hero/hero-video4.mp4" type="video/mp4" />
-            </video>
-            <div class="container">
-              <div class="hero-style2">
-                <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">
-                  GhanaFest Alberta
-                  <span class="hero-text">Bridging Cultures, Creating Opportunities</span>
-                </h1>
-                <p class="hero-desc" data-ani="slideinup" data-ani-delay="0.5s">
-                  A celebration of Ghanaian identity, heritage, and global
-                  partnerships.
-                </p>
-                <div class="btn-group" data-ani="slideinup" data-ani-delay="0.6s">
-                  <a href="#" class="th-btn white-btn th-icon">About Us</a>
+        <div class="th-swiper-custom">
+          <div class="swiper-pagination"></div>
+          <div class="hero-icon">
+            <button data-slider-prev="#heroSlide2, #heroSlide3" class="hero-arrow slider-prev">
+              <img src="assets/img/icon/hero-arrow-left.svg" alt="" />
+            </button>
+            <button data-slider-next="#heroSlide2, #heroSlide3" class="hero-arrow slider-next">
+              <img src="assets/img/icon/hero-arrow-right.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="swiper heroThumbs style2" id="heroSlide3">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="hero-inner">
+              <div class="hero-card">
+                <div class="hero-img">
+                  <img src="assets/img/landingimg_.jpg" alt="" />
+                </div>
+                <div class="hero-card_content">
+                  <h3 class="box-title">GhanaFest</h3>
+                  <h4 class="hero-card_price">
+                    <span class="currency"></span>
+                  </h4>
+                  <a href="#" class="th-btn style2">View More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="hero-inner">
+              <div class="hero-card">
+                <div class="hero-img">
+                  <img src="assets/img/ghfest/IMG_0117-1-scaled 1.png" alt="" />
+                </div>
+                <div class="hero-card_content">
+                  <h3 class="box-title">GhanaFest</h3>
+                  <h4 class="hero-card_price">
+                    <span class="currency"></span>
+                  </h4>
+                  <a href="#" class="th-btn style2">View More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="hero-inner">
+              <div class="hero-card">
+                <div class="hero-img">
+                  <img src="assets/img/landingimg_.jpg" alt="" />
+                </div>
+                <div class="hero-card_content">
+                  <h3 class="box-title">Mountain Tour</h3>
+                  <h4 class="hero-card_price">
+                    <span class="currency"></span>/Person
+                  </h4>
+                  <span><i class="fa-light fa-clock"></i>7 Days</span>
+                  <a href="destination-details.html" class="th-btn style2">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="hero-inner">
+              <div class="hero-card">
+                <div class="hero-img">
+                  <img src="assets/img/ghfest/IMG_0117-1-scaled 1.png" alt="" />
+                </div>
+                <div class="hero-card_content">
+                  <h3 class="box-title">Yachts Tour</h3>
+                  <h4 class="hero-card_price">
+                    <span class="currency"></span>/Person
+                  </h4>
+                  <span><i class="fa-light fa-clock"></i>6 Days</span>
+                  <a href="destination-details.html" class="th-btn style2">Book Now</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="th-swiper-custom">
-        <div class="swiper-pagination"></div>
-        <div class="hero-icon">
-          <button data-slider-prev="#heroSlide2, #heroSlide3" class="hero-arrow slider-prev">
-            <img src="assets/img/icon/hero-arrow-left.svg" alt="" />
-          </button>
-          <button data-slider-next="#heroSlide2, #heroSlide3" class="hero-arrow slider-next">
-            <img src="assets/img/icon/hero-arrow-right.svg" alt="" />
-          </button>
-        </div>
+      <div class="scroll-down">
+        <a href="#destination-sec" class="scroll-wrap"><span><img src="assets/img/icon/down-arrow.svg"
+              alt="" /></span>Scroll Down</a>
       </div>
-    </div>
-    <div class="swiper heroThumbs style2" id="heroSlide3">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <div class="hero-inner">
-            <div class="hero-card">
-              <div class="hero-img">
-                <img src="assets/img/landingimg_.jpg" alt="" />
-              </div>
-              <div class="hero-card_content">
-                <h3 class="box-title">GhanaFest</h3>
-                <h4 class="hero-card_price">
-                  <span class="currency"></span>
-                </h4>
-                <a href="#" class="th-btn style2">View More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="hero-inner">
-            <div class="hero-card">
-              <div class="hero-img">
-                <img src="assets/img/ghfest/IMG_0117-1-scaled 1.png" alt="" />
-              </div>
-              <div class="hero-card_content">
-                <h3 class="box-title">GhanaFest</h3>
-                <h4 class="hero-card_price">
-                  <span class="currency"></span>
-                </h4>
-                <a href="#" class="th-btn style2">View More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="hero-inner">
-            <div class="hero-card">
-              <div class="hero-img">
-                <img src="assets/img/landingimg_.jpg" alt="" />
-              </div>
-              <div class="hero-card_content">
-                <h3 class="box-title">Mountain Tour</h3>
-                <h4 class="hero-card_price">
-                  <span class="currency"></span>/Person
-                </h4>
-                <span><i class="fa-light fa-clock"></i>7 Days</span>
-                <a href="destination-details.html" class="th-btn style2">Book Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="hero-inner">
-            <div class="hero-card">
-              <div class="hero-img">
-                <img src="assets/img/ghfest/IMG_0117-1-scaled 1.png" alt="" />
-              </div>
-              <div class="hero-card_content">
-                <h3 class="box-title">Yachts Tour</h3>
-                <h4 class="hero-card_price">
-                  <span class="currency"></span>/Person
-                </h4>
-                <span><i class="fa-light fa-clock"></i>6 Days</span>
-                <a href="destination-details.html" class="th-btn style2">Book Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="scroll-down">
-      <a href="#destination-sec" class="scroll-wrap"><span><img src="assets/img/icon/down-arrow.svg"
-            alt="" /></span>Scroll Down</a>
     </div>
   </div>
 
@@ -774,8 +1406,8 @@
                     <div class="video-play-button"></div>
                   </div> -->
                   <div class="video-thumbnail" data-video-id="CXHqyldLFQg">
-                    <img src="assets/img/pages/WhatsApp-Image-2025-06-10-at-17.07.55_9f80f757.jpg" 
-                         alt="GhanaFest Alberta Event">
+                    <img src="assets/img/pages/WhatsApp-Image-2025-06-10-at-17.07.55_9f80f757.jpg"
+                      alt="GhanaFest Alberta Event">
                     <div class="video-play-button"></div>
                   </div>
                 </div>
@@ -796,8 +1428,7 @@
                     <div class="video-play-button"></div>
                   </div> -->
                   <div class="video-thumbnail" data-video-id="CXHqyldLFQg">
-                    <img src="assets/img/ghfest/about3.png" 
-                         alt="GhanaFest Alberta Event">
+                    <img src="assets/img/ghfest/about3.png" alt="GhanaFest Alberta Event">
                     <div class="video-play-button"></div>
                   </div>
                 </div>
@@ -818,8 +1449,7 @@
                     <div class="video-play-button"></div>
                   </div> -->
                   <div class="video-thumbnail" data-video-id="CXHqyldLFQg">
-                    <img src="assets/img/ghfest/community.jpg" 
-                         alt="GhanaFest Alberta Event">
+                    <img src="assets/img/ghfest/community.jpg" alt="GhanaFest Alberta Event">
                     <div class="video-play-button"></div>
                   </div>
                 </div>
@@ -841,8 +1471,7 @@
                   </div>
                 </div> -->
                 <div class="video-thumbnail" data-video-id="CXHqyldLFQg">
-                  <img src="assets/img/ghfest/square-img2.jpg" 
-                       alt="GhanaFest Alberta Event">
+                  <img src="assets/img/ghfest/square-img2.jpg" alt="GhanaFest Alberta Event">
                   <div class="video-play-button"></div>
                 </div>
                 <div class="blog-box_content">
@@ -1295,11 +1924,18 @@
                   heritage, and community engagement in Alberta.
                 </p>
                 <div class="th-social">
-                  <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                  <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                  <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="https://www.whatsapp.com/"><i class="fab fa-whatsapp"></i></a>
-                  <a href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+                  <a href="https://web.facebook.com/ghanafest.alberta.2025/"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://x.com/elonmusk/status/1914556969161036010?t=pDRquQ3ZFgnicImVKK7mkw&s=08"><i
+                      class="fab fa-twitter"></i></a>
+                  <a
+                    href="https://www.linkedin.com/in/ghanafest-alberta-80964a361?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i
+                      class="fab fa-linkedin-in"></i></a>
+                  <!-- <a href="https://www.whatsapp.com/"><i class="fab fa-whatsapp"></i></a> -->
+                  <a href="https://www.instagram.com/reel/DIvsrW7xjel/?igsh=dm9ndmJqdmhmZGhz"><i
+                      class="fab fa-instagram"></i></a>
+                  <a href="https://www.tiktok.com/@ghanafestalberta?lang=en"><i class="ri-tiktok-fill"></i></a>
+                  <a href=" https://youtube.com/@ghanafestalberta-1?si=q7k-MQVnn5TTaHDw"><i
+                      class="ri-youtube-fill"></i></a>
                 </div>
               </div>
             </div>
@@ -1347,7 +1983,7 @@
                     </p>
                   </div>
                 </div>
-                <div class="info-box_text">
+                <!-- <div class="info-box_text">
                   <div class="icon">
                     <img src="assets/img/icon/location-dot.svg" alt="img" />
                   </div>
@@ -1356,7 +1992,7 @@
                       789 Inner Lane, Holy park, California, USA
                     </p>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -1524,6 +2160,146 @@
   <script src="assets/js/matterjs-custom.js"></script>
   <script src="assets/js/nice-select.min.js"></script>
   <script>
+
+    // First Visit Modal Class - CORRECTED VERSION
+    class FirstVisitModal {
+      constructor() {
+        this.modal = document.getElementById('firstVisitModal');
+        this.closeBtn = document.getElementById('closeModal');
+        this.dontShowAgain = document.getElementById('dontShowAgain');
+        this.getTicketsBtn = document.getElementById('getTicketsBtn');
+        this.storageKey = 'ghanafest_modal_shown'; // Fixed storage key
+
+        this.init();
+      }
+
+      init() {
+        this.bindEvents();
+        this.checkFirstVisit();
+      }
+
+      bindEvents() {
+        // Close modal events
+        this.closeBtn.addEventListener('click', () => this.closeModal());
+
+        // Close on overlay click
+        document.querySelector('.modal-overlay').addEventListener('click', () => this.closeModal());
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && this.modal.classList.contains('show')) {
+            this.closeModal();
+          }
+        });
+
+        // Get tickets button
+        this.getTicketsBtn.addEventListener('click', () => {
+          this.closeModal();
+          this.showNotification('Redirecting to ticket purchase...');
+        });
+
+        // Don't show again checkbox
+        this.dontShowAgain.addEventListener('change', () => {
+          if (this.dontShowAgain.checked) {
+            localStorage.setItem(this.storageKey + '_permanent', 'true');
+          } else {
+            localStorage.removeItem(this.storageKey + '_permanent');
+          }
+        });
+      }
+
+      checkFirstVisit() {
+        // Check if modal was permanently disabled
+        const permanentlyDisabled = localStorage.getItem(this.storageKey + '_permanent');
+        // Check if modal was already shown this session/visit
+        const alreadyShown = localStorage.getItem(this.storageKey);
+
+        // Only show if neither condition is true
+        if (!permanentlyDisabled && !alreadyShown) {
+          setTimeout(() => {
+            this.showModal();
+          }, 1500);
+        }
+      }
+
+      showModal() {
+        document.body.style.overflow = 'hidden';
+        this.modal.classList.add('show');
+
+        // Add entrance animation for highlights
+        setTimeout(() => {
+          document.querySelectorAll('.highlight-item').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              item.style.transition = 'all 0.4s ease';
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+            }, index * 100);
+          });
+        }, 600);
+      }
+
+      closeModal() {
+        this.modal.classList.remove('show');
+        document.body.style.overflow = '';
+
+        // FIXED: Always mark as shown when closed (regardless of checkbox)
+        localStorage.setItem(this.storageKey, 'true');
+
+        // If checkbox is checked, also set permanent flag
+        if (this.dontShowAgain.checked) {
+          localStorage.setItem(this.storageKey + '_permanent', 'true');
+        }
+      }
+
+      showNotification(message) {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #007bff, #74b3ff);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 10001;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        `;
+
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.style.opacity = '1';
+          notification.style.transform = 'translateX(0)';
+        }, 10);
+
+        setTimeout(() => {
+          notification.style.opacity = '0';
+          notification.style.transform = 'translateX(100%)';
+          setTimeout(() => notification.remove(), 300);
+        }, 3000);
+      }
+    }
+    // Scroll to section function
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        // Close modal if open
+        const modal = document.getElementById('firstVisitModal');
+        if (modal.classList.contains('show')) {
+          new FirstVisitModal().closeModal();
+        }
+      }
+    }
+
+
     document.addEventListener('DOMContentLoaded', function () {
       // Add click event listeners to video thumbnails
       document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
@@ -1548,7 +2324,11 @@
 
         });
       });
+
+      new FirstVisitModal();
     });
+
+
   </script>
   <script src="assets/js/main.js"></script>
 </body>
